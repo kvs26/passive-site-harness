@@ -1,0 +1,8 @@
+# Site repos are independent nested git repos — never tracked here
+sites/
+
+# Secrets
+.env
+
+# macOS
+.DS_Store
