@@ -1,7 +1,7 @@
 # 07 — Set up .env credentials (Reddit OAuth, GitHub PAT)
 
 Type: task
-Status: open
+Status: claimed
 
 ## Question
 

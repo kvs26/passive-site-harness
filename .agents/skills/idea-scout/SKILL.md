@@ -14,6 +14,7 @@ One run = one niche = one session. The run ends with 3–5 candidate ideas on di
 - **Never invent numbers.** No search volume, CPC, difficulty, traffic, or revenue figures from your own head — ever. If a number can't be read from a real source you fetched this run, write `unknown`. `unknown` is a first-class value, not a failure.
 - **Real evidence only.** Every quote must come from a page actually fetched this run, with its URL. No paraphrased "people are saying" without a link.
 - **No paid SEO tools or APIs.** Free/credential-free sources by default; optional credentialed adapters only when the user has supplied credentials in `.env`.
+- **MCP tools are optional.** If the Fetch or Brave Search MCP servers are available (config in `.vscode/mcp.json`), use them in the source-gathering passes; absence degrades gracefully to the helper scripts and built-in fetch/search tools. The source catalog and helper scripts are unchanged either way.
 - Weak candidates are **kept**, marked weak — the gate list decides death, not vibes.
 
 ## Run inputs
