@@ -33,3 +33,4 @@ Google's incumbent results are static listicles that give conflicting yes/no ans
 
 - 2026-08-06 — candidate (emitted by scout run)
 - 2026-08-06 — validated (dossier complete, confidence high; demand strong across fresh fan-out + 4 live Reddit threads; hook quantity × dog-size confirmed user-demanded and absent from the two interactive competitors found, dogtoxic.com and canmydogeat.org — see dossier.md and ../../runs/2026-08-06-validate-can-my-dog-eat-database.md)
+- 2026-08-17 — validated (Keyword Planner top-up: CSV ingested (2026-08-15 export); demand corroborated — "can dogs eat grapes" 500K bucket, "dog chocolate toxicity calculator" 50K YoY +900%; monetization note added — top-of-page LOW bids mostly < $0.10 USD-equiv, lean affiliate over display; confidence high now CSV-backed — see dossier.md and ../../runs/2026-08-17-validate-can-my-dog-eat-database.md)

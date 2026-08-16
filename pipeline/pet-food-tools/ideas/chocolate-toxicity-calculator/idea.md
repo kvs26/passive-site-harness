@@ -1,6 +1,6 @@
 # Chocolate toxicity calculator (weak)
 
-Status: candidate (weak — gate 5 near-miss)
+Status: rejected
 Origin: ../../runs/2026-08-06-scout.md
 
 ## Idea
@@ -30,3 +30,4 @@ The #1 panic question requires arithmetic (theobromine mg/kg by chocolate type �
 ## History
 
 - 2026-08-06 — candidate, marked weak (emitted by scout run)
+- 2026-08-17 — rejected on validation: scout gate 4 disproved. Demand is strong and explicit ("my dog ate chocolate calculator" is a real query), but the quantity × weight × chocolate-type hook is already served by authoritative interactive calculators — PetMD/Chewy, Omni Calculator, Merck Vet Manual, Vets Now — plus a saturated SERP of dedicated tools. Scout gate-5 legal near-miss also remains unresolved. Dossier kept as record. See ../../runs/2026-08-17-validate-chocolate-toxicity-calculator.md.

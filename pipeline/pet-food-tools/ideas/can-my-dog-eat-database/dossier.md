@@ -1,6 +1,6 @@
 # Dossier: Can-my-dog-eat searchable database
 
-**Searchable "can dogs eat X" database whose hook — verdicts adjusted for quantity eaten and dog size — is strongly demanded and absent from every competitor found, including two existing interactive lookups; confidence: high.**
+**Searchable "can dogs eat X" database whose hook — verdicts adjusted for quantity eaten and dog size — is strongly demanded (now Keyword-Planner-backed: head term in the 500K bucket, toxicity-calculator query at 50K and rising) and absent from every competitor found, including two existing interactive lookups; confidence: high.**
 
 ## Signal scorecard
 
@@ -9,6 +9,7 @@
   - "Google results are mixed, some info says to just watch him and other info says it can be toxic" — https://www.reddit.com/r/DogAdvice/comments/194h1eu/help_my_dog_ate_silica_gel_does_he_need_first_aid/ (re-verified live via DDG this run)
   - "My dog just ate half of one of these bars, are these [toxic]" — https://www.reddit.com/r/DogAdvice/comments/13q5q8y/my_dog_just_ate_half_of_one_of_these_bars_are/ (new this run, independent thread)
   - "My dog ate one or two of these, I can't find a whole lot of…" — https://www.reddit.com/r/mushroomID/comments/1ddrx8l/my_dog_ate_one_or_two_of_these_i_cant_find_a/ (new this run, independent community)
+  - Keyword Planner export (2026-08-15, US): "can dogs eat grapes" avg-searches bucket 500000, "can dogs eat chocolate" 50000, "dog chocolate toxicity calculator" 50000 with YoY +900% — core group far above the 5K bar (one independent piece per rubric; see Keyword data).
 
 **SERP & competitor weakness: weak** — head-term SERPs are static listicles, but they belong to high-authority sites, and two small interactive lookup competitors already exist (contradicting the scout's "no interactive lookup" note).
   - "can dogs eat grapes" (DDG, this run): Petful, WebMD, CanineBible, RubyVet, OutwardHound, Purina, AKC, Dogster — all static articles, no tool; but WebMD/AKC/Purina are hard to outrank on authority.
@@ -24,6 +25,7 @@
 **Monetization paths: strong** — competitors in this exact space run ads and dense affiliate programs.
   - caninebible.com/can-dogs-eat-grapes/ (fetched this run): Chewy in-article affiliate banners (chewy.sjv.io), pet-insurance guide affiliate, Dutch vet-telehealth affiliate (dutchpetinc.pxf.io), The Vets (the-vets.sjv.io), Embark, Amazon Associates disclosure.
   - dogtoxic.com (fetched this run): cookie banner states "we use cookies to improve your experience and serve relevant ads" — display ads on an interactive lookup, our exact format.
+  - Keyword Planner bids temper this: top-of-page LOW bids are mostly < $0.10 USD-equiv (₹1.12–4.76 ≈ $0.01–0.05); only "dog ate grapes and is fine" (₹45.07 ≈ $0.47) and "my dog ate a grape" (₹12.91 ≈ $0.14) reach the $0.10–0.50 weak-support band. No contradiction of the on-site ad/affiliate evidence, but expect low display RPM on head terms.
 
 **Feasibility & maintenance: strong** — free, stable, authoritative dose data exists; a competitor proves the static build.
   - Merck Vet Manual "Food Hazards" (fetched this run, last updated May 2026): explicit dose thresholds — "more than one grape or raisin per 4.5 kg (10 pounds) of body weight may contain enough tartaric acid to pose a risk"; "One ounce of milk chocolate per pound of body weight is a potentially fatal dosage in dogs." https://www.merckvetmanual.com/special-pet-topics/poisoning/food-hazards
@@ -33,22 +35,31 @@
   - Merck gives per-weight thresholds (grapes, chocolate by type ordering: cocoa powder > baker's > semisweet > milk) usable to compute verdicts from quantity + dog weight (fetched this run).
   - Confirmed gap: dogtoxic.com and canmydogeat.org (both inspected this run) serve only flat verdicts — the derived quantity model would be data they don't have. USDA FoodData Central remains available for per-food nutrient/serving-size grounding.
 
-**Confidence: high** — no signal unknown; demand and SERP weakness each graded from ≥2 independent sources fetched this run.
+**Confidence: high** — no signal unknown; demand and SERP weakness each graded from ≥2 independent sources; Keyword Planner CSV present (2026-08-15 export, fresh).
 
 ## SERP snapshot
 
 - **"can dogs eat grapes" (DDG, 2026-08-06):** petful.com ("Dog Ate a Grape? 3 Steps… [2026]"), webmd.com, caninebible.com ("Toxic Dosage & Vet-Advice"), rubyvet.com, outwardhound.com, purina.com, akc.org, dogster.com ×2. All articles; caninebible is the only one leading with dosage, and even it concludes "no safe quantity" prose rather than computing anything. Beatable on format (instant verdict + quantity input), not on raw authority — traffic path is the long tail ("dog ate grapes 24 hours ago", "…and is fine") rather than the head term.
 - **"what foods can dogs eat searchable list checker" (DDG, 2026-08-06):** "168 Human Foods…", "94 Things…", AKC "People Food…", "40 Vet-Reviewed…", healthline "Can My Dog Eat This?" — every result a static listicle; beatable with an actual lookup.
 - **"can my dog eat app OR database OR tool lookup" (DDG, 2026-08-06):** canmydogeat.org and dogtoxic.com surface at top — the interactive niche exists but is thin (75 foods, flat verdicts, no quantity/size context, no symptom-timeline detail). Beatable on the hook.
+## Keyword data
 
+Keyword Planner historical-metrics export, 2026-08-15 (fresh; Aug 2025–Jul 2026, bids in INR). Parsed via `scripts/planner-report.py`. USD conversion at 1 INR = 0.010471 USD (open.er-api.com / exchangerate-api.com, rate of 2026-08-16). Buckets are order-of-magnitude (50/500/5K/50K/500K), not exact counts.
+
+- **Head terms:** "can dogs eat grapes" **500000** bucket (3-mo +900%, YoY 0%); "can dogs eat chocolate" **50000**; "what can dogs eat" 5000 (YoY −90%); "foods dogs can eat" 5000; "can my dog eat" 500 (YoY +900%).
+- **Long tail (panic/quantity):** "my dog ate a grape", "my dog ate chocolate", "dog ate chocolate chip cookie", "how much chocolate is toxic to dogs", "dog ate a banana peel" all **5000**; "dog ate grapes and is fine" 500 (YoY +900%); "my dog ate an onion" 500; "dog ate grapes 24 hours ago" 50.
+- **Tool-intent:** "dog chocolate toxicity calculator" **50000** bucket, 3-mo +900%, YoY +900% — direct tool demand, rising. "can my dog eat this checker" and "dog food safety lookup" had no data (empty metrics) — the generic checker phrasings don't exist; the calculator phrasing does.
+- **Bids (top-of-page LOW, verbatim INR → USD):** "dog ate grapes and is fine" ₹45.07 → $0.47; "my dog ate a grape" ₹12.91 → $0.14; "dog chocolate toxicity calculator" ₹4.76 → $0.05; head terms ₹2.01–3.16 → $0.02–0.03; "dog ate a banana peel" ₹1.12 → $0.01.
+- **Trend flags:** "dog ate a banana peel" 3-mo and YoY −90%; "what can dogs eat" YoY −90% — peripheral keywords only; core group flat or rising.
 ## Monetization sketch
 
 Display ads (AdSense) on food entry pages — proven by dogtoxic.com running ads on the identical format. Secondary: pet-insurance and vet-telehealth affiliate placements on toxic/caution verdict pages (the exact placements caninebible monetizes), sitting below the emergency-hotline callout, never replacing it.
 
 ## Risks & unknowns
 
-- No signal graded unknown this run.
-- Absolute search volume: unknown (numbers policy — no free source).
+- No signal graded unknown.
+- Search volume now bucketed via Keyword Planner (2026-08-15 export) — exact counts remain unknown by design (buckets only).
+- Advertiser CPCs are low across the space (most top-of-page LOW bids < $0.10 USD-equiv): monetization likely leans on affiliate placements (pet insurance, vet telehealth) more than display RPM.
 - Interactive incumbents exist (dogtoxic.com, canmydogeat.org): differentiation now depends entirely on the quantity × dog-size hook plus food coverage depth (75 foods vs. planned 200+). If they add quantity inputs, the moat shrinks.
 - Grape/raisin toxicity is idiosyncratic per dog (Merck: "variable effects"); the quantity model must present risk thresholds, not safety guarantees, and always route toxic + significant amount to vet/poison hotline (dogtoxic's ASPCA hotline pattern confirms this posture is standard).
 - aspca.org people-foods page could not be fetched this run (redirect to ad-tracker); Merck substitutes fine, but ASPCA as a named source is unverified this run.
@@ -68,3 +79,5 @@ Display ads (AdSense) on food entry pages — proven by dogtoxic.com running ads
 - Fetched: https://www.caninebible.com/can-dogs-eat-grapes/ (monetization inventory).
 - Dead end: https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets — redirected to ad-tracker, content not retrieved.
 - Dead end: https://www.merckvetmanual.com/toxicology/food-hazards/food-hazards-in-animals — 404; correct URL found via DDG.
+- Ingested (2026-08-17 top-up): keyword-planner.csv (export dated 2026-08-15, Aug 2025–Jul 2026, INR) via scripts/planner-report.py.
+- Fetched (2026-08-17): https://open.er-api.com/v6/latest/INR — INR→USD 0.010471 (updated 2026-08-16).

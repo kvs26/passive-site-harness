@@ -1,6 +1,6 @@
 # Cat food portion & unit converter
 
-Status: candidate
+Status: rejected
 Origin: ../../runs/2026-08-06-scout.md
 
 ## Idea
@@ -31,3 +31,4 @@ Feeding guides mix cups, grams, kcal/kg and kcal/cup with no conversion path —
 ## History
 
 - 2026-08-06 — candidate (emitted by scout run)
+- 2026-08-17 — rejected: validate run disproved scout gate 4 — the hook (kcal-density unit math incl. wet+dry split) is already served by a saturated field of dedicated 2026-fresh calculators (expertcatcare, thepetcalculator, crittercalcs, pawsandpounds et al.) and kcal-density databases (catfooddb, catinfo.org); demand itself graded strong. See [dossier](dossier.md) and [run log](../../runs/2026-08-17-validate-cat-portion-converter.md).

@@ -7,3 +7,6 @@ sites/
 # macOS
 .DS_Store
 .cache/
+
+# mcp tools artifacts
+.playwright-mcp

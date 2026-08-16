@@ -1,6 +1,6 @@
 # Dog food calculator (kcal → cups for your actual food)
 
-Status: candidate
+Status: rejected
 Origin: ../../runs/2026-08-06-scout.md
 
 ## Idea
@@ -33,3 +33,4 @@ Bag charts and brand calculators overfeed and confuse (per-day vs per-meal, curr
 ## History
 
 - 2026-08-06 — candidate (emitted by scout run)
+- 2026-08-17 — rejected: scout gate 4 disproved on validation. The kcal/cup-from-your-bag hook is already served by ≥2 interactive incumbents (dogcalculator.net asks for the packaging calorie density; caninebible.com's calculator does the same) on a saturated dedicated-calculator SERP. Demand is strong but the differentiation is gone. Dossier kept as record. See ../../runs/2026-08-17-validate-dog-food-calculator.md
