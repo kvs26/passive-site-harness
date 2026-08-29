@@ -1,6 +1,15 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-08-19 (validate: guinea-pig-food-database — rejected).
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-08-29 (validate: agent-skills-hub — non-dev-skills-directory rejected; all 4 candidates now rejected).
+
+## agent-skills-hub
+
+| Idea | Status | Notes |
+|---|---|---|
+| [agent-skills-compat-matrix](agent-skills-hub/ideas/agent-skills-compat-matrix/idea.md) | rejected | gate 4 disproved on validation: the "will this skill work in my agent?" question is served on the SERP by maintained sites (openagentskill.com per-agent directory + /compare, 261★; aipm-registry.com config matrix, "last checked 28 Aug 2026"; vibekk.com four-agent compat guide) and the 0-star incumbent (porex-bot) is now a real static site (37×13 matrix + capability matrix + porting guide + scheduled crawler); gate-3 maintenance near-miss confirmed. Demand strong but hook served ([dossier](agent-skills-hub/ideas/agent-skills-compat-matrix/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-agent-skills-compat-matrix.md)) |
+| [agent-skills-paths-reference](agent-skills-hub/ideas/agent-skills-paths-reference/idea.md) | rejected | gate-4 disproved on validation: per-agent cross-tool paths/precedence/OS reference already served by maintained fresh incumbents — official docs (code.claude.com/docs/en/claude-directory, cursor.com/docs/skills) + mdskills.ai/docs/install-skills, bestagent.dev (2026-05 per-agent OS-path table), agensi.io, ciembor agent-rules-books GitBook; demand strong but hook occupied, freshness angle contradicted ([dossier](agent-skills-hub/ideas/agent-skills-paths-reference/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-agent-skills-paths-reference.md)) |
+| [ai-employee-bundle-catalog](agent-skills-hub/ideas/ai-employee-bundle-catalog/idea.md) | rejected | gate 4 disproved on validation: role-based installable bundle catalog already served — aiskill.market (paid bundle marketplace), analoghq.ai (curated installable Sets, per-role framing + verification badges), claudeskills360.com/claudedirectory.org/marketing-skills.com + trending 45–205-skill role packs; artifact is commodity markdown ("Notion template, not a moat"). Confidence medium (no CSV) ([dossier](agent-skills-hub/ideas/ai-employee-bundle-catalog/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-ai-employee-bundle-catalog.md)) |
+| [non-dev-skills-directory](agent-skills-hub/ideas/non-dev-skills-directory/idea.md) | rejected | gate 4 disproved on validation: non-dev curation hook already served by ≥3 maintained incumbents — takusaotome Claude Skills Library (profession-organized, .skill downloads), claudedirectory.org (use-case browse + per-role pages), alirezarezvani/claude-skills (25k stars, Marketing/C-Level/PM/Finance bundles) + per-role listicles. Demand real, no unserved cut ([dossier](agent-skills-hub/ideas/non-dev-skills-directory/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-non-dev-skills-directory.md)) |
 
 ## pet-food-tools
 
