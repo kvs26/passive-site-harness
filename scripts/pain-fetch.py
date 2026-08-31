@@ -1,15 +1,23 @@
 #!/usr/bin/env python3
 """Pain-source fetcher with pluggable adapters. Credential-free adapters work
-out of the box; credentialed ones (Reddit OAuth, GitHub PAT) activate only if
-.env supplies credentials. Results cached under .cache/pain/.
+out of the box; credentialed ones (GitHub PAT, YouTube Data API, Product Hunt,
+optional Stack Exchange key) activate only if .env supplies credentials.
+Results cached under .cache/pain/.
+
+Note: no Reddit adapter — unauthenticated access is dead (403/302, verified
+2026-08-31). Wire an OAuth adapter once the pending developer access arrives
+(gate on REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET).
 
 Usage: python3 scripts/pain-fetch.py <adapter> "query"
-Adapters: hn, ddg, github, itunes
+Run without arguments for per-adapter query formats.
 """
+import gzip
 import hashlib
+import html
 import json
 import os
 import pathlib
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -26,13 +34,21 @@ if env_file.exists():
             os.environ.setdefault(k.strip(), v.strip())
 
 
-def fetch(url: str, headers: dict | None = None) -> str:
-    key = CACHE / (hashlib.sha1(url.encode()).hexdigest() + ".txt")
+def fetch(url: str, headers: dict | None = None, data: str | None = None) -> str:
+    cache_id = url + ("|" + data if data else "")
+    key = CACHE / (hashlib.sha1(cache_id.encode()).hexdigest() + ".txt")
     if key.exists():
         return key.read_text()
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0", **(headers or {})})
-    with urllib.request.urlopen(req, timeout=15) as r:
-        body = r.read().decode("utf-8", "replace")
+    req = urllib.request.Request(
+        url,
+        data=data.encode() if data else None,
+        headers={"User-Agent": "Mozilla/5.0", "Accept-Encoding": "gzip", **(headers or {})},
+    )
+    with urllib.request.urlopen(req, timeout=20) as r:
+        raw = r.read()
+    if raw[:2] == b"\x1f\x8b":  # Stack Exchange always gzips
+        raw = gzip.decompress(raw)
+    body = raw.decode("utf-8", "replace")
     key.write_text(body)
     return body
 
@@ -48,7 +64,6 @@ def hn(query: str) -> None:
 def ddg(query: str) -> None:
     url = "https://html.duckduckgo.com/html/?q=" + urllib.parse.quote(query)
     body = fetch(url)
-    import re
 
     for href, title in re.findall(
         r'class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', body
@@ -78,10 +93,218 @@ def itunes(app_id: str) -> None:
         print(f"- [{rating}★] {title}")
 
 
-ADAPTERS = {"hn": hn, "ddg": ddg, "github": github, "itunes": itunes}
+def stackexchange(arg: str) -> None:
+    """arg: "site|query"; site defaults to softwarerecs. Keyless = 300 req/day."""
+    site, _, q = arg.rpartition("|")
+    site = site or "softwarerecs"
+    url = (
+        "https://api.stackexchange.com/2.3/search/excerpts?order=desc&sort=relevance"
+        f"&q={urllib.parse.quote(q)}&site={site}&pagesize=15"
+    )
+    if os.environ.get("STACKEXCHANGE_KEY"):
+        url += "&key=" + os.environ["STACKEXCHANGE_KEY"]
+    data = json.loads(fetch(url))
+    domain = site + (".com" if site in (
+        "stackoverflow", "superuser", "serverfault", "askubuntu", "mathoverflow"
+    ) else ".stackexchange.com")
+    for item in data.get("items", [])[:15]:
+        title = html.unescape(item.get("title", ""))
+        excerpt = re.sub(r"<[^>]+>", "", html.unescape(item.get("excerpt", "")))
+        excerpt = re.sub(r"\s+", " ", excerpt)[:160]
+        print(f"- {title}: {excerpt}\n  https://{domain}/q/{item.get('question_id')}")
+
+
+def discourse(arg: str) -> None:
+    """arg: "instance|query"; empty query = /latest.json firehose."""
+    instance, _, q = arg.partition("|")
+    if not q:
+        data = json.loads(fetch(f"https://{instance}/latest.json"))
+        for t in data.get("topic_list", {}).get("topics", [])[:20]:
+            print(
+                f"- {t.get('title')} ({t.get('posts_count')} posts)\n"
+                f"  https://{instance}/t/{t.get('slug')}/{t.get('id')}"
+            )
+        return
+    data = json.loads(fetch(f"https://{instance}/search.json?q=" + urllib.parse.quote(q)))
+    topics = {t["id"]: t for t in data.get("topics", [])}
+    for p in data.get("posts", [])[:15]:
+        title = topics.get(p.get("topic_id"), {}).get("title", "?")
+        blurb = re.sub(r"\s+", " ", html.unescape(p.get("blurb", "")))[:160]
+        print(f"- {title}: {blurb}\n  https://{instance}/t/{p.get('topic_id')}")
+
+
+SUGGEST_ENGINES = {
+    "google": "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q={q}",
+    "youtube": "https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q={q}",
+    "bing": "https://api.bing.com/osjson.aspx?query={q}",
+    "brave": "https://search.brave.com/api/suggest?q={q}",
+    "ddg": "https://duckduckgo.com/ac/?q={q}&type=list",
+    "amazon": (
+        "https://completion.amazon.com/api/2017/suggestions"
+        "?alias=aps&mid=ATVPDKIKX0DER&prefix={q}&suggestion-type=KEYWORD"
+    ),
+}
+
+
+def suggest(arg: str) -> None:
+    """arg: "engine|query"; engine: google|youtube|bing|brave|ddg|amazon.
+    For alphabet-soup fan-out (Google only) use scripts/fanout.py."""
+    engine, _, q = arg.partition("|")
+    if engine not in SUGGEST_ENGINES or not q:
+        print(f"usage: suggest {{{'|'.join(SUGGEST_ENGINES)}}}|<query>", file=sys.stderr)
+        sys.exit(1)
+    data = json.loads(fetch(SUGGEST_ENGINES[engine].format(q=urllib.parse.quote(q))))
+    if engine == "amazon":
+        items = [s.get("value", "") for s in data.get("suggestions", [])]
+    else:
+        items = data[1] if len(data) > 1 else []
+    for s in items:
+        print(f"- {s}")
+
+
+def lemmy(arg: str) -> None:
+    """arg: "instance|query"; instance defaults to lemmy.world. Weak relevance —
+    quote pain phrases."""
+    instance, _, q = arg.rpartition("|")
+    instance = instance or "lemmy.world"
+    base = f"https://{instance}/api/v3/search?q={urllib.parse.quote(q)}&sort=New&limit=15"
+    data = json.loads(fetch(base + "&type_=Posts"))
+    for p in data.get("posts", [])[:15]:
+        post = p.get("post", {})
+        print(f"- {post.get('name')}\n  {post.get('ap_id')}")
+    data = json.loads(fetch(base + "&type_=Comments"))
+    for c in data.get("comments", [])[:15]:
+        comment = c.get("comment", {})
+        text = re.sub(r"\s+", " ", comment.get("content", ""))[:160]
+        print(f"- [comment] {text}\n  {comment.get('ap_id')}")
+
+
+def gplay(package_id: str) -> None:
+    """Google Play reviews via internal batchexecute RPC (UsvDTd) — undocumented
+    protocol, may break; fails soft."""
+    inner = json.dumps([None, None, [2, None, [20, None, None], None, []], [package_id, 7]])
+    body_arg = urllib.parse.urlencode({"f.req": json.dumps([[["UsvDTd", inner, None, "generic"]]])})
+    try:
+        body = fetch(
+            "https://play.google.com/_/PlayStoreUi/data/batchexecute",
+            headers={"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"},
+            data=body_arg,
+        )
+        envelope = next(json.loads(ln) for ln in body.splitlines() if ln.startswith("[["))
+        reviews = json.loads(envelope[0][2])[0]
+        for r_ in reviews[:15]:
+            text = re.sub(r"\s+", " ", r_[4] or "")[:200]
+            print(f"- [{r_[2]}\u2605] {text}")
+    except Exception as e:  # noqa: BLE001 — internal protocol, fail soft by design
+        print(f"# gplay adapter failed (internal RPC may have changed): {e}", file=sys.stderr)
+        sys.exit(2)
+
+
+def lobsters(query: str) -> None:
+    url = (
+        "https://lobste.rs/search?what=stories&order=newest&q=" + urllib.parse.quote(query)
+    )
+    body = fetch(url)
+    hits = re.findall(r'<a[^>]*class="u-url"[^>]*href="([^"]+)"[^>]*>([^<]+)</a>', body)
+    if not hits:
+        print("# no results (or lobste.rs markup changed)", file=sys.stderr)
+    for href, title in hits[:15]:
+        print(f"- {html.unescape(title)}\n  {href}")
+
+
+def youtube(query: str) -> None:
+    """Search videos + top comments. Needs YOUTUBE_API_KEY in .env
+    (free key, 10K units/day; search = 100 units, comments = 1 unit)."""
+    key = os.environ.get("YOUTUBE_API_KEY")
+    if not key:
+        print("# youtube adapter requires YOUTUBE_API_KEY in .env", file=sys.stderr)
+        sys.exit(2)
+    surl = (
+        "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=3"
+        f"&q={urllib.parse.quote(query)}&key={key}"
+    )
+    for item in json.loads(fetch(surl)).get("items", []):
+        vid = item["id"]["videoId"]
+        print(f"## {item['snippet']['title']}\n   https://www.youtube.com/watch?v={vid}")
+        curl = (
+            f"https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId={vid}"
+            f"&order=relevance&maxResults=10&key={key}"
+        )
+        try:
+            cdata = json.loads(fetch(curl))
+        except Exception as e:
+            print(f"# comments unavailable for {vid}: {e}", file=sys.stderr)
+            continue
+        for c in cdata.get("items", []):
+            s = c["snippet"]["topLevelComment"]["snippet"]
+            text = re.sub(r"<[^>]+>|\s+", " ", html.unescape(s.get("textDisplay", "")))[:180]
+            print(f"- {text}")
+
+
+def producthunt(topic: str) -> None:
+    """Newest posts for a topic slug via GraphQL v2. Needs PRODUCTHUNT_TOKEN in .env."""
+    token = os.environ.get("PRODUCTHUNT_TOKEN")
+    if not token:
+        print("# producthunt adapter requires PRODUCTHUNT_TOKEN in .env", file=sys.stderr)
+        sys.exit(2)
+    gql = {
+        "query": (
+            "query($topic:String){posts(first:15,topic:$topic,order:NEWEST)"
+            "{edges{node{name tagline votesCount commentsCount url}}}}"
+        ),
+        "variables": {"topic": topic},
+    }
+    try:
+        body = fetch(
+            "https://api.producthunt.com/v2/api/graphql",
+            headers={"Content-Type": "application/json", "Authorization": "Bearer " + token},
+            data=json.dumps(gql),
+        )
+        data = json.loads(body)
+        for edge in data.get("data", {}).get("posts", {}).get("edges", []):
+            n = edge["node"]
+            print(
+                f"- {n['name']} \u2014 {n['tagline']} "
+                f"({n['votesCount']}\u25b2, {n['commentsCount']} comments)\n  {n['url']}"
+            )
+    except Exception as e:  # noqa: BLE001 — API shape unverified, fail soft
+        print(f"# producthunt adapter failed: {e}", file=sys.stderr)
+        sys.exit(2)
+
+
+USAGE = """usage: pain-fetch.py <adapter> <query>
+  hn <query>                     HN Algolia search
+  ddg <query>                    DuckDuckGo HTML (supports site: query-recipes)
+  github <query>                 GitHub issue search (GITHUB_PAT optional)
+  itunes <app_id>                iTunes review RSS
+  stackexchange [site|]<query>   SE search/excerpts; default site softwarerecs
+                                 (STACKEXCHANGE_KEY optional: 300/day -> 10K/day)
+  discourse <instance>|[query]   Discourse search.json; empty query = latest.json
+  suggest <engine>|<query>       engine: google|youtube|bing|brave|ddg|amazon
+  lemmy [instance|]<query>       Lemmy posts+comments; default lemmy.world
+  gplay <package_id>             Google Play reviews (fragile internal RPC)
+  lobsters <query>               Lobsters story search
+  youtube <query>                video search + comments (needs YOUTUBE_API_KEY)
+  producthunt <topic-slug>       PH newest posts (needs PRODUCTHUNT_TOKEN)
+(no reddit adapter: unauthenticated is dead; OAuth pending)"""
+
+ADAPTERS = {
+    "hn": hn,
+    "ddg": ddg,
+    "github": github,
+    "itunes": itunes,
+    "stackexchange": stackexchange,
+    "discourse": discourse,
+    "suggest": suggest,
+    "lemmy": lemmy,
+    "gplay": gplay,
+    "lobsters": lobsters,
+    "youtube": youtube,
+    "producthunt": producthunt,
+}
 
 if __name__ == "__main__":
     if len(sys.argv) < 3 or sys.argv[1] not in ADAPTERS:
-        print(f"usage: pain-fetch.py {{{'|'.join(ADAPTERS)}}} <query>", file=sys.stderr)
+        print(USAGE, file=sys.stderr)
         sys.exit(1)
     ADAPTERS[sys.argv[1]](sys.argv[2])

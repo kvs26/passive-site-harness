@@ -1,6 +1,6 @@
 # Animated Sticker Checker
 
-Status: parked
+Status: rejected
 Origin: ../../runs/2026-08-29-scout.md
 
 ## Idea
@@ -56,3 +56,4 @@ Search volume / CPC: `unknown` (no Keyword Planner credentials this run).
 
 - 2026-08-29 — candidate (emitted by scout run)
 - 2026-08-29 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate.
+- 2026-09-01 — rejected on v3 re-triage (harness-v3 ticket 11): fails v3 gate 7 "No monetization fit" on both routes — (a) affiliate: verdicts about the user's own file surface no affiliate-linkable products; (b) high-RPM: creator-tools isn't a high-RPM ad category — and v3 gate 3(b) "moat-free": the dataset is a handful of platform spec rows scraped from official WhatsApp/Telegram/Discord docs, replicable by an AI farm in a weekend (no merge/hand-verify/judgment barrier); long-tail surface thin (few platforms × formats). Per-query compute was genuinely strong, but the edge requires all four parts. Structural kill — no re-probe needed.

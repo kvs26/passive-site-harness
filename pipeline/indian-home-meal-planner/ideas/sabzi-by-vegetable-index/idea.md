@@ -1,6 +1,6 @@
 # Sabzi-by-vegetable index
 
-Status: parked
+Status: rejected
 Origin: ../../runs/2026-08-29-scout.md
 
 ## Idea
@@ -32,3 +32,4 @@ The incumbent SERP for "bhindi/cabbage/aloo sabzi ideas" is recipe-blog category
 
 - 2026-08-29 — candidate (emitted by scout run)
 - 2026-08-29 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. ([dossier](dossier.md) · [run](../../runs/2026-08-29-validate-sabzi-by-vegetable-index.md))
+- 2026-09-01 — rejected on v3 re-triage (harness-v3 ticket 11): fails v3 gate 7 "No monetization fit" on both routes — (a) affiliate: the tool surfaces recipes, not affiliate-linkable products via a named program; (b) high-RPM: Food sits at the ~$2.33–2.67 low-RPM baseline (monetization was already graded weak at validate, no CPC read). Edge also shaky: multi-constraint finder with thin per-query compute. Strongest of the parked ideas on demand/feasibility, but structurally dead under the v3 monetization gate.

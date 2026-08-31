@@ -1,6 +1,6 @@
 # Poem-by-persona finder
 
-Status: parked
+Status: rejected
 Origin: ../../runs/2026-08-29-scout.md
 
 ## Idea
@@ -31,3 +31,4 @@ Relationship/occasion finders (griefandsympathy "By Relationship, Occasion & Sty
 
 - 2026-08-29 — candidate (emitted by scout run), marked weak (gate-4 near-miss + AI-generator pressure)
 - 2026-08-29 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. Dig read: demand strong (broad persona long-tail + supplier proliferation), feasibility strong, but hook weak/contradicted (markyouroccasion.com already runs a curated persona index; poemverse/ecopatchy AI farms saturate the long-tail), SERP-weakness/monetization/unique-data weak. See [dossier](dossier.md) · [run](../../runs/2026-08-29-validate-poem-by-persona-finder.md)
+- 2026-09-01 — rejected on v3 re-triage (harness-v3 ticket 11): fails v3 gate 7 "No monetization fit" on both routes — (a) affiliate: poems aren't affiliate-linkable outputs via any named program; (b) high-RPM: poetry/Reference sits at the ~$2.33–2.67 low-RPM baseline. Ticket 07 of the v3 strategy effort ruled low-RPM pure-ads ideas dead, killing the occasion-poem niche. Hook was already weak/contradicted (markyouroccasion + AI farms). Structural kill — no re-probe needed.

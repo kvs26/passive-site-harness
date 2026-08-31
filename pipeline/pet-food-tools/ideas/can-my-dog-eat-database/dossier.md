@@ -1,83 +1,81 @@
-# Dossier: Can-my-dog-eat searchable database
+# Dossier: Can-my-dog-eat searchable database (v3 re-validation of the toxicity-calculator pivot)
 
-**Searchable "can dogs eat X" database whose hook — verdicts adjusted for quantity eaten and dog size — is strongly demanded (now Keyword-Planner-backed: head term in the 500K bucket, toxicity-calculator query at 50K and rising) and absent from every competitor found, including two existing interactive lookups; confidence: high.**
+**The per-food verdict database fails gate 1 (AIO answers "can dogs eat X" lookups); its surviving pivot — a quantity × dog-weight toxicity calculator — fails gate 4: a dedicated multi-substance grape/raisin toxicity-by-weight calculator field is already saturated (≥7 sites, several 2026-dated, incl. a multi-substance farm opened this run), the same disproof that killed `chocolate-toxicity-calculator`; rejected; confidence: high.**
+
+**Evidence dated 2026-09-01 — SERP/AIO evidence would expire 2026-09-29, but the idea exits rejected so the clock is moot. Dossier kept as the record.**
+
+> Re-validation note: this supersedes the 2026-08-06/2026-08-17 dossier that validated the database as built. The database was demoted to `candidate` on the 2026-09-01 v3 re-triage (idea.md pivot); this run tests the pivot's two survival conditions — gate 4 (multi-substance × weight unserved) and gate 5 (liability) — and disproves gate 4.
 
 ## Signal scorecard
 
-**Demand: strong** — huge query fan-out plus recurring panic threads across independent subreddits, re-verified live this run.
-  - Autocomplete (Google, US, this run): long "can dogs eat X" tail (mango, pineapple, watermelon, chocolate…), plus quantity-shaped queries "how much chocolate is toxic to dogs", "dog ate grapes and is fine", "dog ate grapes 24 hours ago", "my dog ate a grape/onion/banana peel".
-  - "Google results are mixed, some info says to just watch him and other info says it can be toxic" — https://www.reddit.com/r/DogAdvice/comments/194h1eu/help_my_dog_ate_silica_gel_does_he_need_first_aid/ (re-verified live via DDG this run)
-  - "My dog just ate half of one of these bars, are these [toxic]" — https://www.reddit.com/r/DogAdvice/comments/13q5q8y/my_dog_just_ate_half_of_one_of_these_bars_are/ (new this run, independent thread)
-  - "My dog ate one or two of these, I can't find a whole lot of…" — https://www.reddit.com/r/mushroomID/comments/1ddrx8l/my_dog_ate_one_or_two_of_these_i_cant_find_a/ (new this run, independent community)
-  - Keyword Planner export (2026-08-15, US): "can dogs eat grapes" avg-searches bucket 500000, "can dogs eat chocolate" 50000, "dog chocolate toxicity calculator" 50000 with YoY +900% — core group far above the 5K bar (one independent piece per rubric; see Keyword data).
+**Demand: strong** — the quantity × dog-weight question recurs across many substances, with weight-specific phrasing surfacing directly in autocomplete, and the head + tool queries are Keyword-Planner-backed.
+  - Autocomplete (Google suggest, US, this run via `scripts/fanout.py`): grape × weight phrasing appears in raw suggestions — "how many grapes are toxic to a 20 pound dog", "how many grapes are toxic to 70 lb dog", "…to a small dog", "…to large dogs"; plus a dense chocolate-calculator tail ("how much chocolate can a dog eat calculator", "how much dark/milk/cocoa powder is toxic to dogs calculator") and panic queries ("my dog ate a grape", "my dog ate onion", "my dog ate banana peel").
+  - Keyword Planner export (2026-08-15, US; parsed via `scripts/planner-report.py` this run): "can dogs eat grapes" **500000** bucket, "can dogs eat chocolate" **50000**, "dog chocolate toxicity calculator" **50000** (3-mo +900%, YoY +900%), "how much chocolate is toxic to dogs" 5000, "my dog ate a grape" 5000 — core group far above the 5K bar (one independent piece per rubric).
+  - *Caveat:* demand is real but points at queries the incumbents already serve (see SERP), and the CSV keyword set was built for the database — it does **not** measure the pivot's grape-calculator queries (e.g. "how many grapes are toxic to dogs calculator"). Demand for the pivot's exact phrasing is inferred from autocomplete, not bucketed.
 
-**SERP & competitor weakness: weak** — head-term SERPs are static listicles, but they belong to high-authority sites, and two small interactive lookup competitors already exist (contradicting the scout's "no interactive lookup" note).
-  - "can dogs eat grapes" (DDG, this run): Petful, WebMD, CanineBible, RubyVet, OutwardHound, Purina, AKC, Dogster — all static articles, no tool; but WebMD/AKC/Purina are hard to outrank on authority.
-  - "what foods can dogs eat searchable list checker" (DDG, this run): "168 Human Foods…", "94 Things…", "50 Human Foods…" — pure listicles.
-  - Interactive incumbents found this run: https://dogtoxic.com ("Instantly find out if a food is safe or toxic… Backed by ASPCA data", 75 foods) and https://canmydogeat.org ("fast, searchable directory of foods rated for dog safety"). Both are flat per-food verdicts; neither ranks on the head queries checked.
+**SERP, AIO & competitor weakness: weak — KILL-LEVEL FINDING (gate 4, and gate 1 for the DB-as-built).** The pivot's flagship substance (grapes/raisins × weight) is served by a saturated field of dedicated calculators, including a multi-substance farm opened this run.
+  - "how many grapes are toxic to dogs calculator by weight" (DDG, 2026-09-01) — top organic results are **all dedicated grape/raisin toxicity-by-weight calculators**: a2zcalculators.com "Dog Grape Toxicity Calculator" ("check if grapes or raisins are toxic to your dog by weight"), dogscalculators.com "Dog Grape Toxicity Calculator [2026]" ("inputting your dog's weight and the number of grapes or raisins consumed"), calculatorsfordogs.com "Grape & Raisin Toxicity Calculator", mypawsafe.com "Dog Grape Toxicity Calculator (Vet-Backed 2026)", 360calculator.net "Dog Grapes Toxicity Calculator" (20 Aug 2026), calculator.everycalculators.com "Grape Toxicity In Dogs Calculator", caninebible.com "Dog Grape Toxicity Calculator" (8 Jul 2026). ≥7 purpose-built incumbents on the exact query.
+  - https://www.calculatorsfordogs.com/health-nutrition-calculators/grape-raisin-toxicity-calculator (fetched this run) is a **multi-substance farm**, not a one-off: full grape/raisin calculator (weight input, product-type dropdown with per-unit grams — "Whole Grapes ~5g", "Raisins ~1g", "Currants ~0.5g", "Grape Juice ~15g/tbsp", "Custom grams" — amount, time-since-ingestion, g/kg risk-band table), an **Embed** button for distribution, GA4 analytics, and a "Related Calculators" block linking a **Xylitol Toxicity Calculator**. The same site served the "Chocolate Toxicity Chart for Dogs by Weight & Type (2026)" in the `chocolate-toxicity-calculator` kill and, per the 2026-09-01 `dog-treat-portion-calculator` re-probe, is a maintained **139-calculator hub with an offline Android app**. The pivot's "multi-substance × weight is unserved" survival condition is factually disproved.
+  - DB-as-built (gate 1): the "can dogs eat X" verdict-lookup head queries are fully answered by AI Overviews (harness-v3 ticket 02) — carried from that analysis, **not re-probed this run** because the gate-4 kill on the surviving pivot already rejects the idea (see Risks & unknowns for the AIO re-probe status). Two flat interactive DBs (dogtoxic.com, canmydogeat.org) also already exist per the prior dossier.
 
-**Hook depth: strong** — quantity × dog-size is exactly what users and vet staff say matters; no competitor (static or interactive) computes it.
-  - "I work in a vets and we often have people ringing saying their dog ate a small piece of chocolate… it depends on your dogs weight, the cacao % in the chocolate and how much of it they ate" — https://www.reddit.com/r/LifeProTips/ (LPT: chocolate toxicity calculators; via DDG this run)
-  - "It really depends on the size of the dog and how much chocolate they ate, and the type of chocolate" — https://www.reddit.com/r/Pets/ (my dog ate chocolate chip cookies; via DDG this run)
-  - "Chocolate meter for dogs. Type in the dog's weight and type of…" — dedicated Reddit thread sharing such a calculator (via DDG this run)
-  - dogtoxic.com and canmydogeat.org inspected this run: neither takes quantity or dog weight as input — verdicts are flat per food.
+**Hook depth: weak (disproved).** Quantity × dog-weight is what users want (autocomplete confirms grape × weight phrasing), but it is not our differentiator — the incumbents already compute grape/raisin g/kg by weight with risk bands.
+  - calculatorsfordogs.com (fetched this run) publishes the exact model a build would ship: per-product g/kg thresholds ("Grapes 10-20 g/kg — Moderate, kidney injury reported"; "Raisins/Currants >10 g/kg — High risk, kidney failure likely") computed from the user's weight + amount inputs, with the correct "NO established safe dose" framing.
+  - This is the same disproof recorded for `chocolate-toxicity-calculator` (PetMD/Omni/Merck/Vets-Now serve chocolate × weight) — now confirmed to extend to the pivot's flagship substance (grapes) and to xylitol.
 
-**Monetization paths: strong** — competitors in this exact space run ads and dense affiliate programs.
-  - caninebible.com/can-dogs-eat-grapes/ (fetched this run): Chewy in-article affiliate banners (chewy.sjv.io), pet-insurance guide affiliate, Dutch vet-telehealth affiliate (dutchpetinc.pxf.io), The Vets (the-vets.sjv.io), Embark, Amazon Associates disclosure.
-  - dogtoxic.com (fetched this run): cookie banner states "we use cookies to improve your experience and serve relevant ads" — display ads on an interactive lookup, our exact format.
-  - Keyword Planner bids temper this: top-of-page LOW bids are mostly < $0.10 USD-equiv (₹1.12–4.76 ≈ $0.01–0.05); only "dog ate grapes and is fine" (₹45.07 ≈ $0.47) and "my dog ate a grape" (₹12.91 ≈ $0.14) reach the $0.10–0.50 weak-support band. No contradiction of the on-site ad/affiliate evidence, but expect low display RPM on head terms.
+**Monetization: strong (route real, does not rescue the served hook).** Affiliate + display, verified on the exact page type.
+  - calculatorsfordogs.com (fetched this run) runs GA4 (`google-analytics.com/g/collect` request observed) on the calculator page — programmatic monetization on the identical format.
+  - Prior-dossier evidence (not re-fetched this run): caninebible.com/can-dogs-eat-grapes carries Chewy (chewy.sjv.io), Dutch/The Vets telehealth (dutchpetinc.pxf.io, the-vets.sjv.io), Embark, Amazon Associates; dogtoxic.com serves display ads. CSV bids are low on head terms (top-of-page LOW mostly < $0.10 USD-equiv), so the route would lean affiliate over display RPM — but a served hook cannot be monetized past the incumbents already occupying it.
 
-**Feasibility & maintenance: strong** — free, stable, authoritative dose data exists; a competitor proves the static build.
-  - Merck Vet Manual "Food Hazards" (fetched this run, last updated May 2026): explicit dose thresholds — "more than one grape or raisin per 4.5 kg (10 pounds) of body weight may contain enough tartaric acid to pose a risk"; "One ounce of milk chocolate per pound of body weight is a potentially fatal dosage in dogs." https://www.merckvetmanual.com/special-pet-topics/poisoning/food-hazards
-  - dogtoxic.com is a live static-style site (75 entries, client-side search, category pages) citing ASPCA — proves build shape and ≤quarterly refresh cadence.
+**Feasibility & sustainable upkeep: strong (feasible, not a moat).** Free, stable dose data; static build proven — but that same stability is why the field is saturated.
+  - Merck Vet Manual "Food Hazards" (prior dossier, updated May 2026) and USDA FoodData Central give stable per-weight thresholds; refresh burden ≤ quarterly. The seven live grape calculators (several 2026-dated) prove the build shape and low upkeep.
+  - Grape/raisin toxicity is idiosyncratic (no safe dose); incumbents already handle this correctly by outputting an "exposure estimate, not a safety determination" — the toxicological nuance the database hoped to own is not differentiating.
 
-**Unique-data opportunity: strong** — a structured dose-per-body-weight dataset is derivable from free references and no competitor has it.
-  - Merck gives per-weight thresholds (grapes, chocolate by type ordering: cocoa powder > baker's > semisweet > milk) usable to compute verdicts from quantity + dog weight (fetched this run).
-  - Confirmed gap: dogtoxic.com and canmydogeat.org (both inspected this run) serve only flat verdicts — the derived quantity model would be data they don't have. USDA FoodData Central remains available for per-food nutrient/serving-size grounding.
+**Data moat: weak — KILL-LEVEL FINDING (gate 3b, mechanically replicable).** The dose-per-body-weight dataset is public and already computed by the farms; no merge / hand-verify / editorial-judgment barrier holds.
+  - The g/kg thresholds are published veterinary-toxicology values (Merck/USDA) that any site can key in; ≥7 sites have done exactly that, and a single farm (calculatorsfordogs.com) hosts 139 such calculators. The long-tail per-food/per-substance page surface the database counted on is itself occupied by the farms' per-substance calculator pages.
 
-**Confidence: high** — no signal unknown; demand and SERP weakness each graded from ≥2 independent sources; Keyword Planner CSV present (2026-08-15 export, fresh).
+**Confidence: high** — no signal graded unknown; Demand and SERP/competitor-weakness each rest on ≥2 independent sources fetched this run; Keyword Planner CSV present (2026-08-15, fresh). The CSV's keyword-gap for the pivot's grape-calculator phrasing is noted but does not create an unknown signal — the SERP saturation is directly observed.
 
-## SERP snapshot
+## SERP & AIO snapshot
 
-- **"can dogs eat grapes" (DDG, 2026-08-06):** petful.com ("Dog Ate a Grape? 3 Steps… [2026]"), webmd.com, caninebible.com ("Toxic Dosage & Vet-Advice"), rubyvet.com, outwardhound.com, purina.com, akc.org, dogster.com ×2. All articles; caninebible is the only one leading with dosage, and even it concludes "no safe quantity" prose rather than computing anything. Beatable on format (instant verdict + quantity input), not on raw authority — traffic path is the long tail ("dog ate grapes 24 hours ago", "…and is fine") rather than the head term.
-- **"what foods can dogs eat searchable list checker" (DDG, 2026-08-06):** "168 Human Foods…", "94 Things…", AKC "People Food…", "40 Vet-Reviewed…", healthline "Can My Dog Eat This?" — every result a static listicle; beatable with an actual lookup.
-- **"can my dog eat app OR database OR tool lookup" (DDG, 2026-08-06):** canmydogeat.org and dogtoxic.com surface at top — the interactive niche exists but is thin (75 foods, flat verdicts, no quantity/size context, no symptom-timeline detail). Beatable on the hook.
+- **"how many grapes are toxic to dogs calculator by weight" (DDG, 2026-09-01):** a2zcalculators.com, dogscalculators.com "[2026]", calculatorsfordogs.com, mypawsafe.com "(Vet-Backed 2026)", 360calculator.net (20 Aug 2026), calculator.everycalculators.com, caninebible.com (8 Jul 2026) — the entire first page is dedicated grape/raisin toxicity-by-weight calculators. There is no thin/stale field to beat; the pivot's "multi-substance × weight is unserved" premise is false.
+- **calculatorsfordogs.com grape/raisin calculator (fetched, 2026-09-01):** live weight + product-type + amount + time inputs → g/kg risk bands; Embed button; Related Calculators → Xylitol; GA4. Multi-substance farm, not a single-substance one-off.
+- **AIO re-probe (DB-as-built): not run this run.** DDG SERPs are AIO-blind and the rejection does not depend on the AIO status — the surviving pivot is killed on gate 4 regardless. The gate-1 AIO finding for "can dogs eat X" verdict lookups is carried from harness-v3 ticket 02 (question-word queries ≈58–86% AIO trigger; the verdict is a summary an AIO performs with no per-query-compute wedge past it). If the idea were ever revived on a genuinely unserved angle, a fresh manual Google AIO re-probe of 3–5 head queries (with the `&udm=14` control) would be required.
+
 ## Keyword data
 
-Keyword Planner historical-metrics export, 2026-08-15 (fresh; Aug 2025–Jul 2026, bids in INR). Parsed via `scripts/planner-report.py`. USD conversion at 1 INR = 0.010471 USD (open.er-api.com / exchangerate-api.com, rate of 2026-08-16). Buckets are order-of-magnitude (50/500/5K/50K/500K), not exact counts.
+Keyword Planner historical-metrics export, 2026-08-15 (fresh; Aug 2025–Jul 2026, bids in INR), parsed via `scripts/planner-report.py` this run. USD conversion 1 INR ≈ 0.010471 USD (rate quoted from the prior dossier's 2026-08-16 open.er-api.com fetch; not re-fetched this run). Buckets are order-of-magnitude (50/500/5K/50K/500K).
 
-- **Head terms:** "can dogs eat grapes" **500000** bucket (3-mo +900%, YoY 0%); "can dogs eat chocolate" **50000**; "what can dogs eat" 5000 (YoY −90%); "foods dogs can eat" 5000; "can my dog eat" 500 (YoY +900%).
-- **Long tail (panic/quantity):** "my dog ate a grape", "my dog ate chocolate", "dog ate chocolate chip cookie", "how much chocolate is toxic to dogs", "dog ate a banana peel" all **5000**; "dog ate grapes and is fine" 500 (YoY +900%); "my dog ate an onion" 500; "dog ate grapes 24 hours ago" 50.
-- **Tool-intent:** "dog chocolate toxicity calculator" **50000** bucket, 3-mo +900%, YoY +900% — direct tool demand, rising. "can my dog eat this checker" and "dog food safety lookup" had no data (empty metrics) — the generic checker phrasings don't exist; the calculator phrasing does.
-- **Bids (top-of-page LOW, verbatim INR → USD):** "dog ate grapes and is fine" ₹45.07 → $0.47; "my dog ate a grape" ₹12.91 → $0.14; "dog chocolate toxicity calculator" ₹4.76 → $0.05; head terms ₹2.01–3.16 → $0.02–0.03; "dog ate a banana peel" ₹1.12 → $0.01.
-- **Trend flags:** "dog ate a banana peel" 3-mo and YoY −90%; "what can dogs eat" YoY −90% — peripheral keywords only; core group flat or rising.
+- **Head/tool terms:** "can dogs eat grapes" **500000** (3-mo +900%, YoY 0%); "can dogs eat chocolate" **50000**; "dog chocolate toxicity calculator" **50000** (3-mo +900%, YoY +900%); "how much chocolate is toxic to dogs" 5000; "my dog ate a grape" 5000; "my dog ate chocolate" 5000; "dog ate chocolate chip cookie" 5000; "dog ate a banana peel" 5000 (3-mo/YoY −90%); "my dog ate an onion" 500; "dog ate grapes and is fine" 500 (YoY +900%); "dog ate grapes 24 hours ago" 50.
+- **Zero/no-data:** "can my dog eat this checker", "dog food safety lookup" (empty metrics — generic-checker phrasings don't exist).
+- **Bids (top-of-page LOW, verbatim INR → USD):** "dog ate grapes and is fine" ₹45.07 → $0.47; "my dog ate a grape" ₹12.91 → $0.14; "dog chocolate toxicity calculator" ₹4.76 → $0.05; head terms ₹2.01–3.16 → $0.02–0.03; "dog ate a banana peel" ₹1.12 → $0.01. Low across the board — affiliate-leaning route.
+- **Keyword-gap flag:** the export measures the database's verdict-lookup and chocolate-calculator queries, not the pivot's grape/multi-substance calculator queries. It corroborates that the *tool* intent is large and rising (chocolate calc 50K, +900%) — which is precisely why the field is saturated — but does not size the specific pivot phrasing.
+
 ## Monetization sketch
 
-Display ads (AdSense) on food entry pages — proven by dogtoxic.com running ads on the identical format. Secondary: pet-insurance and vet-telehealth affiliate placements on toxic/caution verdict pages (the exact placements caninebible monetizes), sitting below the emergency-hotline callout, never replacing it.
+Display ads (AdSense/GA4, proven on calculatorsfordogs.com and dogtoxic.com) on per-substance pages, plus pet-insurance / vet-telehealth affiliate (Chewy, Dutch, The Vets — the caninebible placements) below an emergency-hotline callout. Route is real and low-friction, but every placement sits on a page type the incumbent farms already occupy; monetization does not offset a served hook.
+
+## Digital products (documented, off by default)
+
+A printable "dog toxic-foods emergency card" (per-substance g/kg thresholds + Pet Poison Helpline 855-764-7661 / ASPCA 888-426-4435 + symptom timeline) is a plausible Gumroad-style download — but it ships OFF and, given the saturated free field, would not change the verdict. Documented for the record only.
+
+## Traffic sanity-check (labelled opinion)
+
+The viability bar is $100/mo per site within 9–12 months. Reference figures (ticket-03 research, quoted not recomputed): blended ads+affiliate $100/mo ≈ 4,300–11,500 visitors/mo; ads-only at pets/reference RPM (~$2.33) ≈ 43K pv/mo. The demand universe is unambiguously large enough (500K + 50K buckets, huge panic tail) to clear the visitor bar in principle — but that is moot: the traffic is captured by ≥7 dedicated grape calculators, a 139-calculator farm, AI Overviews on the verdict head, and two interactive verdict DBs. My read: demand clears the bar, but a new undifferentiated entrant cannot capture enough of it. The sanity-check does not save an idea rejected on gate 4.
 
 ## Risks & unknowns
 
-- No signal graded unknown.
-- Search volume now bucketed via Keyword Planner (2026-08-15 export) — exact counts remain unknown by design (buckets only).
-- Advertiser CPCs are low across the space (most top-of-page LOW bids < $0.10 USD-equiv): monetization likely leans on affiliate placements (pet insurance, vet telehealth) more than display RPM.
-- Interactive incumbents exist (dogtoxic.com, canmydogeat.org): differentiation now depends entirely on the quantity × dog-size hook plus food coverage depth (75 foods vs. planned 200+). If they add quantity inputs, the moat shrinks.
-- Grape/raisin toxicity is idiosyncratic per dog (Merck: "variable effects"); the quantity model must present risk thresholds, not safety guarantees, and always route toxic + significant amount to vet/poison hotline (dogtoxic's ASPCA hotline pattern confirms this posture is standard).
-- aspca.org people-foods page could not be fetched this run (redirect to ad-tracker); Merck substitutes fine, but ASPCA as a named source is unverified this run.
+- **No signal graded unknown.**
+- **AIO re-probe for the DB-as-built not run this run** (rejection is gate-4-driven on the pivot; DB gate-1 AIO finding carried from ticket 02). A fresh manual Google AIO probe would be required only on a revival with a new angle.
+- **CSV keyword-gap:** the pivot's grape/multi-substance calculator phrasing is not in the 2026-08-15 export; the export sizes the database's and chocolate calculator's queries instead. Not re-parked — the SERP saturation is decisive regardless of bucket sizes.
+- **Exchange rate not re-fetched** this run; USD conversions are quoted from the prior dossier's 2026-08-16 rate (order-of-magnitude use only).
+- **Gate 5 (liability) not resolved but moot:** grape/raisin poisoning triage borders veterinary-medical advice; the idea exits rejected on gate 4 before gate 5 becomes decisive. The incumbents' uniform "no safe dose / call your vet / Pet Poison Helpline" posture shows the standard hedge a new entrant would also have to carry, without institutional cover.
 
 ## Sources log
 
-- Google autocomplete fan-out (scripts/fanout.py, US locale): seeds "can dogs eat", "can my dog eat", "can cats eat", "my dog ate", "how much chocolate", "dog ate grapes" — rich tail incl. quantity phrasing.
-- DDG HTML endpoint (scripts/pain-fetch.py): bot-challenged again mid-run — dead end; switched to integrated browser on duckduckgo.com.
-- DDG browser: `site:reddit.com "my dog ate" google says toxic conflicting` — re-verified r/DogAdvice 194h1eu, r/dogs orevs3; new r/mushroomID 1ddrx8l, r/DogAdvice 13q5q8y.
-- DDG browser: `can dogs eat grapes` — SERP snapshot 1.
-- DDG browser: `what foods can dogs eat searchable list checker` — SERP snapshot 2.
-- DDG browser: `"can my dog eat" app OR database OR tool lookup` — found dogtoxic.com, canmydogeat.org.
-- DDG browser: `site:reddit.com dog ate chocolate "how much" weight toxic calculator` — hook-depth quotes (vet-staff LPT, r/Pets, chocolate-meter thread, r/DogAdvice).
-- Fetched: https://dogtoxic.com (75 foods, flat verdicts, ads, ASPCA hotline pattern).
-- Fetched: https://canmydogeat.org (searchable directory, flat Safe/Caution/Unsafe verdicts).
-- Fetched: https://www.merckvetmanual.com/special-pet-topics/poisoning/food-hazards (dose thresholds; updated May 2026).
-- Fetched: https://www.caninebible.com/can-dogs-eat-grapes/ (monetization inventory).
-- Dead end: https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets — redirected to ad-tracker, content not retrieved.
-- Dead end: https://www.merckvetmanual.com/toxicology/food-hazards/food-hazards-in-animals — 404; correct URL found via DDG.
-- Ingested (2026-08-17 top-up): keyword-planner.csv (export dated 2026-08-15, Aug 2025–Jul 2026, INR) via scripts/planner-report.py.
-- Fetched (2026-08-17): https://open.er-api.com/v6/latest/INR — INR→USD 0.010471 (updated 2026-08-16).
+- `scripts/fanout.py` (Google suggest, US, `--mode=question`): seeds "my dog ate", "how much chocolate is toxic to dogs", "how many grapes are toxic to dogs", "dog toxicity calculator", "how much xylitol is toxic to dogs", "how much onion is toxic to dogs" — grape × weight phrasing + chocolate-calculator tail (this run).
+- `scripts/planner-report.py pipeline/pet-food-tools/ideas/can-my-dog-eat-database/keyword-planner.csv` — re-parsed the 2026-08-15 export (this run).
+- Integrated browser (DDG): `how many grapes are toxic to dogs calculator by weight` — ≥7 dedicated grape/raisin toxicity-by-weight calculators (a2zcalculators, dogscalculators, calculatorsfordogs, mypawsafe, 360calculator, everycalculators, caninebible) (this run).
+- Fetched (integrated browser): https://www.calculatorsfordogs.com/health-nutrition-calculators/grape-raisin-toxicity-calculator — live grape/raisin calculator (weight/product/amount/time inputs, g/kg risk-band table, Embed, GA4, Related → Xylitol) (this run).
+- Prior-dossier evidence re-used (not re-fetched this run, cited as such): Merck Vet Manual "Food Hazards" (May 2026), caninebible.com affiliate inventory, dogtoxic.com / canmydogeat.org flat interactive DBs, INR→USD 0.010471 (2026-08-16).
+- Cross-idea corroboration: `chocolate-toxicity-calculator` dossier (PetMD/Omni/Merck/Vets-Now chocolate × weight saturation) and `dog-treat-portion-calculator` 2026-09-01 re-probe (calculatorsfordogs.com = 139-calculator hub + offline Android app).
+- Carried finding (not re-probed): harness-v3 ticket 02 — AIO fully answers "can dogs eat X" verdict lookups.

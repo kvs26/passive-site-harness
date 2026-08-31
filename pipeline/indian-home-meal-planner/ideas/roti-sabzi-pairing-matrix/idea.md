@@ -1,6 +1,6 @@
 # Roti-sabzi pairing matrix
 
-Status: parked
+Status: rejected
 Origin: ../../runs/2026-08-29-scout.md
 
 ## Idea
@@ -30,3 +30,4 @@ Pairing knowledge lives only in long-form blog prose ("side dishes to serve with
 
 - 2026-08-29 — candidate, marked weak (emitted by scout run; thin demand + gate-1 near-miss)
 - 2026-08-29 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. Validate found demand actually strong (broad two-way pairing long tail), but gate-1 near-miss confirmed — AI Overview answers the head "what goes with <bread>" query, so SERP-weakness/hook/monetization/unique-data all grade weak; the only unserved cut is the per-bread long tail the CSV must size. Weaker than sibling sabzi-by-vegetable-index.
+- 2026-09-01 — rejected on v3 re-triage (harness-v3 ticket 11): fails v3 gate 1 (AI Overview fully answers the head pairing query — confirmed at validate 2026-08-29, no per-query-compute wedge past it) and v3 gate 7 on both routes (recipes aren't affiliate-linkable outputs; Food is a low-RPM category). Already graded weaker than sibling sabzi-by-vegetable-index, itself killed the same day. Structural kill — no re-probe needed.

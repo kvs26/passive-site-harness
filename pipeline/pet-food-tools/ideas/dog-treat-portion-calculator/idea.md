@@ -1,11 +1,18 @@
 # Dog treat-portion calculator (how many of THIS food can my dog have)
 
-Status: validated
+Status: rejected
 Origin: ../../runs/2026-08-17-scout.md
 
 ## Idea
 
 A searchable catalog of 100+ common healthy human foods (blueberries, baby carrots, cheese cubes, apple slices, plain chicken, pumpkin, peanut butter…) where you pick a food + enter your dog's weight and get an exact count/amount that stays inside the vet 10%-of-daily-calories treat budget — e.g. "a 20 lb dog: ~10 blueberries." Not a daily-meal calculator, not a toxicity verdict — a healthy-serving-size answer per specific food.
+
+## Edge
+
+- **Dataset:** per-food kcal-per-unit table (100+ foods) hand-verified against USDA FoodData Central, merged with fixed vet constants (10% treat rule, RER/MER); the replication barrier is per-row serving-unit judgment (a "unit" of cheese vs. blueberry vs. peanut butter) an AI farm won't hand-verify — must out-breadth the thin FurCalc precedent.
+- **Compute:** food × dog-weight → exact per-treat count/amount inside the 10%-of-daily-calories budget; a summary can't do the kcal lookup + budget math for *your* dog.
+- **Long-tail surface:** one page per food ("how many blueberries can a dog eat calculator" × 100+ foods), generated from the dataset.
+- **Monetization route:** affiliate (Amazon Pets ~3% / Chewy ~4% — treat and food links on per-food pages) + AdSense; secondary $0.70+ bid route on generic treat/calculator terms confirmed in the 2026-08-19 CSV. Digital products documented-only, off by default.
 
 ## Hook
 
@@ -40,3 +47,5 @@ Distinct from the validated can-my-dog-eat-database (that answers "is food X *da
 - 2026-08-17 — candidate (emitted by scout run)
 - 2026-08-19 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. (Dig graded Demand/SERP/Hook/Monetization/Feasibility strong, Unique-data weak — a generic incumbent, FurCalc, already does a thin food→count version; edge is catalog breadth + long-tail ranking. See [dossier](dossier.md) / [run](../../runs/2026-08-19-validate-dog-treat-portion-calculator.md).)
 - 2026-08-19 — validated (CSV top-up): Keyword Planner export ingested — core per-food group sums to ~13K bucket (Demand upgraded to Keyword-Planner-backed strong), per-food bids confirmed < $0.10 (low CPC as expected) with a secondary $0.70+ route on generic treat/calculator terms (Monetization strong). Confidence raised medium → high. Unique-data stays weak (FurCalc precedent unchanged) — not a rejection condition since demand didn't collapse. See [dossier](dossier.md).
+- 2026-09-01 — kept validated on v3 re-triage (harness-v3 ticket 11): evidence (2026-08-19) is inside the 4-week window — **expires 2026-09-16**. Upgraded to v3 template (Edge block added). v3 read: gate 7 passes via affiliate route; multi-input calculator = top AIO-proof shape; soft spot is v3 signal 6 (data moat) given the FurCalc precedent — the named barrier is hand-verified serving-unit judgment + catalog breadth. Mandatory pre-build re-probe (fresh gate-4 SERP + AIO check + moat re-read) before any build; if the window lapses first, re-validate.
+- 2026-09-01 — rejected (re-validation / pre-build re-probe, same day): gate 4 factually disproved — purpose-built incumbent found and opened: calculatorsfordogs.com "Safe Food Portion Calculator for Dogs — Human Foods by Weight" (dog weight + human-food dropdown → safe portion; "Covers 30+ foods with preparation notes and warnings"; per-food g/kg limits with count conversions, e.g. 20 lb dog ≈ "roughly 40–50 blueberries"), part of a 139-calculator hub with a free offline Android app; the treat-tool SERP has also filled in (realdogsrealpeople, mynubs, dogfoodcheck, usecalcpro, doggycalculators, dogfluence). The "only tool that converts a specific food into an exact count for your dog's weight" hook is false, and the moat's named barrier (per-row serving-unit judgment) is already replicated. Demand stays strong — the kill is hook/moat, not demand. See [dossier](dossier.md) / [run](../../runs/2026-09-01-validate-dog-treat-portion-calculator.md).
