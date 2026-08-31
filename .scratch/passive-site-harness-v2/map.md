@@ -1,4 +1,4 @@
-# Map: Idea-skills v2
+# Map: Idea-skills v2 (passive-site-harness-v2)
 
 Label: wayfinder:map
 

@@ -1,4 +1,4 @@
-# Map: passive-site-harness V1 spec
+# Map: passive-site-harness V1 spec (passive-site-harness-v1)
 
 Label: wayfinder:map
 Status: open
