@@ -1,6 +1,14 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-09-01 (v3 re-triage of parked/validated ideas under the harness-v3 gates — ticket 11).
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-09-01 (validated runs-on-your-battery-finder after CSV top-up).
+
+## power-tool-battery-compat
+
+| Idea | Status | Notes |
+|---|---|---|
+| [runs-on-your-battery-finder](power-tool-battery-compat/ideas/runs-on-your-battery-finder/idea.md) | validated (high) | Validated 2026-09-01 (confidence high, Keyword Planner CSV ingested): demand/monetization/feasibility/moat all strong (Amazon Associates 3.00% Tools/Home Improvement verified verbatim; CSV product buckets — milwaukee m18 fan 50K, dewalt battery fan/vacuum/chainsaw 5K each, all AIO-free Shopping SERPs; merge+hand-verify moat). SERP/AIO **weak, not kill**: incumbent SERP = listicles only (toolcompatibility opened — no gadget catalog); AIO answers the informational head across platforms incl. small ones (HART AIO-present); wedge verified — transactional "dewalt 20v misting fan" returns no-AIO Shopping SERP. **CSV forced a positioning correction:** all discovery/directory-framing queries returned zero volume → this is a competitive product-directory play (rank product-category pages vs Shopping SERPs + listicles), not an uncontested-niche play; execution is the real risk, not demand. SERP/AIO evidence expires 2026-09-29 — pre-build re-probe mandatory. ([dossier](power-tool-battery-compat/ideas/runs-on-your-battery-finder/dossier.md) · [run](power-tool-battery-compat/runs/2026-09-01-validate-runs-on-your-battery-finder.md)) |
+
+Scout kills (all gate 4 unless noted, incumbents opened 2026-09-01): platform↔platform checker (garagealmanac 26-platform hand-verified checker), adapter finder (powertoolsadapters 38-brand finder), intra-brand charts (toolcompatibility 178+ guides), aftermarket quality index, flight Wh checker (caniflywiththis + AIO fully answers — 1+4), runtime calculator (AIO fully answers — 1+4), legacy model cross-ref (batteryfits model-lookup), platform chooser (cordlesspicker/powertoolbench — 4+1), OPE compat (mowersweb/gearguiders — 4+1), date-code decoder (tooldatecheck.com exact interactive incumbent).
 
 ## poetry-craft-tools
 
