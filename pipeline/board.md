@@ -1,6 +1,14 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-09-01 (validated runs-on-your-battery-finder after CSV top-up).
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-09-03 (credit-card-perk-optimizer scout: zero emit, niche saturated).
+
+## credit-card-perk-optimizer
+
+No ideas emitted. 2026-09-03 scout run generated 10 candidates across all three Pass 2 inversions (buying-moment, dataset, tool-shape) — rewards optimizer/best-card-for-purchase/card-comparison/annual-fee-worth-it/rewards-leakage/signup-bonus-ROI (all 6 already shipped as dedicated calculators on walletflo.com's "OneCard engine"), benefit/credit reset-window tracker (nextcard.com Plaid-automated tracker, explicitly out-competing named rivals CardPointers and MaxRewards), business-card-by-category calculator (quantcalculator.org, walletgrower.com + NerdWallet/WalletHub/Credit Karma), authorized-user perk-extension comparison (8 independent 2026 listicles — gate-4 near-miss, killed per hard rule), and downgrade/product-change path finder (churncards.com ships the exact per-issuer card→card downgrade matrix + churning notes, superseding Doctor of Credit's stale 2019 guide). Every angle died at the first or second incumbent-probe query — same structural-saturation pattern as home-security-device-compat. ([run](credit-card-perk-optimizer/runs/2026-09-03-scout.md))
+
+## home-security-device-compat
+
+No ideas emitted. 2026-09-03 scout run generated 11 candidates across every tool shape (ecosystem-directory finder, Matter-certified DB, Apple Home/Google Home/Home Assistant lists, hub-recommendation quiz, alarm-panel sensor compat, doorbell chime/transformer checker, no-subscription camera finder, camera FOV/coverage calculator, insurance-discount calculator) — **all killed at gate 4** on the first or second incumbent-probe query, each already served by a purpose-built 2026-dated site (smarthomecheck.net, smarthomeexplorer.com, matterdatabase.com, works-with.home-assistant.io official registry, cctvplanner.io, codingace.net, homefortifyroi.com, and more). Reads as a niche comprehensively worked by a programmatic-SEO calculator/directory network. Structural kill, not dated-evidence — no re-probe scheduled. ([run](home-security-device-compat/runs/2026-09-03-scout.md))
 
 ## power-tool-battery-compat
 
