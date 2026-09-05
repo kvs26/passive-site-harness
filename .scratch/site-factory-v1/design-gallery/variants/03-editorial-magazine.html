@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 03 — Editorial / Magazine</title>
+<style>
+  :root{
+    --bg:#fbfaf7; --surface:#fff; --ink:#22201c; --muted:#6b6459; --line:#e4ded3;
+    --accent:#9a3412; --rule:#22201c;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  .top{border-bottom:3px double var(--rule);padding:16px 24px;text-align:center}
+  .top b{font-family:var(--serif);font-size:26px;letter-spacing:.02em}
+  .top nav{margin-top:8px;display:flex;gap:20px;justify-content:center;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .wrap{max-width:820px;margin:0 auto;padding:44px 24px}
+  .kicker{text-transform:uppercase;letter-spacing:.14em;font-size:12px;color:var(--accent);font-weight:700;margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:44px;line-height:1.1;margin:0 0 14px;font-weight:400}
+  .dek{font-size:19px;color:var(--muted);max-width:60ch;margin:0 0 8px}
+  .byline{font-size:13px;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:28px}
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin-bottom:28px;align-items:center}
+  .toolbar label{font-size:13px;color:var(--muted);margin-right:6px}
+  .toolbar select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:3px;background:#fff}
+  .lead{font-size:18px} .lead::first-letter{font-family:var(--serif);float:left;font-size:64px;line-height:.8;padding:6px 10px 0 0;color:var(--accent)}
+  .entry{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--line)}
+  .rank{font-family:var(--serif);font-size:38px;color:var(--accent);min-width:44px;line-height:1}
+  .entry h3{font-family:var(--serif);font-size:22px;margin:0 0 4px;font-weight:400}
+  .entry p{margin:0;color:var(--muted);font-size:15px}
+  .tag{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--accent);color:var(--accent);border-radius:2px;padding:1px 6px;margin-left:8px}
+  .buy{display:inline-block;margin-top:8px;font-weight:700;font-size:14px;border-bottom:2px solid var(--accent)}
+  .ad{margin:30px 0;min-height:120px;border:1px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+</style>
+</head>
+<body>
+  <header class="top"><b>Runs On Your Battery</b><nav><a>The Finder</a><a>Platform Guides</a><a>How We Test</a><a>About</a></nav></header>
+  <article class="wrap">
+    <div class="kicker">Compatibility Guide · Milwaukee M18</div>
+    <h1>Every fan that runs on your M18 battery</h1>
+    <p class="dek">We hand-verified each one for battery interface, fit type, and whether a battery is included — so you don't buy the wrong thing.</p>
+    <div class="byline">Updated September 2026 · Verified against manufacturer specs & owner reports</div>
+
+    <div class="toolbar"><label>Platform</label><select><option>Milwaukee M18</option><option>DeWalt 20V</option></select><label>Category</label><select><option>Fans</option><option>All</option></select><label>Fit</label><select><option>Any</option><option>Native only</option></select></div>
+
+    <p class="lead">Milwaukee's M18 line has one of the widest gadget ecosystems of any battery platform. Here are the fans we could verify as compatible today — ranked by how cleanly they fit.</p>
+
+    <div class="entry"><div class="rank">1</div><div><h3>M18 Jobsite Fan <span class="tag">Native</span></h3><p>Built by Milwaukee for the M18 pack — the safest, no-adapter choice. $99–129. Battery not included.</p><a class="buy">Check price on Amazon →</a></div></div>
+    <div class="entry"><div class="rank">2</div><div><h3>M18 Misting Fan <span class="tag">Native</span></h3><p>Adds an evaporative mist for job-site heat. $109–139. Battery not included.</p><a class="buy">Check price on Amazon →</a></div></div>
+    <div class="ad">Advertisement</div>
+    <div class="entry"><div class="rank">3</div><div><h3>Portable Espresso Maker <span class="tag">Needs adapter</span></h3><p>Built for DeWalt; bridges to M18 via adapter #A12. Watch the over-discharge caveat. $70–95.</p><a class="buy">Check price on Amazon →</a></div></div>
+  </article>
+</body>
+</html>

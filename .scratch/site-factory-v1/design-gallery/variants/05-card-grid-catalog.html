@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 05 — Card-Grid Catalog</title>
+<style>
+  :root{
+    --bg:#f1f3f5; --surface:#fff; --ink:#212529; --muted:#868e96; --line:#dee2e6;
+    --accent:#2563eb; --accent-ink:#fff; --ok:#0ca678; --warn:#f08c00;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{color:var(--accent);text-decoration:none}
+  .top{background:var(--surface);border-bottom:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;gap:20px;position:sticky;top:0;z-index:5}
+  .top b{font-size:18px} .top .search{margin-left:auto;flex:0 1 340px}
+  .search input{width:100%;padding:9px 14px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#f8f9fa}
+  .bar{background:var(--surface);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;position:sticky;top:57px;z-index:4}
+  .bar select{font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .chip{font-size:13px;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:6px 14px;background:#fff;cursor:pointer}
+  .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px}
+  .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+  .head h1{font-size:22px;margin:0} .head .count{color:var(--muted)} .head .count b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .card .img{aspect-ratio:4/3;background:#f1f3f5;display:grid;place-items:center;font-size:52px;position:relative}
+  .badge{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;text-transform:uppercase;padding:3px 9px;border-radius:6px}
+  .n{background:#d3f9ee;color:var(--ok)} .a{background:#ffec99;color:#b8860b} .d{background:#d0ebff;color:#1971c2}
+  .card .body{padding:14px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .card h3{font-size:15px;margin:0} .card .plat{color:var(--muted);font-size:13px}
+  .card .price{font-weight:700;margin-top:4px} .warn{color:#e03131;font-size:12px;font-weight:600}
+  .card .buy{margin-top:auto;display:block;text-align:center;background:var(--accent);color:#fff;font-weight:700;padding:9px;border-radius:8px;font-size:14px}
+  .card .buy.off{background:#f1f3f5;color:var(--muted);border:1px dashed var(--line)}
+  .adcard{grid-column:span 2;min-height:100%;border:1px dashed var(--line);border-radius:12px;display:grid;place-items:center;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;background:repeating-linear-gradient(45deg,#fff,#fff 10px,#f1f3f5 10px,#f1f3f5 20px)}
+</style>
+</head>
+<body>
+  <header class="top"><b>🔋 RunsOnYourBattery</b><div class="search"><input placeholder="Search gadgets, platforms…"></div></header>
+  <div class="bar"><select><option>Milwaukee M18</option><option>All platforms</option></select><select><option>All categories</option><option>Fans</option></select><span class="chip on">Native</span><span class="chip on">Direct-fit</span><span class="chip">Needs adapter</span><span class="chip">Battery incl.</span></div>
+  <div class="wrap">
+    <div class="head"><h1>Milwaukee M18 gadgets</h1><div class="count"><b>5</b> products</div></div>
+    <div class="grid">
+      <div class="card"><div class="img">🌀<span class="badge n">Native</span></div><div class="body"><h3>M18 Jobsite Fan</h3><span class="plat">Milwaukee M18 · Fans</span><span class="price">$99–129</span><span class="warn">⚠ battery not included</span><a class="buy off">Buy link (off)</a></div></div>
+      <div class="card"><div class="img">💨<span class="badge n">Native</span></div><div class="body"><h3>M18 Misting Fan</h3><span class="plat">Milwaukee M18 · Fans</span><span class="price">$109–139</span><a class="buy off">Buy link (off)</a></div></div>
+      <div class="card"><div class="img">🎈<span class="badge n">Native</span></div><div class="body"><h3>M18 Inflator</h3><span class="plat">Milwaukee M18 · Inflators</span><span class="price">$79–99</span><a class="buy off">Buy link (off)</a></div></div>
+      <div class="adcard">Ad · in-grid unit</div>
+      <div class="card"><div class="img">🧹<span class="badge n">Native</span></div><div class="body"><h3>M18 Vacuum</h3><span class="plat">Milwaukee M18 · Vacuums</span><span class="price">$99–139</span><a class="buy off">Buy link (off)</a></div></div>
+      <div class="card"><div class="img">☕<span class="badge a">Adapter</span></div><div class="body"><h3>Espresso Maker</h3><span class="plat">via adapter #A12</span><span class="price">$70–95</span><span class="warn">⚠ over-discharge caveat</span><a class="buy off">Buy link (off)</a></div></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-skin="workshop">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How we verify compatibility | Runs On Your Battery</title>
+  <meta name="description" content="Our method: how every battery-gadget compatibility row is hand-verified from manufacturer specs, listings and owner reports, and how fit-type flags are assigned.">
+  <link rel="canonical" href="https://example.com/methodology/">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div data-shell="header"></div>
+
+  <main id="main" class="container">
+    <article class="prose">
+      <h1>How we verify compatibility</h1>
+      <p>This is the trust layer of the site — the methodology / data page. Every row in the finder is
+        hand-checked; nothing is auto-scraped and published unseen.</p>
+
+      <h2>What we check for every product</h2>
+      <ul>
+        <li><strong>Battery interface</strong> — voltage and rail, confirmed against the manufacturer spec page.</li>
+        <li><strong>Fit type</strong> — <em>native</em> (made by the platform owner), <em>direct-fit</em>
+          (third-party that mounts the battery directly), or <em>needs-adapter</em> (with the specific adapter named).</li>
+        <li><strong>Battery included?</strong> — flagged, because most gadgets ship bare.</li>
+        <li><strong>Adapter safety caveat</strong> — adapter rows carry the community over-discharge note.</li>
+      </ul>
+
+      <h2>Sources we merge</h2>
+      <table>
+        <thead><tr><th>Source</th><th>What it confirms</th></tr></thead>
+        <tbody>
+          <tr><td>Manufacturer spec pages</td><td>Voltage / rail / native compatibility</td></tr>
+          <tr><td>Retail listings</td><td>Battery-included status, price band</td></tr>
+          <tr><td>Owner reports (forums / video)</td><td>Real-world direct-fit and adapter paths</td></tr>
+        </tbody>
+      </table>
+
+      <h2>How often it updates</h2>
+      <p>Monthly sweeps add newly released gadgets and re-check that buy links still resolve; dead links
+        fall back to a search URL rather than being silently dropped.</p>
+    </article>
+  </main>
+
+  <div data-shell="footer"></div>
+  <script src="assets/site.js"></script>
+</body>
+</html>

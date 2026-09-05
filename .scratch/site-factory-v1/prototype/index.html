@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" data-skin="workshop">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO BASELINE (research/03) — templated per page ===== -->
+  <title>Runs On Your Battery — find gadgets that fit your power-tool battery</title>
+  <meta name="description" content="Pick your power-tool battery platform and a category to find every fan, vacuum, inflator, coffee maker and gadget that runs on it — flagged native, direct-fit, or needs-adapter, hand-verified.">
+  <link rel="canonical" href="https://example.com/">
+  <!-- OpenGraph (ogp.me required tags) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Runs On Your Battery — battery-gadget compatibility finder">
+  <meta property="og:description" content="Every gadget that runs on your power-tool battery, hand-verified and filterable.">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://example.com/og-cover.png">
+  <!-- Twitter card mirror -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Runs On Your Battery">
+  <meta name="twitter:description" content="Find gadgets that fit your power-tool battery platform.">
+  <!-- WebApplication schema for the tool (Product/FAQPage intentionally NOT used — see research/03) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Runs On Your Battery Finder",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Filter gadgets and accessories by the power-tool battery platform they run on."
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div data-shell="header"></div>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <h1>What runs on your power-tool battery?</h1>
+      <p class="lead">Pick your platform and a category. We list every gadget that fits — flagged
+        <strong>native</strong>, <strong>direct-fit</strong>, or <strong>needs-adapter</strong> — each
+        hand-verified for battery interface and battery-included status.</p>
+    </section>
+
+    <!-- ===== INTERACTIVE TOOL ISLAND ===== -->
+    <form id="tool-form" class="tool" aria-label="Battery gadget finder">
+      <div class="filters card">
+        <div class="field">
+          <label for="f-platform">Your battery platform</label>
+          <select id="f-platform" name="platform"></select>
+        </div>
+        <div class="field">
+          <label for="f-category">Category</label>
+          <select id="f-category" name="category"></select>
+        </div>
+        <fieldset class="field">
+          <span class="legend">Fit type</span>
+          <label class="choice"><input type="checkbox" name="fit" value="native"> Native</label>
+          <label class="choice"><input type="checkbox" name="fit" value="direct"> Direct-fit</label>
+          <label class="choice"><input type="checkbox" name="fit" value="adapter"> Needs adapter</label>
+        </fieldset>
+      </div>
+
+      <div class="results">
+        <div class="results-head">
+          <h2 class="visually-hidden">Results</h2>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </div>
+        <div id="result-list"></div>
+
+        <!-- MONETIZATION HOLE: ad slot, placed AFTER the result, space reserved (no CLS) -->
+        <aside class="ad-slot" data-format="rectangle" aria-hidden="true">
+          <span class="ad-label">Ad slot · 300×250 · reserved (empty until approved)</span>
+        </aside>
+      </div>
+    </form>
+  </main>
+
+  <div data-shell="footer"></div>
+
+  <!-- data + island (the ONLY client JS in production) -->
+  <script src="assets/data.js"></script>
+  <script src="assets/tool.js"></script>
+  <!-- shared shell + prototype-only skin switcher -->
+  <script src="assets/site.js"></script>
+</body>
+</html>

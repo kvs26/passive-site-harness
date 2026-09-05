@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 04 — Playful Consumer</title>
+<style>
+  :root{
+    --bg:#fff7f0; --surface:#fff; --ink:#2b1b3d; --muted:#7a6a86; --line:#f0e4ef;
+    --p1:#ff5d8f; --p2:#7c5cff; --p3:#26c6a5; --amber:#ffb703;
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+  a{text-decoration:none;color:inherit}
+  .top{display:flex;align-items:center;gap:24px;padding:18px 28px}
+  .top b{font-size:22px;background:linear-gradient(90deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .top nav{display:flex;gap:20px;color:var(--muted);font-weight:600;font-size:15px}
+  .top .cta{margin-left:auto;background:var(--ink);color:#fff;padding:11px 22px;border-radius:999px;font-weight:700}
+  .hero{text-align:center;padding:40px 24px 20px}
+  .hero h1{font-size:44px;margin:0 0 12px;line-height:1.05}
+  .hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--p1),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p{color:var(--muted);font-size:18px;max-width:52ch;margin:0 auto}
+  .pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px 0}
+  .pill{background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:10px 20px;font-weight:700;font-size:15px;box-shadow:0 4px 0 var(--line)}
+  .pill.on{background:var(--p2);color:#fff;border-color:var(--p2);box-shadow:0 4px 0 #5b3fd6}
+  .wrap{max-width:1040px;margin:0 auto;padding:8px 24px 60px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+  .c{background:var(--surface);border-radius:22px;padding:22px;box-shadow:0 8px 24px rgba(124,92,255,.10);border:1px solid var(--line);position:relative}
+  .c .emoji{font-size:46px}
+  .c h3{margin:10px 0 4px;font-size:19px}
+  .c .plat{color:var(--muted);font-size:14px;margin:0 0 12px}
+  .badge{position:absolute;top:16px;right:16px;font-size:11px;font-weight:800;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+  .n{background:#d9f8ef;color:#08916f} .a{background:#fff1cc;color:#b8860b} .d{background:#e6e0ff;color:#5b3fd6}
+  .price{font-weight:800;font-size:18px}
+  .buy{display:block;text-align:center;margin-top:14px;background:linear-gradient(90deg,var(--p1),var(--amber));color:#fff;font-weight:800;padding:11px;border-radius:14px}
+  .warn{color:#e0447a;font-size:12px;font-weight:700;margin-top:6px}
+</style>
+</head>
+<body>
+  <header class="top"><b>⚡ Runs On Your Battery</b><nav><a>Finder</a><a>Platforms</a><a>Fun stuff</a></nav><a class="cta">Shop 🛒</a></header>
+  <section class="hero">
+    <h1>What <em>runs</em> on your battery?</h1>
+    <p>Pick your power-tool battery and discover every fan, vacuum, coffee maker & gadget that fits. 🔋</p>
+    <div class="pills"><span class="pill on">Milwaukee M18</span><span class="pill">DeWalt 20V</span><span class="pill">Ryobi One+</span><span class="pill">HART 20V</span><span class="pill">+ Fans</span></div>
+  </section>
+  <div class="wrap">
+    <div class="cards">
+      <div class="c"><span class="badge n">Native</span><div class="emoji">🌀</div><h3>M18 Jobsite Fan</h3><p class="plat">Milwaukee M18 · Fans</p><div class="price">$99–129</div><div class="warn">⚠ battery not included</div><a class="buy">Grab it →</a></div>
+      <div class="c"><span class="badge n">Native</span><div class="emoji">💨</div><h3>M18 Misting Fan</h3><p class="plat">Milwaukee M18 · Fans</p><div class="price">$109–139</div><a class="buy">Grab it →</a></div>
+      <div class="c"><span class="badge n">Native</span><div class="emoji">🎈</div><h3>M18 Inflator</h3><p class="plat">Milwaukee M18 · Inflators</p><div class="price">$79–99</div><a class="buy">Grab it →</a></div>
+      <div class="c"><span class="badge a">Adapter</span><div class="emoji">☕</div><h3>Espresso Maker</h3><p class="plat">via adapter #A12</p><div class="price">$70–95</div><div class="warn">⚠ over-discharge caveat</div><a class="buy">Grab it →</a></div>
+    </div>
+  </div>
+</body>
+</html>

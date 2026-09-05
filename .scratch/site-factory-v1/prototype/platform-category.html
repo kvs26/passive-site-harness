@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-skin="workshop">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===== SEO BASELINE — long-tail page, title/description generated FROM the data (research/03) ===== -->
+  <title>Milwaukee M18 fans — every M18-compatible fan (2026) | Runs On Your Battery</title>
+  <meta name="description" content="Every fan that runs on a Milwaukee M18 battery — jobsite fans, misting fans and more, flagged native or adapter, with battery-not-included notes. Hand-verified, updated monthly.">
+  <link rel="canonical" href="https://example.com/milwaukee-m18/fans/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Milwaukee M18 fans — full compatibility list">
+  <meta property="og:description" content="Every M18-compatible fan, hand-verified.">
+  <meta property="og:url" content="https://example.com/milwaukee-m18/fans/">
+  <meta property="og:image" content="https://example.com/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- BreadcrumbList + ItemList — the two schema types that DO apply to a directory page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://example.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Milwaukee M18", "item": "https://example.com/milwaukee-m18/" },
+      { "@type": "ListItem", "position": 3, "name": "Fans", "item": "https://example.com/milwaukee-m18/fans/" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Milwaukee M18 compatible fans",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "M18 Jobsite Fan" },
+      { "@type": "ListItem", "position": 2, "name": "M18 Misting Fan" }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div data-shell="header"></div>
+
+  <main id="main" class="container">
+    <!-- crawlable breadcrumb trail (hub -> spoke -> leaf) -->
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> ›
+      <a href="index.html">Milwaukee M18</a> ›
+      <span aria-current="page">Fans</span>
+    </nav>
+
+    <section class="hero">
+      <h1>Milwaukee M18 fans</h1>
+      <p class="lead">Every fan that runs on a Milwaukee M18 battery, hand-verified. This is a
+        statically generated long-tail page — one like it exists for every
+        <strong>platform × category</strong> pair (Ryobi One+ coffee makers, HART 20V gadgets, and so on).</p>
+    </section>
+
+    <!-- statically rendered rows (no island): best LCP, no client fetch -->
+    <div class="card">
+      <article class="row">
+        <div class="thumb" aria-hidden="true">🌀</div>
+        <div class="meta">
+          <p class="name">M18 Jobsite Fan <span class="badge badge--native">Native</span></p>
+          <p class="sub">Milwaukee M18 · Fans · $99–129 · <span class="warn">⚠ battery not included</span></p>
+        </div>
+        <div class="buyslot">
+          <span class="btn-buy" data-enabled="false" aria-disabled="true">Buy link</span>
+          <span class="hole-tag">◦ affiliate hole (off)</span>
+        </div>
+      </article>
+      <article class="row">
+        <div class="thumb" aria-hidden="true">💨</div>
+        <div class="meta">
+          <p class="name">M18 Misting Fan <span class="badge badge--native">Native</span></p>
+          <p class="sub">Milwaukee M18 · Fans · $109–139 · <span class="warn">⚠ battery not included</span></p>
+        </div>
+        <div class="buyslot">
+          <span class="btn-buy" data-enabled="false" aria-disabled="true">Buy link</span>
+          <span class="hole-tag">◦ affiliate hole (off)</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- MONETIZATION HOLE: in-content ad slot between blocks -->
+    <aside class="ad-slot" data-format="leaderboard" aria-hidden="true">
+      <span class="ad-label">Ad slot · 728×90 · reserved</span>
+    </aside>
+
+    <section class="prose">
+      <h2>Related platform × category pages</h2>
+      <!-- internal linking: crawlable related links across the long tail -->
+      <ul>
+        <li><a href="index.html">Milwaukee M18 vacuums</a></li>
+        <li><a href="index.html">Milwaukee M18 inflators</a></li>
+        <li><a href="index.html">DeWalt 20V MAX fans</a></li>
+        <li><a href="index.html">Ryobi One+ fans</a></li>
+        <li><a href="index.html">HART 20V fans</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <div data-shell="footer"></div>
+  <script src="assets/site.js"></script>
+</body>
+</html>

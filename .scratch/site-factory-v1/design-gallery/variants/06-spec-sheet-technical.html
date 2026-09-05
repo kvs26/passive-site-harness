@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 06 — Spec-Sheet / Technical</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a21; --panel2:#1c2129; --ink:#e6e9ef; --muted:#8b95a5; --line:#262c37;
+    --accent:#38bdf8; --ok:#34d399; --info:#818cf8; --warn:#fbbf24; --danger:#f87171;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.45;font-size:14px}
+  a{color:var(--accent);text-decoration:none}
+  .top{border-bottom:1px solid var(--line);padding:12px 20px;display:flex;gap:20px;align-items:center;background:var(--panel)}
+  .top b{font-family:var(--mono);font-size:15px;color:var(--accent)}
+  .top nav{display:flex;gap:16px;color:var(--muted);font-size:13px;font-family:var(--mono)}
+  .wrap{max-width:1160px;margin:0 auto;padding:20px}
+  h1{font-family:var(--mono);font-size:20px;margin:0 0 4px}
+  .sub{color:var(--muted);font-family:var(--mono);font-size:13px;margin:0 0 18px}
+  .grid{display:grid;grid-template-columns:250px 1fr;gap:16px;align-items:start}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:6px}
+  .panel .h{font-family:var(--mono);font-size:12px;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.06em}
+  .panel .b{padding:12px}
+  label{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin:10px 0 4px;text-transform:uppercase}
+  select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font:inherit;padding:7px;border-radius:4px}
+  .flag{display:flex;gap:7px;align-items:center;font-family:var(--mono);font-size:13px;padding:3px 0}
+  table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:13px}
+  th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:10px 12px;border-bottom:1px solid var(--line)}
+  td{padding:10px 12px;border-bottom:1px solid var(--line)}
+  tr:hover td{background:var(--panel2)}
+  .tag{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:3px;border:1px solid}
+  .t-n{color:var(--ok);border-color:var(--ok)} .t-d{color:var(--info);border-color:var(--info)} .t-a{color:var(--warn);border-color:var(--warn)}
+  .mono{font-family:var(--mono)} .muted{color:var(--muted)} .danger{color:var(--danger)}
+  .buy{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--muted);padding:3px 8px;border-radius:4px}
+  .count{font-family:var(--mono);color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)} .count b{color:var(--accent)}
+  .ad{margin-top:16px;min-height:250px;border:1px dashed var(--line);border-radius:6px;display:grid;place-items:center;color:var(--muted);font-family:var(--mono);font-size:12px}
+</style>
+</head>
+<body>
+  <header class="top"><b>runs_on_your_battery</b><nav><a>/finder</a><a>/platforms</a><a>/method</a><a>/api</a></nav></header>
+  <div class="wrap">
+    <h1>battery-gadget compatibility</h1>
+    <p class="sub">// dataset: 312 rows · verified 2026-09-01 · fit ∈ {native, direct, adapter}</p>
+    <div class="grid">
+      <aside>
+        <div class="panel"><div class="h">query</div><div class="b">
+          <label>platform</label><select><option>Milwaukee M18</option><option>DeWalt 20V MAX</option></select>
+          <label>category</label><select><option>*</option><option>Fans</option></select>
+          <label>fit</label>
+          <div class="flag"><input type="checkbox" checked> native</div>
+          <div class="flag"><input type="checkbox" checked> direct</div>
+          <div class="flag"><input type="checkbox" checked> adapter</div>
+        </div></div>
+        <div class="ad">Ad · 300×250</div>
+      </aside>
+      <section class="panel">
+        <div class="count">rows: <b>5</b> / 312</div>
+        <table>
+          <thead><tr><th>product</th><th>platform</th><th>fit</th><th>batt</th><th>price</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>M18 Jobsite Fan</td><td class="muted">MIL_M18</td><td><span class="tag t-n">native</span></td><td class="danger">false</td><td>$99–129</td><td><span class="buy">buy▸</span></td></tr>
+            <tr><td>M18 Misting Fan</td><td class="muted">MIL_M18</td><td><span class="tag t-n">native</span></td><td class="danger">false</td><td>$109–139</td><td><span class="buy">buy▸</span></td></tr>
+            <tr><td>M18 Inflator</td><td class="muted">MIL_M18</td><td><span class="tag t-n">native</span></td><td class="danger">false</td><td>$79–99</td><td><span class="buy">buy▸</span></td></tr>
+            <tr><td>M18 Vacuum</td><td class="muted">MIL_M18</td><td><span class="tag t-n">native</span></td><td class="danger">false</td><td>$99–139</td><td><span class="buy">buy▸</span></td></tr>
+            <tr><td>Espresso Maker <span class="muted">→A12</span></td><td class="muted">DEW→M18</td><td><span class="tag t-a">adapter</span></td><td class="danger">false</td><td>$70–95</td><td><span class="buy">buy▸</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

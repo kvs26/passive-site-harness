@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction 02 — Minimal Calculator (Groww-like)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#fff; --ink:#1f2933; --muted:#7b8794; --line:#e6e9ee;
+    --accent:#00b386; --accent-ink:#fff; --chip:#e8f8f2; --viz:#5b7cff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);line-height:1.55}
+  a{color:var(--accent);text-decoration:none}
+  .top{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 24px;display:flex;align-items:center;gap:28px}
+  .top b{font-size:20px} .top nav{display:flex;gap:22px;color:var(--muted);font-size:15px}
+  .top .cta{margin-left:auto;background:var(--accent);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700}
+  .wrap{max-width:1080px;margin:0 auto;padding:40px 24px}
+  h1{font-size:34px;font-weight:700;margin:0 0 28px}
+  .layout{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .tool{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+  .field{margin-bottom:26px}
+  .field .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .field label{font-size:16px}
+  .val{background:var(--chip);color:var(--accent);font-weight:700;padding:8px 16px;border-radius:8px;font-size:16px}
+  .track{height:5px;background:var(--line);border-radius:5px;position:relative}
+  .track::before{content:"";position:absolute;left:0;top:0;height:5px;width:55%;background:var(--accent);border-radius:5px}
+  .track::after{content:"";position:absolute;left:53%;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  .donut{width:200px;height:200px;border-radius:50%;margin:0 auto;background:conic-gradient(var(--viz) 0 62%,#e7ecff 62% 100%);display:grid;place-items:center}
+  .donut span{width:120px;height:120px;background:#fff;border-radius:50%;display:grid;place-items:center;font-weight:700;color:var(--muted);font-size:13px;text-align:center}
+  .legend{display:flex;gap:16px;justify-content:center;margin-top:14px;font-size:13px;color:var(--muted)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px}
+  .totals{display:flex;gap:40px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+  .totals div small{display:block;color:var(--muted);font-size:13px} .totals div b{font-size:20px}
+  .aside .promo{text-align:center} .aside .promo h3{margin:8px 0} .aside .promo p{color:var(--muted);font-size:14px}
+  .aside .promo .cta{display:block;background:var(--accent);color:#fff;text-align:center;padding:12px;border-radius:8px;font-weight:700;margin-top:14px}
+  .aside .list{margin-top:20px} .aside .list h4{font-size:14px;margin:0 0 8px}
+  .aside .list a{display:block;padding:12px 0;border-top:1px solid var(--line);color:var(--ink);font-size:15px}
+</style>
+</head>
+<body>
+  <header class="top"><b>🔋 RunsOnYourBattery</b><nav><a>Finder</a><a>Platforms</a><a>Guides</a></nav><a class="cta">Shop deals</a></header>
+  <div class="wrap">
+    <h1>Battery Gadget Finder</h1>
+    <div class="layout">
+      <div class="card">
+        <div class="tool">
+          <div>
+            <div class="field"><div class="row"><label>Your platform</label><span class="val">Milwaukee&nbsp;M18</span></div><div class="track"></div></div>
+            <div class="field"><div class="row"><label>Category</label><span class="val">Fans</span></div><div class="track"></div></div>
+            <div class="field"><div class="row"><label>Fit type</label><span class="val">All</span></div><div class="track"></div></div>
+          </div>
+          <div>
+            <div class="donut"><span>4 matches<br>native</span></div>
+            <div class="legend"><span><span class="dot" style="background:var(--viz)"></span>Native</span><span><span class="dot" style="background:#e7ecff"></span>Adapter</span></div>
+          </div>
+        </div>
+        <div class="totals">
+          <div><small>Matches</small><b>4 fans</b></div>
+          <div><small>Price range</small><b>$99–139</b></div>
+          <div><small>Battery incl.</small><b>None</b></div>
+        </div>
+      </div>
+      <aside class="aside">
+        <div class="card promo">
+          <div style="font-size:40px">🛒</div>
+          <h3>Shop M18 fans</h3>
+          <p>Best current prices on Amazon</p>
+          <a class="cta">View deals</a>
+        </div>
+        <div class="card list">
+          <h4>Popular platforms</h4>
+          <a>DeWalt 20V gadgets</a><a>Ryobi One+ gadgets</a><a>HART 20V gadgets</a><a>Makita LXT gadgets</a><a>Kobalt 24V gadgets</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>

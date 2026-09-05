@@ -1,0 +1,36 @@
+{
+  "$schema-note": "DEMO dataset for the house template. Replace per site. Each product carries a monetization-ready `affiliate` block (ticket 05) that is OFF until SITE.monetization.affiliate.enabled is flipped.",
+  "platforms": [
+    { "slug": "ryobi-18v-one", "name": "Ryobi 18V ONE+", "brand": "Ryobi" },
+    { "slug": "dewalt-20v-max", "name": "DeWalt 20V MAX", "brand": "DeWalt" },
+    { "slug": "milwaukee-m18", "name": "Milwaukee M18", "brand": "Milwaukee" },
+    { "slug": "makita-18v-lxt", "name": "Makita 18V LXT", "brand": "Makita" }
+  ],
+  "categories": [
+    { "slug": "fans", "name": "Fans" },
+    { "slug": "vacuums", "name": "Vacuums" },
+    { "slug": "inflators", "name": "Inflators" },
+    { "slug": "lights", "name": "Lights" },
+    { "slug": "coffee-makers", "name": "Coffee makers" }
+  ],
+  "products": [
+    { "id": "ry-fan-1", "name": "Ryobi 18V Hybrid Bucket Top Fan", "platform": "ryobi-18v-one", "category": "fans", "fit": "native", "battery_included": false, "note": "Runs on any ONE+ battery; also plugs into AC.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "ry-vac-1", "name": "Ryobi 18V Hand Vacuum", "platform": "ryobi-18v-one", "category": "vacuums", "fit": "native", "battery_included": false, "note": "Cordless ONE+ hand vac.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "ry-inf-1", "name": "Ryobi 18V Dual Function Inflator/Deflator", "platform": "ryobi-18v-one", "category": "inflators", "fit": "native", "battery_included": false, "note": "Digital gauge, auto shut-off.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "ry-lit-1", "name": "Ryobi 18V Hybrid LED Work Light", "platform": "ryobi-18v-one", "category": "lights", "fit": "native", "battery_included": false, "note": "Hybrid AC/DC.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "ry-cof-1", "name": "Ryobi 18V Coffee Maker (Sea Breeze)", "platform": "ryobi-18v-one", "category": "coffee-makers", "fit": "native", "battery_included": false, "note": "Brews single cups off a ONE+ pack.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "dw-fan-1", "name": "DeWalt 20V MAX Jobsite Fan", "platform": "dewalt-20v-max", "category": "fans", "fit": "native", "battery_included": false, "note": "Runs on 20V MAX or AC.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "dw-vac-1", "name": "DeWalt 20V MAX Wet/Dry Vacuum", "platform": "dewalt-20v-max", "category": "vacuums", "fit": "native", "battery_included": false, "note": "2-gallon cordless.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "dw-inf-1", "name": "DeWalt 20V MAX Corded/Cordless Inflator", "platform": "dewalt-20v-max", "category": "inflators", "fit": "native", "battery_included": false, "note": "High-pressure + high-volume.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "dw-lit-1", "name": "DeWalt 20V MAX LED Area Light", "platform": "dewalt-20v-max", "category": "lights", "fit": "native", "battery_included": false, "note": "Bright jobsite light.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mw-fan-1", "name": "Milwaukee M18 Jobsite Fan", "platform": "milwaukee-m18", "category": "fans", "fit": "native", "battery_included": false, "note": "M18 or AC power.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mw-vac-1", "name": "Milwaukee M18 Compact Vacuum", "platform": "milwaukee-m18", "category": "vacuums", "fit": "native", "battery_included": false, "note": "HEPA filtration.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mw-inf-1", "name": "Milwaukee M18 Inflator", "platform": "milwaukee-m18", "category": "inflators", "fit": "native", "battery_included": false, "note": "TrueView digital gauge.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mw-cof-1", "name": "Generic 18V Battery Coffee Maker (M18 adapter)", "platform": "milwaukee-m18", "category": "coffee-makers", "fit": "adapter", "battery_included": false, "note": "Third-party unit; needs an M18 adapter plate.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mk-fan-1", "name": "Makita 18V LXT Job Site Fan", "platform": "makita-18v-lxt", "category": "fans", "fit": "native", "battery_included": false, "note": "LXT or AC adapter.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mk-vac-1", "name": "Makita 18V LXT Vacuum", "platform": "makita-18v-lxt", "category": "vacuums", "fit": "native", "battery_included": false, "note": "Cordless canister.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mk-inf-1", "name": "Makita 18V LXT Inflator", "platform": "makita-18v-lxt", "category": "inflators", "fit": "native", "battery_included": false, "note": "Compact tire inflator.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mk-lit-1", "name": "Makita 18V LXT LED Flashlight", "platform": "makita-18v-lxt", "category": "lights", "fit": "native", "battery_included": false, "note": "Handheld work light.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } },
+    { "id": "mk-cof-1", "name": "Universal 18V Coffee Maker (LXT direct-fit)", "platform": "makita-18v-lxt", "category": "coffee-makers", "fit": "direct", "battery_included": false, "note": "Third-party unit with a native LXT foot.", "affiliate": { "asin": "", "affiliate_url": null, "affiliate_enabled": false, "requires_disclosure": true } }
+  ]
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" data-skin="workshop">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ | Runs On Your Battery</title>
+  <meta name="description" content="Common questions about running gadgets on power-tool batteries: adapters, safety, battery-included status, and cross-platform fit.">
+  <link rel="canonical" href="https://example.com/faq/">
+  <!-- NOTE: no FAQPage JSON-LD — Google deprecated FAQ rich results (May 2026, per research/03).
+       Plain accessible <details> only. -->
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <div data-shell="header"></div>
+
+  <main id="main" class="container">
+    <article class="prose faq">
+      <h1>Frequently asked questions</h1>
+
+      <details open>
+        <summary>Will any gadget fit any battery from the same brand?</summary>
+        <p>Usually within a single platform (e.g. Milwaukee M18), but not across a brand's sub-platforms
+          (M12 ≠ M18). The finder filters by exact platform to avoid this trap.</p>
+      </details>
+      <details>
+        <summary>What does "needs adapter" mean?</summary>
+        <p>The gadget was built for a different battery; a third-party adapter bridges yours to it. We name
+          the specific adapter and flag the row so you don't assume a native fit.</p>
+      </details>
+      <details>
+        <summary>Are adapters safe?</summary>
+        <p>Many third-party adapters lack the over-discharge protection built into native tools, so we surface
+          that caveat on every adapter row. Use them with that in mind.</p>
+      </details>
+      <details>
+        <summary>Is the battery included?</summary>
+        <p>Almost never — most of these gadgets ship as bare tools. Every row flags battery-included status.</p>
+      </details>
+    </article>
+  </main>
+
+  <div data-shell="footer"></div>
+  <script src="assets/site.js"></script>
+</body>
+</html>
