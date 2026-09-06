@@ -26,6 +26,8 @@ npm run preview
 2. Edit **`src/lib/site.config.mjs`** — the only file you must touch:
    - identity (`url`, `name`, `tagline`), `skin`, `layoutMode`, nav/footer.
    - monetization + analytics stay **off** until launch (see below).
+   - **ask the site owner whether to enable `monetization.productLinks`** — plain, untagged
+     outbound product links are safe pre-launch and pre-Associates-approval; default is off.
 3. Replace `src/data/catalog.json` with your dataset (same `platforms/categories/products` shape, or
    adapt the pages).
 4. Drop real brand assets into `public/` (`favicon.svg`, `og-cover.png`, `logo.png`, `fonts/*.woff2`).
@@ -46,7 +48,7 @@ npm run preview
 | Sitemap + robots | `@astrojs/sitemap`, `src/pages/robots.txt.ts` | build step |
 | Page set | `src/pages/` | tool, long-tail `[platform]/[category]`, methodology, FAQ, About, Contact, Privacy, Disclosure |
 | Ad holes (ticket 04) | `src/components/AdSlot.astro` | reserved-space, off by default |
-| Affiliate holes (ticket 05) | `src/components/AffiliateLink.astro` | data-driven, `rel="sponsored nofollow"`, off by default |
+| Affiliate + plain product-link holes (tickets 05, 18) | `src/components/AffiliateLink.astro` | data-driven; tagged `rel="sponsored nofollow"` when affiliate is on, plain `rel="nofollow"` when only `productLinks` is on, off by default |
 | Consent scaffold + analytics slot | `Layout.astro`, `BaseHead.astro` | inert until a provider is set |
 
 ## Skins
@@ -60,8 +62,13 @@ that re-points the same semantic roles (no extra skin needed).
 
 - **Ads:** set `SITE.monetization.ads.enabled = true` and `adsensePublisherId`. Reserved `AdSlot`
   boxes fill in place — no reflow. Update `public/ads.txt`.
+- **Product links (pre-affiliate, ticket 18):** set `SITE.monetization.productLinks.enabled = true`
+  to show each dataset row's `affiliate_url` as a plain outbound link (no sponsored tag, no
+  disclosure) — safe before an Amazon Associates account exists. Ask the site owner whether they
+  want this on; it's off by default.
 - **Affiliate:** set `SITE.monetization.affiliate.enabled = true`, then flip each dataset row's
-  `affiliate.affiliate_enabled` and set `affiliate_url`. Off rows render as plain text.
+  `affiliate.affiliate_enabled` and set `affiliate_url` to a real tagged link. Off rows fall back to
+  the plain product link above (if enabled), or plain text.
 - **Analytics:** set `SITE.analytics.provider` (`cloudflare` recommended — cookieless, no consent
   banner) and `token`.
 

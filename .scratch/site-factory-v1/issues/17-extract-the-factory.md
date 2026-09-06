@@ -16,7 +16,10 @@ Deliver:
    → edit `src/lib/site.config.mjs` → drop in `src/data/catalog.json` + brand assets → build) into a
    documented skill under `.agents/skills/`. Confirm the starting hypothesis (repo-tracked starter +
    one `/build-site` skill that plugs into `/implement`) against what the real build showed — tickets
-   12/13 already confirmed the one-seam clone works, tickets 15/16 confirm the monetization pass.
+   12/13 already confirmed the one-seam clone works, tickets 15/16 confirm the monetization pass. The
+   skill must **ask the site owner whether to enable `SITE.monetization.productLinks`** (ticket 18) —
+   plain, untagged outbound product links are safe pre-launch/pre-Associates but are off by default;
+   don't leave the question unasked.
 2. **The documented standards** — capture the factory-wide conventions in one place: the stack
    conventions (ticket 08), the house-template seam + page set (tickets 09/10), the SEO baseline
    (ticket 03), the deploy checklist (ticket 06), and the two monetization passes (tickets 15/16) as a

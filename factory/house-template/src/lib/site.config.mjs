@@ -101,6 +101,15 @@ export const SITE = {
       disclosure:
         'As an Amazon Associate we earn from qualifying purchases. Links may be affiliate links.',
     },
+    /**
+     * Plain (non-affiliate) outbound product links — safe to enable before an
+     * Amazon Associates account exists (ticket 18). Shows each dataset row's
+     * `affiliate_url` as a real link with no sponsored tag and no disclosure.
+     * Ask the site owner whether to turn this on when standing up a new site.
+     */
+    productLinks: {
+      enabled: false,
+    },
   },
 
   // --- Analytics (single insertion point; ticket 04) --------------------

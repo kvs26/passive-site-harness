@@ -1,10 +1,17 @@
 ---
 /**
- * AffiliateLink.astro — data-driven affiliate hole (ticket 05).
- * Every dataset row may carry an `affiliate` block. When affiliate is OFF, or
- * the row has no live affiliate_url, this renders the product name as plain
- * text (no dead <a>). When ON, it renders a rel="sponsored nofollow" CTA.
- * The disclosure line is rendered only when a sponsored link is actually shown.
+ * AffiliateLink.astro — data-driven affiliate hole (ticket 05) + plain
+ * product-link hole (ticket 18).
+ * Every dataset row may carry an `affiliate` block with a real `affiliate_url`
+ * (untagged, e.g. an Amazon search/product URL) well before an Associates
+ * account exists. Three states:
+ *   1. `SITE.monetization.affiliate.enabled` + row `affiliate_enabled` + URL
+ *      → tagged CTA, rel="sponsored nofollow", disclosure line.
+ *   2. Not (1), but `SITE.monetization.productLinks.enabled` + URL → plain
+ *      outbound link (no sponsored tag, no disclosure) — safe pre-Associates.
+ *   3. Neither → plain text, no <a>.
+ * Flipping `affiliate.enabled` on for a row automatically promotes it from
+ * state 2 to state 1 with no template change.
  */
 import { SITE } from '../lib/site.config.mjs';
 
@@ -22,10 +29,12 @@ interface Props {
 }
 
 const { label, affiliate = {} } = Astro.props;
-const on = SITE.monetization.affiliate.enabled && affiliate.affiliate_enabled && !!affiliate.affiliate_url;
+const hasUrl = !!affiliate.affiliate_url;
+const affiliateOn = SITE.monetization.affiliate.enabled && affiliate.affiliate_enabled && hasUrl;
+const plainLinkOn = !affiliateOn && SITE.monetization.productLinks?.enabled && hasUrl;
 const cta = affiliate.cta ?? 'View on Amazon';
 ---
-{on ? (
+{affiliateOn ? (
   <span class="affiliate-link">
     {label}
     <a class="affiliate-cta" href={affiliate.affiliate_url} rel="sponsored nofollow" target="_blank">
@@ -34,6 +43,13 @@ const cta = affiliate.cta ?? 'View on Amazon';
     {affiliate.requires_disclosure !== false && (
       <span class="affiliate-disclosure"> · {SITE.monetization.affiliate.disclosure}</span>
     )}
+  </span>
+) : plainLinkOn ? (
+  <span class="affiliate-link">
+    {label}
+    <a class="affiliate-cta" href={affiliate.affiliate_url} rel="nofollow" target="_blank">
+      {cta}
+    </a>
   </span>
 ) : (
   <span class="affiliate-link">{label}</span>
