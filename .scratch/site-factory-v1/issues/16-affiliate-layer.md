@@ -1,7 +1,7 @@
 # Turn on the affiliate monetization layer
 
 Type: task
-Status: open
+Status: closed (out of scope)
 Blocked by: 14
 
 ## Question
@@ -23,5 +23,11 @@ Concretely:
    `rel="sponsored nofollow"`. Off rows must still render as plain text.
 4. **Disclosure page** — confirm `/disclosure` matches the active affiliate relationship.
 
-Resolution records which rows are monetized, the disclosure placement, and the Associates status. Any
-reusable steps feed the "Extract the factory" skill (ticket 17).
+## Out of scope
+
+Ruled out of scope during ticket 17 (Extract the factory), per the map's override: joining Amazon
+Associates and minting tagged links stay the site owner's own manual action per live site. The
+`/build-site` skill (ticket 17) verifies and attaches whatever raw links the owner hands it, asks
+whether to enable plain `productLinks` pre-approval, and — later, on request — flips
+`SITE.monetization.affiliate.enabled` once the owner supplies real tagged links. It never joins
+Associates itself. No agent-driven "activation" ticket is needed.

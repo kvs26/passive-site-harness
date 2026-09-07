@@ -1,19 +1,19 @@
 # House Template — the site-factory canonical scaffold
 
-A themeable, static **Astro** template (ticket 10 of `site-factory-v1`). It is the factory's reusable
-asset: to start a new site, **copy this folder into `sites/<slug>/`** (its own independent git repo,
-gitignored by the harness) and edit one config file.
+A themeable, static **Astro** template. It is bundled as an asset of the `.agents/skills/build-site/`
+skill — normally you invoke `/build-site` rather than copying this folder by hand, but the raw
+scaffold is documented here for reference.
 
 Realises the design decisions in
-[`.scratch/site-factory-v1/issues/09-house-template.md`](../../.scratch/site-factory-v1/issues/09-house-template.md)
+[`.scratch/site-factory-v1/issues/09-house-template.md`](../../../../.scratch/site-factory-v1/issues/09-house-template.md)
 — one themeable base + layout modes + skin palette — on the stack picked in
-[ticket 08](../../.scratch/site-factory-v1/issues/08-pick-stack.md) (Astro, `output: 'static'`,
+[ticket 08](../../../../.scratch/site-factory-v1/issues/08-pick-stack.md) (Astro, `output: 'static'`,
 vanilla-JS islands).
 
 ## Quick start
 
 ```bash
-cd factory/house-template
+cd .agents/skills/build-site/assets/house-template
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # -> dist/  (static, deploy to Cloudflare Pages)
@@ -22,7 +22,8 @@ npm run preview
 
 ## Standing up a new site
 
-1. Copy `factory/house-template/` → `sites/<slug>/`.
+1. Copy this folder → `sites/<slug>/` (see `/build-site` — it does this for you along with the
+   dataset/links intake below).
 2. Edit **`src/lib/site.config.mjs`** — the only file you must touch:
    - identity (`url`, `name`, `tagline`), `skin`, `layoutMode`, nav/footer.
    - monetization + analytics stay **off** until launch (see below).

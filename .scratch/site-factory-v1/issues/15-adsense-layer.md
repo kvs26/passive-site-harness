@@ -1,7 +1,7 @@
 # Turn on the AdSense monetization layer
 
 Type: task
-Status: open
+Status: closed (out of scope)
 Blocked by: 14
 
 ## Question
@@ -21,5 +21,10 @@ Concretely:
 4. **(Optional) analytics** — set `SITE.analytics.provider` (Cloudflare Web Analytics recommended:
    cookieless, no consent banner) so ad/traffic performance is measurable.
 
-Resolution records where ads render, the CWV before/after check, and the approval outcome. Any reusable
-AdSense-activation steps learned here feed the "Extract the factory" skill (ticket 17).
+## Out of scope
+
+Ruled out of scope during ticket 17 (Extract the factory), per the map's override: AdSense signup and
+approval stay the site owner's own manual action on each live site, done outside any agent session.
+The `/build-site` skill (ticket 17) only reserves the ad holes and, later, flips
+`SITE.monetization.ads.enabled` once the owner hands over a real publisher id — it never applies for
+AdSense itself. No agent-driven "activation" ticket is needed.

@@ -19,6 +19,12 @@ interface Props {
 const { format = 'rectangle', slot = '', label } = Astro.props;
 const ads = SITE.monetization.ads;
 const live = ads.enabled && ads.adsensePublisherId;
+// Show the reserved-space placeholder box only in dev (design aid). In a
+// production build with ads off, render nothing at all — an empty grey
+// "Ad slot" box in front of real visitors looks broken (learned from
+// site #1's launch). No layout shift concern either way: this component's
+// caller reserves the column/rail itself.
+const showPlaceholder = !live && import.meta.env.DEV;
 ---
 {live ? (
   <aside class="ad-slot ad-slot--live" data-format={format} aria-label="Advertisement">
@@ -32,8 +38,8 @@ const live = ads.enabled && ads.adsensePublisherId;
       data-full-width-responsive="true"
     ></ins>
   </aside>
-) : (
+) : showPlaceholder ? (
   <aside class="ad-slot" data-format={format} aria-hidden="true">
     <span class="ad-label">{label ?? `Ad slot · ${format} · reserved`}</span>
   </aside>
-)}
+) : null}
