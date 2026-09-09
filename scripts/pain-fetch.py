@@ -4,9 +4,15 @@ out of the box; credentialed ones (GitHub PAT, YouTube Data API, Product Hunt,
 optional Stack Exchange key) activate only if .env supplies credentials.
 Results cached under .cache/pain/.
 
-Note: no Reddit adapter — unauthenticated access is dead (403/302, verified
-2026-08-31). Wire an OAuth adapter once the pending developer access arrives
-(gate on REDDIT_CLIENT_ID / REDDIT_CLIENT_SECRET).
+Note: Reddit's official Data API (OAuth) now requires an approved support
+ticket under the 2026 Responsible Builder Policy — self-serve app creation
+alone no longer works, and our request was denied (2026-09-09). That's a
+different surface than Reddit's own public search, though: `reddit.com/search.rss`
+stays open with no login, no app, and no approval (verified live 2026-09-09).
+The `reddit` adapter uses that RSS search; `arcticshift` is a second
+credential-free option (free community-run archive/API, Pushshift successor)
+for subreddit browsing and historical lookups. Do not retry the OAuth path via
+a logged-in browser session as a workaround — that risks the account.
 
 Usage: python3 scripts/pain-fetch.py <adapter> "query"
 Run without arguments for per-adapter query formats.
@@ -19,8 +25,11 @@ import os
 import pathlib
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 
 CACHE = pathlib.Path(".cache/pain")
 CACHE.mkdir(parents=True, exist_ok=True)
@@ -272,6 +281,89 @@ def producthunt(topic: str) -> None:
         sys.exit(2)
 
 
+REDDIT_UA = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+)
+
+
+def reddit(arg: str) -> None:
+    """arg: "subreddit|query" (subreddit optional — "|budgeting app" searches
+    all of Reddit; "personalfinance|budgeting app" scopes to a sub). Uses
+    Reddit's public search.rss — credential-free, no app/approval needed,
+    verified live 2026-09-09. A generic User-Agent ("Mozilla/5.0" alone) gets
+    WAF-blocked; a full browser UA (above) does not. Anonymous access is
+    IP-rate-limited to roughly one request per ~45s — on a 429 this waits out
+    Reddit's own reported reset window (once, capped at 90s) and retries
+    rather than failing the caller; fetch()'s disk cache means a retried
+    identical query after that is instant next time.
+    """
+    sub, _, q = arg.partition("|")
+    if not q:
+        sub, q = "", arg
+    base = f"https://www.reddit.com/r/{sub}/search.rss" if sub else "https://www.reddit.com/search.rss"
+    url = f"{base}?q={urllib.parse.quote(q)}&sort=relevance" + ("&restrict_sr=1" if sub else "")
+    try:
+        body = fetch(url, headers={"User-Agent": REDDIT_UA})
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            wait = min(int(e.headers.get("x-ratelimit-reset", 60) or 60), 90)
+            print(f"# reddit adapter rate-limited, waiting {wait}s and retrying once...", file=sys.stderr)
+            time.sleep(wait)
+            try:
+                body = fetch(url, headers={"User-Agent": REDDIT_UA})
+            except urllib.error.HTTPError as e2:
+                print(f"# reddit adapter still rate-limited: {e2}", file=sys.stderr)
+                sys.exit(2)
+        else:
+            print(f"# reddit adapter failed: {e}", file=sys.stderr)
+            sys.exit(2)
+    ns = {"a": "http://www.w3.org/2005/Atom"}
+    root = ET.fromstring(body)
+    for entry in root.findall("a:entry", ns)[:15]:
+        title = (entry.findtext("a:title", default="", namespaces=ns) or "").strip()
+        link_el = entry.find("a:link", ns)
+        link = link_el.get("href") if link_el is not None else ""
+        content = entry.findtext("a:content", default="", namespaces=ns) or ""
+        snippet = re.sub(r"<[^>]+>", " ", html.unescape(content))
+        snippet = re.sub(r"\s+", " ", snippet).strip()[:160]
+        print(f"- {title}: {snippet}\n  {link}")
+
+
+def arcticshift(arg: str) -> None:
+    """arg: "subreddit|query" (subreddit required, query optional). Free,
+    credential-free, community-run Reddit archive/API (Pushshift successor,
+    https://github.com/ArthurHeitmann/arctic_shift). Subreddit-only browsing
+    (no query) is reliable; adding `query` does full-text title/selftext
+    search which the docs warn is slow and prone to server-side timeout on
+    this free tier — fails soft with a retry hint rather than hanging."""
+    sub, _, q = arg.partition("|")
+    if not sub:
+        print("usage: arcticshift <subreddit>|[query]", file=sys.stderr)
+        sys.exit(1)
+    url = (
+        "https://arctic-shift.photon-reddit.com/api/posts/search"
+        f"?subreddit={urllib.parse.quote(sub)}&limit=15&sort=desc"
+        "&fields=title,selftext,subreddit,id,created_utc"
+    )
+    if q:
+        url += "&query=" + urllib.parse.quote(q)
+    try:
+        data = json.loads(fetch(url))
+    except Exception as e:  # noqa: BLE001 — free shared service, fail soft
+        print(f"# arcticshift adapter failed: {e}", file=sys.stderr)
+        sys.exit(2)
+    if data.get("error"):
+        print(f"# arcticshift: {data['error']} (try again, or drop the query filter)", file=sys.stderr)
+        sys.exit(2)
+    for p in (data.get("data") or [])[:15]:
+        selftext = re.sub(r"\s+", " ", p.get("selftext") or "")[:160]
+        print(
+            f"- {p.get('title', '')}: {selftext}\n"
+            f"  https://reddit.com/r/{p.get('subreddit', sub)}/comments/{p.get('id', '')}"
+        )
+
+
 USAGE = """usage: pain-fetch.py <adapter> <query>
   hn <query>                     HN Algolia search
   ddg <query>                    DuckDuckGo HTML (supports site: query-recipes)
@@ -286,7 +378,10 @@ USAGE = """usage: pain-fetch.py <adapter> <query>
   lobsters <query>               Lobsters story search
   youtube <query>                video search + comments (needs YOUTUBE_API_KEY)
   producthunt <topic-slug>       PH newest posts (needs PRODUCTHUNT_TOKEN)
-(no reddit adapter: unauthenticated is dead; OAuth pending)"""
+  reddit [subreddit|]<query>     search.rss post search, no credentials needed;
+                                 no subreddit = site-wide (anon IP rate limit ~1/45s)
+  arcticshift <subreddit>|[query] community Reddit archive, no credentials needed;
+                                 query is optional but can be slow/timeout upstream"""
 
 ADAPTERS = {
     "hn": hn,
@@ -301,6 +396,8 @@ ADAPTERS = {
     "lobsters": lobsters,
     "youtube": youtube,
     "producthunt": producthunt,
+    "reddit": reddit,
+    "arcticshift": arcticshift,
 }
 
 if __name__ == "__main__":
