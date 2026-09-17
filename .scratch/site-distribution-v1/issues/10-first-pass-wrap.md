@@ -1,7 +1,7 @@
 # First-pass wrap: measurement baseline + learnings hand-off
 
 Type: task
-Status: open
+Status: claimed
 Blocked by: 01, 05, 06, 07, 08, 09
 
 ## Question

@@ -1,7 +1,7 @@
 # Q&A / answer-site play (Quora, StackExchange DIY)
 
 Type: task
-Status: open
+Status: resolved
 Blocked by: 02, 03
 
 ## Question
@@ -18,4 +18,18 @@ The **owner posts** under their own identity. No spam, no duplicate answers acro
 
 ## Answer
 
-<!-- filled on resolution -->
+Drafted at [sites/runs-on-your-battery-finder/distribution/08-qa-answer-sites-play.md](../../../sites/runs-on-your-battery-finder/distribution/08-qa-answer-sites-play.md):
+found 2 live, real Quora questions via search on 2026-09-16 — "Do all Ryobi tools use the same
+battery?" and "Can a Dewalt 60V work with a 20V charger?" — both already-ranking, high-intent
+compatibility questions with existing answers this site's angle genuinely extends (non-tool gadgets
+on the same platform). Drafted a self-contained answer for each, referencing the existing top answer
+by name, linking the matching platform hub page (`/ryobi-18v-one/`, `/dewalt-20v-max/`) only as
+"see the rest."
+
+**Stack Exchange skipped this pass:** no real, live, on-topic "which battery platform" thread was
+found on Woodworking SE, and DIY SE bans product-recommendation/brand advice outright per the
+audience map — posting cold wasn't worth the closure risk. Revisit only if a real matching thread
+turns up in a future pass.
+
+Owner still needs to post the 2 drafts under their own Quora account (posting checklist included);
+feeds ticket 10 once posted.

@@ -1,7 +1,7 @@
 # Design the reusable "channel play" unit + playbook skeleton
 
 Type: prototype
-Status: open
+Status: resolved
 Blocked by: —
 
 ## Question
@@ -21,4 +21,14 @@ Also decide: **where the playbook lives** so it's reusable for *future* sites (a
 
 ## Answer
 
-<!-- filled on resolution; links the prototype asset -->
+Prototyped and confirmed with the owner. Asset: [docs/distribution-playbook.md](../../../docs/distribution-playbook.md) (reusable, site-agnostic template) plus [sites/runs-on-your-battery-finder/distribution/README.md](../../../sites/runs-on-your-battery-finder/distribution/README.md) (site-specific execution home for tickets 05-09).
+
+**The channel-play unit** — six sections per channel: Where (audience-map slice) / Asset (what the owner brings + its source) / What to post (owner-voice draft + "only link when it genuinely answers" rule) / ToS-safety notes (self-promo rules, ban risks, owner-posts-not-bots) / Cadence (first-pass action; repeat rhythm stays fog) / Measurement. Confirmed sufficient as-is — no fields added or cut.
+
+**Location:** confirmed split — the reusable template stays at `docs/distribution-playbook.md` (repo root, site-agnostic; feeds ticket 11's future `/spread-site` skill), while each channel's real drafts/thread-links/posting-status live per-site at `sites/<slug>/distribution/<NN>-<channel-slug>.md`.
+
+**Measurement convention:** confirmed conditional tagging — UTM-tag links where a tagged link reads as normal (Pinterest, directories, YouTube video/description links), and post bare canonical URLs tracked via referrer (Cloudflare Web Analytics / Search Console) on channels where a visible UTM tag reads as spam (Reddit/forums/Quora/StackExchange/YouTube comments).
+
+A worked (illustrative, non-canonical) example using r/DeWalt from the audience map is included in the playbook doc to prove the template holds together end-to-end; ticket 05 still owns the real Reddit play.
+
+This unblocks tickets 04, 06, 07, 08, 09 (all were blocked on this ticket; 02 is already resolved).
