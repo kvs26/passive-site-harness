@@ -1,7 +1,7 @@
 # Extract the distribution playbook into a `/spread-site` skill
 
 Type: task
-Status: open
+Status: resolved
 Blocked by: 10
 
 ## Question
@@ -19,4 +19,30 @@ Deliverables:
 
 ## Answer
 
-<!-- filled on resolution -->
+**Deliberate override:** resolved ahead of ticket 10 (first-pass wrap) at the owner's request — none
+of the 5 channels are confirmed posted yet, so this is built on the drafting-phase learnings (real
+channel shortlist, ToS friction, the agent-drafts/owner-posts rhythm) rather than validated posting
+outcomes. That's a real gap: the skill's *mechanics* don't depend on posting having happened, but its
+*channel rankings* aren't yet backed by engagement data. Fold in real posting results later if/when
+they change which channels are worth keeping.
+
+**Shipped:**
+
+- [.agents/skills/spread-site/SKILL.md](../../../.agents/skills/spread-site/SKILL.md) — the
+  reusable skill. Works one channel at a time (foundation → Reddit/forums → Pinterest → directories
+  → Q&A → YouTube comments), carries the hard rules verbatim (agent drafts/owner posts, free-only,
+  real-evidence-only, only-link-when-it-helps), and folds in the channel-play unit from ticket 03's
+  [docs/distribution-playbook.md](../../../docs/distribution-playbook.md) as its conceptual base.
+- **Owner feedback baked in:** the pilot's site-specific files
+  (`sites/runs-on-your-battery-finder/distribution/*.md`) came out much longer than a simple
+  posting task needs (tables, multi-week schedules, long prose). The skill instead defines a short,
+  4-line-per-channel checklist format (Where / Post this / Link / Watch for) — same underlying ideas
+  as the playbook doc, condensed to something an owner can act on without reading a spec.
+- [USAGE.md](../../../USAGE.md) — added a "Distribute" step (step 8) to the main workflow, plus table
+  rows for the new skill and the new root doc.
+- [DISTRIBUTION.md](../../../DISTRIBUTION.md) — new root-level file, plain-language explainer of what
+  distribution is, how `/spread-site` works, and the rules that never change. Points to the skill and
+  the deeper playbook doc for anyone who wants more detail.
+
+Ticket 10 (first-pass wrap) still owns confirming the *runsonyourbattery.com* pass is genuinely
+executed and consolidating what actually got posted — this ticket only extracts the reusable skill.

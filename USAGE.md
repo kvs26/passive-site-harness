@@ -11,7 +11,8 @@ Quick guide: what each file is for and when to use it. See [README.md](README.md
 5. **Build** — run `/build-site` on `prd.md`. It scaffolds `sites/<slug>/` from the bundled template, discusses design (skin/layout) with you, fills config, and asks you for raw dataset/link material (drop files in `sites/<slug>/raw-source/` ahead of time to skip the ask). *Manual:* you supply the raw data + links; AdSense/Amazon Associates signup is never automated.
 6. **Custom tool logic (if the PRD needs it)** — `/build-site` flags this itself when the PRD's Core job is more than data/listing. Run `/to-tickets` on `prd.md` → tickets in `sites/<slug>/.scratch/<slug>/issues/` → `/implement` or `/tdd` per ticket → `/code-review`.
 7. **Deploy** — push `sites/<slug>/` as its own repo, wire GitHub → Cloudflare. *Manual:* domain purchase, Cloudflare wiring, and later, AdSense/Associates approval + flipping the monetization switches on request.
-8. **Grow (post-launch)** — drop new feature ideas into `sites/<slug>/feature-notes/` whenever they occur. Run `/to-tickets` on that folder to turn them into tickets, then `/implement`/`/tdd` each one and mark it `Status: resolved`.
+8. **Distribute** — once live, say "run `/spread-site` on `sites/<slug>/`" to get seen off-Google: it works through Reddit/forums, Pinterest, directories, Q&A sites, and YouTube comments one at a time, dropping a short posting checklist per channel at `sites/<slug>/distribution/`. *Manual:* you post every draft yourself, under your own accounts — see [DISTRIBUTION.md](DISTRIBUTION.md) for the plain-language rundown.
+9. **Grow (post-launch)** — drop new feature ideas into `sites/<slug>/feature-notes/` whenever they occur. Run `/to-tickets` on that folder to turn them into tickets, then `/implement`/`/tdd` each one and mark it `Status: resolved`.
 
 ## What each file/folder means
 
@@ -22,6 +23,9 @@ Quick guide: what each file is for and when to use it. See [README.md](README.md
 | [.agents/skills/idea-validate/comparison-brief-template.md](.agents/skills/idea-validate/comparison-brief-template.md) | Format for the "compare validated ideas" file | Used automatically by idea-validate |
 | [docs/agents/site-prd-template.md](docs/agents/site-prd-template.md) | Site-PRD scaffold | Attach it when running `/to-spec` on a picked idea |
 | [.agents/skills/build-site/SKILL.md](.agents/skills/build-site/SKILL.md) | The build skill (bundles the house-template) | Invoked with a `prd.md` to scaffold a new site |
+| [.agents/skills/spread-site/SKILL.md](.agents/skills/spread-site/SKILL.md) | The distribution skill | Invoked on a live `sites/<slug>/` to draft per-channel posting checklists |
+| [DISTRIBUTION.md](DISTRIBUTION.md) | Plain-language "what is distribution and how do I run it" | Read before your first `/spread-site` pass |
+| [docs/distribution-playbook.md](docs/distribution-playbook.md) | Detailed channel-play reference `/spread-site`'s short checklists are built from | Only if a channel's judgment call needs more context |
 | `pipeline/board.md` | One-glance index of every idea + its status | Open it to see where everything stands |
 | `pipeline/<niche>/niche.md` | Niche definition + status | Read when resuming a niche |
 | `pipeline/<niche>/runs/` | Run logs (sources used, dead ends, killed candidates) | Read to avoid repeating research |
