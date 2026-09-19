@@ -1,0 +1,21 @@
+### Niche + idea
+
+`board-games` — top-up validate run on **errata-correction-kit-builder**, parked 2026-09-19 waiting on the Keyword Planner CSV (see [ideas/errata-correction-kit-builder/keywords-request.md](../ideas/errata-correction-kit-builder/keywords-request.md)). The human supplied `Keyword Stats 2026-09-20 at 01_06_52.csv`; this run is a cheap top-up per the skill's checkpoint rules — ingest the CSV, upgrade Demand/Monetization and confidence, flip status. No fresh SERP/AIO/pain-mining dig this run.
+
+### What was done
+
+1. Copied the human-supplied export to `pipeline/board-games/ideas/errata-correction-kit-builder/keyword-planner.csv`.
+2. Ran `scripts/planner-report.py` on it. Result: of the 20 keywords requested in `keywords-request.md`, only 6 registered measurable volume, all at the bottom two buckets — "board game replacement parts" (500 bucket, Low competition, bid 21.94–66.53 INR), "betrayal at house on the hill 2nd edition errata" (50), "board game replacement cards" (50, no bid data), "monster hunter world board game errata" (50), "tainted grail errata" (50), "vantage board game errata" (50). The other 14 — including **every** head/variant phrasing (board game errata, board game errata list, board game errata by edition, board game misprint, board game printing error, how to find board game errata, board game rulebook corrections, board game faq errata) and 3 of 7 per-title hook keywords (arcs, nemesis, oath) and 2 of 5 monetization keywords (board game errata pack buy, board game 2nd edition upgrade, board game expansion replacement components) — came back zero/no-data.
+3. Applied the rubric's bucket rules: no keyword clears the 5K bucket; a lone 500-bucket keyword supports at most *weak* on its own; the 50-bucket/absent keywords give no support. Demand **stays graded strong** on the existing SE/Reddit/BGG/autocomplete forum-recurrence evidence (CSV falls back to the base rules) — this is a no-support/negative-context result, not a corroborating one.
+4. Converted "board game replacement parts"'s bid to USD using a dated exchange-rate fetch (api.frankfurter.app, 2026-09-20, 1 INR = 0.01043 USD dated 2026-09-18) — affiliate route means the bid is supporting-only context (≈$0.23–$0.69), not a grade input; noted as a bonus data point confirming real commercial replacement-parts intent exists.
+5. Updated the Traffic sanity-check from "unknown without the CSV" to a resolved, less-optimistic directional read: this idea has confirmed no head term, so its viability rests entirely on breadth-of-catalog (many thin per-title/per-printing pages), not any single query's volume — same repositioning shape as power-tool-battery-compat's CSV-forced correction.
+6. Re-evaluated confidence: no signal graded unknown (all six are strong/weak), Demand has ≥2 independent sources (Reddit + BGG + SE + autocomplete), SERP/AIO-weakness has ≥2 independent sources (Bing SERP dig + two incumbents opened + Google AIO checkpoint) — confidence upgrades from medium to **high**.
+7. No kill-level finding produced by the CSV — status flips from `parked` to `validated`, not `rejected`. SERP/AIO was not re-probed this run, so the 2026-10-17 expiry date stands unchanged.
+
+### Dead ends / no fresh dig
+
+None attempted this run by design — CSV-only top-up per the skill's checkpoint shortcut, not a full re-validation.
+
+### Outcome
+
+`errata-correction-kit-builder` → **validated**, confidence high. Six signals unchanged from 2026-09-19 (Demand strong, SERP/AIO weak, Hook strong, Monetization strong, Feasibility weak, Data moat strong) — no kill-level finding across either run. The CSV's near-total zero-volume result on every generic errata phrasing confirms this idea has no head term and repositions it as a pure long-tail-breadth play, sharpening the Traffic sanity-check's existing caution rather than surfacing a new risk. Dossier and idea.md updated; `pipeline/board.md` regenerated. This run brings board-games to **4 validated ideas** (board-game-expansion-buyers-guide, companion-app-dependency-checker, convention-packing-optimizer, errata-correction-kit-builder) — the comparison brief `pipeline/board-games/comparison-2026-09-20.md` is regenerated to include it.

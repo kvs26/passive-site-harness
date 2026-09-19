@@ -1,0 +1,21 @@
+### Niche + idea
+
+`board-games` — top-up validate run on **rules-youre-playing-wrong**, parked 2026-09-18 waiting on the Keyword Planner CSV (see [ideas/rules-youre-playing-wrong/keywords-request.md](../ideas/rules-youre-playing-wrong/keywords-request.md)). The human supplied `Keyword Stats 2026-09-20 at 01_11_14.csv`; this run is a cheap top-up per the skill's checkpoint rules — ingest the CSV, upgrade Demand/Monetization and confidence, flip status. No fresh SERP/AIO/pain-mining dig this run.
+
+### What was done
+
+1. Copied the human-supplied export to `pipeline/board-games/ideas/rules-youre-playing-wrong/keyword-planner.csv`.
+2. Ran `scripts/planner-report.py` on it. Result: of the 22 keywords requested in `keywords-request.md`, only 3 registered any measurable volume — all from the Monetization-CPC group: "board game replacement pieces" (500 bucket, Competition Low, bid 21.94–66.53 INR), "buy catan" (500 bucket, Competition High, bid 13.60–170.08 INR), "buy monopoly board game" (500 bucket, Competition High, YoY +900%, bid 9.59–62.34 INR). All 18 content-hook keywords — every Head query, every per-game Variant (catan/carcassonne/agricola/monopoly/uno/ticket to ride/7 wonders/pandemic/risk/clue), and every Hook-specific query — came back absent from the export (zero/no measurable data).
+3. Fetched a current INR→USD rate (api.frankfurter.app, dated 2026-09-18: 0.01043) to convert the 3 real bids to USD-equiv (≈$0.10–$1.77 range) — shown verbatim alongside the raw INR figures per the hard rule on derived arithmetic.
+4. Applied the rubric's bucket rules: a ≤50 bucket/absent-from-export result gives no support toward a Demand upgrade, so Demand stays graded **strong** on the 2026-09-18 qualitative evidence (StackExchange across 8+ games, Reddit r/Catan 50+/40-post threads) — the CSV neither corroborates nor overturns that grade mechanically, but it's real, dated negative evidence on query-level search volume that materially worsens the Traffic sanity-check read (previously opinion-only with zero keyword data; now backed by the cleanest zero-volume result in this niche's batch — 18/18 content keywords absent, vs. siblings' 17/19).
+5. Checked Monetization: the 3 keywords with data are all generic buy-intent terms (not content-hook terms), all with real bids. Per the rubric these are supporting-only for an affiliate-route idea and don't touch the still-unverified Amazon Toys & Games commission rate — Monetization stays weak on program-fact grounds, with the bid evidence added as a supporting data point.
+6. Re-evaluated confidence against the rubric: no signal graded unknown (all six are strong/weak), Demand has ≥2 independent sources (SE across 4+ games, Reddit r/Catan ×2 threads), SERP/AIO has ≥2 independent dated Google queries — confidence upgrades from medium to **high** now that the CSV requirement is satisfied, consistent with how the niche's other CSV-only top-ups (board-game-expansion-buyers-guide, convention-packing-optimizer, companion-app-dependency-checker) were graded.
+7. No kill-level finding produced by the CSV (zero content-hook volume isn't one of the rubric's listed kill-level facts) — status flips from `parked` to `validated`, not `rejected`. SERP/AIO was not re-probed this run, so the original 2026-10-16 expiry date stands unchanged.
+
+### Dead ends / no fresh dig
+
+None attempted this run by design — this is a CSV-only top-up per the skill's checkpoint shortcut, not a full re-validation.
+
+### Outcome
+
+`rules-youre-playing-wrong` → **validated**, confidence high. Six signals: Demand strong, SERP/AIO weak-but-open (near-miss on AIO — unchanged, not re-probed), Hook strong, Monetization weak, Feasibility weak, Data moat strong — no kill-level finding across either run. Real risk carried forward: the entire content-hook keyword universe (18/18 keywords) shows zero measurable Google search volume, meaning the strong qualitative demand documented (SE + Reddit) may route through forums/direct-experience rather than deliberate search — the same pattern now seen twice in this niche's batch. Dossier and idea.md updated; `pipeline/board.md` regenerated. Board-games niche now has 4 ideas at `validated` (board-game-expansion-buyers-guide, convention-packing-optimizer, companion-app-dependency-checker, rules-youre-playing-wrong) — comparison brief regenerated to include this idea.
