@@ -24,11 +24,11 @@ Dated 2026-09-18. Queries run on Google: `board game expansion compatibility che
 
 ## AIO probe
 
-Predict-from-form only (manual google.com checkpoint owed before build). Head queries are commercial/transactional 4–6-word phrases ("[game] expansions ranked", "which [game] expansion should I buy") — transactional queries ≈2–5% AIO trigger and the per-collection "next-best-for-my-group" ranking is not a single answer an AIO can serve. "[expansion A] vs [expansion B]" comparisons (~95% AIO) exist but are not the core surface. Assessed low AIO risk; confirm at validate.
+Manual google.com checkpoint completed 2026-09-20 (validate top-up). Five head queries checked directly: "catan expansions ranked", "which catan expansion should i buy first", and "dominion expansions ranked" showed **no AI Overview** (straight to Web results). "catan seafarers vs cities and knights" showed an AI Overview, but it only describes each expansion's focus/mechanics — no ranking, buy-order, or ownership filtering. "which expansion should i buy first" (no game named) also showed an AI Overview, but answered for an unrelated domain (Guild Wars 2), confirming the generic phrasing doesn't reach our niche. `&udm=14` control confirmed the AIO-free baseline. Confirmed low AIO risk at evidence level — the per-user, own-what-you-have ranked next-buy wedge survives past every AIO seen.
 
 ## Gate results
 
-- **1 AIO:** pass (predict-from-form — transactional, per-input ranking wedge). Manual checkpoint owed.
+- **1 AIO:** pass — confirmed at evidence level 2026-09-20 (manual checkpoint complete; core head queries show no AIO, and the one AIO seen doesn't rank/filter).
 - **2 Static feasibility:** pass — static site over a curated dataset + client-side filter; no backend/accounts.
 - **3 Data moat:** pass — merges publisher list + BGG data + review consensus with per-row worth-it/buy-order judgment; upkeep is periodic (new expansions release slowly) — well within the ~3 hr/week cap.
 - **4 Hook served:** pass — differentiated cut; incumbents are yes/no checker + global listicles, not a per-game ranked own-aware guide (see probe).
@@ -47,3 +47,4 @@ Predict-from-form only (manual google.com checkpoint owed before build). Head qu
 - 2026-09-18 — candidate (emitted by scout run, deeper re-dig pass)
 - 2026-09-18 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Also owed: manual Google AIO checkpoint (blocked by CAPTCHA this run) — re-run before build. Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. See [dossier.md](dossier.md).
 - 2026-09-20 — validated (confidence: high). Cheap top-up: keyword-planner.csv ingested (catan expansions 50K bucket, dominion expansions 5K bucket — corroborates Demand); Amazon Associates Toys rate (3.00%) + 24hr/89-day cookie window verified verbatim, upgrading Monetization to strong. SERP/AIO evidence expires 2026-10-16 (unchanged — not re-probed this run); manual Google AIO checkpoint still owed before build per the standing pre-build re-probe rule.
+- 2026-09-20 — manual Google AIO checkpoint completed (no CAPTCHA this run): 5 head queries checked, `&udm=14` control run. Core buy-order/ranked queries show no AIO; the one AIO seen (comparison-form) only describes, doesn't rank/filter — wedge intact. No kill-level finding. SERP/AIO evidence expiry moved to 2026-10-18 (4 weeks from this AIO re-probe). See [dossier.md](dossier.md).

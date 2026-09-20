@@ -2,7 +2,7 @@
 
 **Per-game ranked expansion buyer's guide (worth-it verdict + buy-order + base-required + own-what-you-have filter) — differentiated past a thin yes/no checker and global listicles, high buying-intent affiliate route. Confidence: high.**
 
-**Evidence dated 2026-09-18 (demand/SERP/AIO/hook/feasibility/moat dig) + 2026-09-20 top-up (Keyword Planner CSV ingested; Amazon Associates rate/cookie verified verbatim). SERP/AIO evidence expires 2026-10-16 — this run did not re-probe SERP/AIO so the clock is unchanged. Pre-build re-probe mandatory regardless.**
+**Evidence dated 2026-09-18 (demand/SERP/AIO/hook/feasibility/moat dig) + 2026-09-20 top-up (Keyword Planner CSV ingested; Amazon Associates rate/cookie verified verbatim; manual Google AIO checkpoint completed). SERP/AIO evidence expires 2026-10-18 (4 weeks from the 2026-09-20 AIO re-probe). Pre-build re-probe mandatory regardless.**
 
 ## Signal scorecard
 
@@ -16,7 +16,7 @@
   - Direct Bing SERP for the scout-named incumbent query ("board game expansion checker does it need the base game") no longer surfaces a distinct authoritative purpose-built site: top results are a Reddit thread (off-topic, about shelf storage), spammy/hijacked government-portal pages (`ap.gov.in` — not a real board-game site), a BGG taxonomy category page, and an "Introduction to board game expansions" blog post — https://www.bing.com/search?q=board+game+expansion+checker+does+it+need+the+base+game
   - Searching the exact scout-quoted name ("Board Game Expansion Checker") surfaces only a GitHub repo with a **different purpose** ("Tool to check if any new expansions for board games are released" — a release-tracker, not a base-required/worth-it checker) — https://github.com/aboe026/board-game-expansion-checker — reinforcing that the scout's named incumbent is thin/low-authority, not a dominant purpose-built ranker.
   - Google's own search UI returned a bot-check ("unusual traffic") this run, blocking the direct Google SERP re-probe and the manual AIO checkpoint (see below) — degraded to Bing, which is DDG/Google-adjacent for ranking signal but not identical.
-  - **AIO re-probe: could not complete this run** (Google blocked with a CAPTCHA challenge on the first query). Per query-form prediction only: "which [game] expansion should I buy first" is a personalized, per-game, per-collection compound query (closer to the "X vs Y"/multi-input shape) rather than a bare 1–2 word tool query or single-fact question, so it plausibly carries the same lower AIO-trigger profile scout assessed (predict-from-form, low risk) — but this is unverified this run. **Manual google.com checkpoint remains owed before build**, same as scout flagged.
+  - **AIO re-probe: completed 2026-09-20** (Google loaded normally this run, no CAPTCHA). Five head queries checked directly on google.com: "catan expansions ranked" — no AI Overview, straight to Web results; "which catan expansion should i buy first" — no AI Overview; "dominion expansions ranked" — no AI Overview; "catan seafarers vs cities and knights" — **AI Overview present**, describing each expansion's focus/mechanics (exploration vs. city-building) but not ranking, not buy-ordering, and not filtered by what the user owns; "which expansion should i buy first" (generic, no game named) — AI Overview present but answered for an unrelated domain (Guild Wars 2 expansions), confirming the generic phrasing doesn't compete with our per-game, board-game-specific query shape at all. `&udm=14` control on the vs-query confirmed the AIO-free baseline (plain Web results). **Result: the core buy-order/ranked head queries carry no AIO; the one AIO that does appear (comparison-form) only describes, it doesn't rank/filter/own-aware-recommend — the wedge (per-user, per-game, own-what-you-have ranked next-buy) survives past every AIO seen.** No kill-level finding; scout's low-risk prediction confirmed at evidence level.
 
 **Hook depth: strong** — the specific hook (ranked worth-it + buy-order + base-required + filtered by what you own) is not what any opened incumbent does.
   - The one directly-competing named tool (yes/no base-game-required checker) does not rank or advise order — confirmed absent from SERP entirely this run (see above), and its closest GitHub analog does something else entirely (release tracking).
@@ -39,7 +39,19 @@
 
 ## SERP & AIO snapshot
 
-Dated 2026-09-18. Bing SERP for the named incumbent query surfaced no dominant purpose-built ranker (Reddit thread on shelf storage, spammy `ap.gov.in` pages, a BGG taxonomy page, an intro blog post); exact-name search surfaced only an unrelated GitHub release-tracker. Google's own search UI returned a bot-check this run, so the direct Google SERP and the manual AIO checkpoint (3–5 head queries, AIO present/hedge/full-answer, `&udm=14` control) could **not** be completed — this is a genuine gap in this run's evidence, not a "no AIO" finding. The per-game, per-collection buy-order query shape (personalized, multi-input) is predicted low-AIO-risk by form alone (same read as scout), but this is unverified and the manual checkpoint is **owed before build**.
+Dated 2026-09-18 (SERP) + 2026-09-20 (AIO). Bing SERP for the named incumbent query surfaced no dominant purpose-built ranker (Reddit thread on shelf storage, spammy `ap.gov.in` pages, a BGG taxonomy page, an intro blog post); exact-name search surfaced only an unrelated GitHub release-tracker.
+
+Manual Google AIO checkpoint (2026-09-20, direct google.com, no CAPTCHA this run):
+
+| Query | AIO present? | Full-answer or hedge? | Wedge past it |
+|---|---|---|---|
+| catan expansions ranked | No | — | n/a — plain Web results |
+| which catan expansion should i buy first | No | — | n/a — plain Web results |
+| dominion expansions ranked | No | — | n/a — plain Web results |
+| catan seafarers vs cities and knights | Yes | Describes both expansions' focus/mechanics; does not rank, buy-order, or filter by ownership | Per-user own-what-you-have ranked next-buy recommendation — AIO gives generic compare-and-contrast only |
+| which expansion should i buy first (no game named) | Yes | Answers for an unrelated domain (Guild Wars 2), not board games | Query is too generic to reach our niche at all — real users type the game name |
+
+`&udm=14` control run on the vs-query confirmed the AIO-free baseline (plain Web results, same layout as the three no-AIO queries). Net: none of the three core buy-order/ranked head queries trigger AIO; the one board-game-relevant AIO (comparison form) only describes, leaving the ranked/filtered/own-aware recommendation wedge fully open. Confirms scout's predict-from-form assessment (low AIO risk) at evidence level — no kill-level finding.
 
 ## Keyword data
 
@@ -77,8 +89,7 @@ Viability bar: ≈4,300–11,500 visitors/mo (blended ads+affiliate) for $100/mo
 
 ## Risks & unknowns
 
-- **AIO behavior on head queries** — still not verified (Google blocked the browser session with a CAPTCHA in the 2026-09-18 run; not re-attempted in this CSV top-up). Scout's predict-from-form assessment (low risk) is carried forward unverified. **Manual checkpoint owed before build — the standing pre-build re-probe requirement covers this.**
-- **Google-side incumbent picture** — the 2026-09-18 SERP dig used Bing (Google blocked); Bing and Google rankings can diverge. The Bing read (thin/spammy competitors) is directionally reassuring but not a full substitute for a Google SERP check, which should happen alongside the AIO checkpoint pre-build.
+- **Google-side incumbent picture beyond the 5 AIO-checkpoint queries** — the 2026-09-18 SERP *competitor* dig used Bing (Google blocked that day); this run's direct Google checks (2026-09-20) were AIO-focused and didn't re-run the full incumbent search. Bing's read (thin/spammy competitors) is directionally reassuring and the 5 Google queries this run showed no purpose-built ranker in the organic results either, but a full Google incumbent sweep is still worth a quick re-check pre-build.
 - **Most buy-order/worth-it phrasing variants came back zero-volume in the CSV** (see Keyword data) — the two strong head terms (catan/dominion "expansions") are broader/less-qualified queries than the ranked buy-order hook itself; the specific hook phrasing isn't yet volume-confirmed beyond qualitative recurrence.
 
 ## Sources log
@@ -92,3 +103,4 @@ Viability bar: ≈4,300–11,500 visitors/mo (blended ads+affiliate) for $100/mo
 - Amazon Associates: Operating Agreement (`affiliate-program.amazon.com/help/operating/agreement`) — program mechanics confirmed; rates help page (`.../help/operating/rates`) — 400 error / requires login, rate not found.
 - DDG via `scripts/pain-fetch.py ddg` — connection reset / SSL errors both queries tried (dead end, consistent with prior niches' DDG rate-limit notes).
 - **2026-09-20 top-up:** `keyword-planner.csv` (human-exported, US, Sep 2025–Aug 2026) normalized via `scripts/planner-report.py`. Amazon Associates Standard Commission Income Statement (`affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ`) — Toys = 3.00%, fetched directly, no login required. Amazon Associates Program Policies (`affiliate-program.amazon.com/help/operating/policies`) — 24-hour session / 89-day cart-add extension, fetched directly.
+- **2026-09-20 manual AIO checkpoint:** direct google.com/search fetches (no CAPTCHA this run) for "catan expansions ranked", "which catan expansion should i buy first", "dominion expansions ranked", "catan seafarers vs cities and knights", "which expansion should i buy first"; `&udm=14` control on the vs-query.
