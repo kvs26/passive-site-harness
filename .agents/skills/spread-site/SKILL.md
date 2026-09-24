@@ -20,6 +20,10 @@ own accounts.** Extracted from runsonyourbattery.com's first real pass
   actually found live this session — never invented, never assumed still open.
 - **Only link when it genuinely helps.** If a channel bans or discourages links, draft the
   value-only version instead — no link-only or copy-pasted comments.
+- **Keep drafted comments short.** One or two sentences on comment-style channels (Reddit replies,
+  YouTube comments, Q&A answers) — a genuine reaction plus the site name/link, not a paragraph.
+  Long, essay-length comments read as copy-pasted spam and get flagged or deleted faster than short,
+  casual ones.
 - **Keep checklists short.** One page per channel: where, what to post, the link, one ToS note.
   Owners shouldn't have to read a spec to post a comment — see "The short checklist format" below.
 - Deep technical-SEO/indexing diagnosis and whether the Google-only stance in `idea-scout`/
@@ -45,7 +49,8 @@ For each channel:
    audience already asks the kind of question the site answers. Note each one's self-promo rules
    (karma requirements, link bans, participation norms like Reddit's 9:1 rule).
 2. **Draft, don't template.** Write one tailored, helpful reply/pin/listing per real thing found —
-   solve the problem first, link only if it's the most useful thing to add.
+   solve the problem first, link only if it's the most useful thing to add. Keep it short: one or
+   two sentences for comment-style channels, not a paragraph.
 3. **Write the short checklist.** Save it to `sites/<slug>/distribution/<NN>-<channel-slug>.md`
    using the condensed format below.
 4. **Hand off and stop.** Tell the owner what's ready to post. Don't start drafting the next channel
