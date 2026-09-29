@@ -72,3 +72,14 @@ git add -A && git commit -m "Set production domain" && git push
 - Homepage loads.
 - `/robots.txt` points to the real sitemap URL.
 - `/sitemap-index.xml` resolves with real (not placeholder) URLs.
+
+## 9. Register with search engines
+
+**Google Search Console**
+1. Add a **Domain** property (`example.com`) and verify via DNS TXT (auto-verifies for Cloudflare domains).
+2. **Sitemaps** → submit `https://example.com/sitemap-index.xml`.
+
+**Bing Webmaster Tools**
+1. Add the site: **Import from Google Search Console**, or add manually and verify via DNS TXT.
+2. Select the new site in the top-left dropdown → **Sitemaps** → **Submit sitemap** → `https://example.com/sitemap-index.xml`.
+3. Import may not carry the sitemap over, so always submit it manually.
