@@ -19,6 +19,14 @@ Scout notes (2026-09-18): first pass killed the four *generic* framings (plain r
 
 Scout notes (2026-09-19): triaged 6 user-supplied candidates directly at gate 4 (no fresh pain-mining pass). 5 emitted (2 strong, 3 weak); 1 killed — **board-game-edition-compatibility-upgrade-planner** (Catan-anchored edition/expansion compatibility + upgrade-path planner), gate 4: puzzlewick.com already ships a live interactive "CATAN Edition and Expansion Compatibility Decoder" for the exact worked example given, plus settlersboard.com's static matrix and catan.com's own official compatibility page. Note: puzzlewick.com appears to run this same interactive-decoder pattern across other niches — a competitor-shape worth independent research, out of scope for this run. Recommended next step: validate errata-correction-kit-builder and convention-packing-optimizer first.
 
+## startups
+
+| Idea | Status | Notes |
+|---|---|---|
+| [incorporation-structure-total-cost](startups/ideas/incorporation-structure-total-cost/idea.md) | candidate (weak) | Scouted 2026-09-30. Formation state x operating state x years fee stack + .ics deadlines. Affiliate route: Firstbase $40, ZenBusiness $75–175 (verified). Risks: unopened calculators (delawarellc.co, globalsolo.global, taxhero), thin moat, AIO/volume unchecked. Evidence expires ~2026-10-28. ([run](startups/runs/2026-09-30-scout.md)) |
+
+Scout kills (2026-09-30, 28 candidates, mostly gate 4): credits/perks stackers (agentdeals.dev), SaaS/auth/payments/email cost calculators, SAFE/option/409A/valuation calculators, launch directories, grants, postmortem/layoff/dissolution datasets, LLC fee tables, Delaware franchise-tax calc; SOC 2 planner and PTEP database died at gate 7.
+
 ## credit-card-perk-optimizer
 
 No ideas emitted. 2026-09-03 scout run generated 10 candidates across all three Pass 2 inversions (buying-moment, dataset, tool-shape) — rewards optimizer/best-card-for-purchase/card-comparison/annual-fee-worth-it/rewards-leakage/signup-bonus-ROI (all 6 already shipped as dedicated calculators on walletflo.com's "OneCard engine"), benefit/credit reset-window tracker (nextcard.com Plaid-automated tracker, explicitly out-competing named rivals CardPointers and MaxRewards), business-card-by-category calculator (quantcalculator.org, walletgrower.com + NerdWallet/WalletHub/Credit Karma), authorized-user perk-extension comparison (8 independent 2026 listicles — gate-4 near-miss, killed per hard rule), and downgrade/product-change path finder (churncards.com ships the exact per-issuer card→card downgrade matrix + churning notes, superseding Doctor of Credit's stale 2019 guide). Every angle died at the first or second incumbent-probe query — same structural-saturation pattern as home-security-device-compat. ([run](credit-card-perk-optimizer/runs/2026-09-03-scout.md))

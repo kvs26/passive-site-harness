@@ -214,3 +214,61 @@ The template folds in lessons learned from actually shipping `sites/runs-on-your
 - The Astro whitespace-before/after-`<a>` bug (a line break right against an `<a>`/`</a>` tag eats the
   adjoining space) — keep prose that touches a link on the same source line as the tag. Check every
   prose page (about/contact/disclosure/methodology/privacy/faq) if you fix one instance.
+
+## Performance and UI lessons from `sites/board-game-expansion-buyers-guide/`
+
+Site #2 feels faster and looks better than the bare template. When building a new site, apply these
+(performance and UI only — they don't change the config seam or data rules above):
+
+**Performance**
+
+- **Embed the search index in the page.** Emit a small, pre-normalized index as
+  `<script type="application/json" id="...">` (escape `<` as `\u003c` via
+  `JSON.stringify(data).replace(/</g, '\\u003c')`) and parse it in vanilla JS. No extra fetch, no
+  framework, minimal client JS. See `src/pages/index.astro` and `src/lib/game-search.mjs`.
+- **Normalize text for matching** (NFKD, strip diacritics, lowercase, `&`→`and`) on both the query and
+  the index so search feels forgiving.
+- **Prefer inline SVG over image files** for logos, hero art, and item glyphs (colors/shapes computed
+  from a small map in `src/lib/`) — zero image requests, no layout shift. See `HeroArt.astro`,
+  `game-art.mjs`.
+- **Font loading:** `font-display: optional` for body text, `swap` for the display font, to avoid
+  layout shift. See `src/styles/tokens.css`.
+- **Do interactive logic in one render pass:** a single change listener on the form updates all
+  dependent visuals; persist selections in the URL query string plus `localStorage` so state is
+  shareable and survives reloads.
+- Compute derived data (rankings, dependency chains) at build time; ship only what the client must
+  recompute.
+
+**UI**
+
+- **Map data enums to label + tone in one shared module** and render them through one badge component
+  (`guide.mjs` `VERDICTS` + `Verdict.astro`) so verdicts look consistent everywhere.
+- **Give components a `compact` mode** (e.g. `BuyLinks.astro`: first few links inline vs. full
+  "where to buy" block) for list rows vs. detail pages.
+- **Surface warnings/prerequisites visibly** with an inline-SVG icon block, hidden when empty.
+- Keep the homepage centered on one obvious search/tool entry plus illustrated hero, with a
+  cohesive token-driven type/spacing scale in `src/styles/tokens.css`.
+
+**Search bar (homepage)**
+
+- Render the full item list server-side (every `<li data-game-item data-slug=...>` is in the HTML, so
+  it works for crawlers and no-JS), and ship the search `<form data-game-search hidden>`; JS unhides
+  the form and only filters. Progressive enhancement, no layout shift.
+- Filtering just toggles `li.hidden` from a `matchGame(entry, query)` helper in `src/lib/*-search.mjs`
+  that also matches aliases/child items and returns `via` (why it matched), shown as a "Has: ..." hint.
+- Live `input` listener (no debounce needed at this size), `submit` is `preventDefault`ed, and an
+  `aria-live` status line reports "N of M match" or an empty-state that points to `/contact`
+  ("Nothing matches X yet. Tell us and we'll add it").
+- Always end the list with a "Don't see yours? Tell us" link to `/contact` — demand signal for the owner.
+
+**Contact page / button**
+
+- No form, backend, or third-party script: `/contact` is a static page with one prominent
+  `<a class="btn" href="mailto:<owner email>">Email us</a>` (use the owner's real address from the PRD;
+  never invent one). **Also show the address as plain visible text** next to the button (visitors
+  without a configured mail app get nothing from a bare `mailto:` button and need to copy it), followed by a short "most useful things to send" list (mistake / missing item /
+  disagree with a verdict) so emails arrive actionable.
+- Put `Contact` in `SITE.nav` and the footer; link to it from search empty-states and the
+  "not listed?" line. Keep the "Email us" link text on the same line as its tag (Astro whitespace bug).
+
+Reference the board-game site's `src/` for concrete implementations before designing from scratch.
