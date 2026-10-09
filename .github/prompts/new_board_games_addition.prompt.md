@@ -35,8 +35,8 @@ Task: add the next 5 unfinished games to board-game-expansion-buyers-guide
   - Shopify stores expose `/products/<handle>.json`.
 
 **4. Listing vs. detail text**
-- On the game's expansions listing, Adds and Fixes must each be ≤200 characters (2–3 lines). Never cut text off mid-sentence.
-- If a catalog `adds` or `fixes` is longer than 200 characters, add a hand-written entry to `src/data/listing-summaries.json`. The key is `game-slug/expansion-slug`, with `adds` and/or `fixes`. Use only facts already in the catalog.
+- On the game's expansions listing, Adds, Fixes and the grey evidence paragraph (`reason`) must each be ≤200 characters (2–3 lines). Never cut text off mid-sentence.
+- If a catalog `adds`, `fixes` or `reason` is longer than 200 characters, add a hand-written entry to `src/data/listing-summaries.json`. The key is `game-slug/expansion-slug`, with `adds`, `fixes` and/or `reason`. Use only facts already in the catalog.
 - The expansion's own page stays descriptive. Follow the existing pages and don't edit them to match the listing.
 - `npm test` fails and names the key if any listing line is over 200 characters.
 
