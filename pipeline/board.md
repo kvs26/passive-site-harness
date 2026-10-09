@@ -1,6 +1,16 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-09-20 (board-games: companion-app-dependency-checker, board-game-expansion-buyers-guide, convention-packing-optimizer, errata-correction-kit-builder, legacy-reset-resale-planner, rules-youre-playing-wrong, and token-capsule-shopping-planner all top-upped via Keyword Planner CSV → validated (confidence varies, see notes); niche now has 7 validated ideas — see [comparison-2026-09-20.md](board-games/comparison-2026-09-20.md). This regeneration also corrects a stale prior pass that still listed errata-correction-kit-builder and legacy-reset-resale-planner as parked after their 2026-09-20 top-ups.)
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-10-10: 46 idea records, including one weak crochet candidate; crochet scout-stage rejections remain in its run log. Existing confidence annotations and notes retained. Three legacy records use a `## Status` section. This refresh does not revalidate earlier evidence.
+
+Previous 2026-09-20 regeneration note (board-games: companion-app-dependency-checker, board-game-expansion-buyers-guide, convention-packing-optimizer, errata-correction-kit-builder, legacy-reset-resale-planner, rules-youre-playing-wrong, and token-capsule-shopping-planner all top-upped via Keyword Planner CSV → validated (confidence varies, see notes); niche now has 7 validated ideas — see [comparison-2026-09-20.md](board-games/comparison-2026-09-20.md). This regeneration also corrects a stale prior pass that still listed errata-correction-kit-builder and legacy-reset-resale-planner as parked after their 2026-09-20 top-ups.)
+
+## crochet-patterns
+
+User-selected 2026-10-10. Broad US category screen: 265,500 overlapping monthly-search buckets. Generic product concepts remain rejected in the [scout run](crochet-patterns/runs/2026-10-10-scout.md). [Niche](crochet-patterns/niche.md).
+
+| Idea | Status | Notes |
+|---|---|---|
+| [load-tested-everyday-bag-patterns](crochet-patterns/ideas/load-tested-everyday-bag-patterns/idea.md) | candidate (weak) | Corrected focused gate-4 probe supports design-specific published load/yarn comparisons alongside original lined-bag patterns. Broad US bag-pattern demand measured; exact paid-hook demand, production, upkeep and economics unknown. Manual Google AIO checkpoint requested and unanswered; Trends unavailable (HTTP 429). Direct paid downloads authorized. Proposed patterns/tests are not completed assets. |
 
 ## board-games
 
@@ -26,14 +36,6 @@ Scout notes (2026-09-19): triaged 6 user-supplied candidates directly at gate 4 
 | [incorporation-structure-total-cost](startups/ideas/incorporation-structure-total-cost/idea.md) | candidate (weak) | Scouted 2026-09-30. Formation state x operating state x years fee stack + .ics deadlines. Affiliate route: Firstbase $40, ZenBusiness $75–175 (verified). Risks: unopened calculators (delawarellc.co, globalsolo.global, taxhero), thin moat, AIO/volume unchecked. Evidence expires ~2026-10-28. ([run](startups/runs/2026-09-30-scout.md)) |
 
 Scout kills (2026-09-30, 28 candidates, mostly gate 4): credits/perks stackers (agentdeals.dev), SaaS/auth/payments/email cost calculators, SAFE/option/409A/valuation calculators, launch directories, grants, postmortem/layoff/dissolution datasets, LLC fee tables, Delaware franchise-tax calc; SOC 2 planner and PTEP database died at gate 7.
-
-## credit-card-perk-optimizer
-
-No ideas emitted. 2026-09-03 scout run generated 10 candidates across all three Pass 2 inversions (buying-moment, dataset, tool-shape) — rewards optimizer/best-card-for-purchase/card-comparison/annual-fee-worth-it/rewards-leakage/signup-bonus-ROI (all 6 already shipped as dedicated calculators on walletflo.com's "OneCard engine"), benefit/credit reset-window tracker (nextcard.com Plaid-automated tracker, explicitly out-competing named rivals CardPointers and MaxRewards), business-card-by-category calculator (quantcalculator.org, walletgrower.com + NerdWallet/WalletHub/Credit Karma), authorized-user perk-extension comparison (8 independent 2026 listicles — gate-4 near-miss, killed per hard rule), and downgrade/product-change path finder (churncards.com ships the exact per-issuer card→card downgrade matrix + churning notes, superseding Doctor of Credit's stale 2019 guide). Every angle died at the first or second incumbent-probe query — same structural-saturation pattern as home-security-device-compat. ([run](credit-card-perk-optimizer/runs/2026-09-03-scout.md))
-
-## home-security-device-compat
-
-No ideas emitted. 2026-09-03 scout run generated 11 candidates across every tool shape (ecosystem-directory finder, Matter-certified DB, Apple Home/Google Home/Home Assistant lists, hub-recommendation quiz, alarm-panel sensor compat, doorbell chime/transformer checker, no-subscription camera finder, camera FOV/coverage calculator, insurance-discount calculator) — **all killed at gate 4** on the first or second incumbent-probe query, each already served by a purpose-built 2026-dated site (smarthomecheck.net, smarthomeexplorer.com, matterdatabase.com, works-with.home-assistant.io official registry, cctvplanner.io, codingace.net, homefortifyroi.com, and more). Reads as a niche comprehensively worked by a programmatic-SEO calculator/directory network. Structural kill, not dated-evidence — no re-probe scheduled. ([run](home-security-device-compat/runs/2026-09-03-scout.md))
 
 ## power-tool-battery-compat
 
@@ -95,6 +97,35 @@ Scout kills: bare occasion listicle/relationship finder (familyfriendpoems, grie
 | [agent-skills-paths-reference](agent-skills-hub/ideas/agent-skills-paths-reference/idea.md) | rejected | gate-4 disproved on validation: per-agent cross-tool paths/precedence/OS reference already served by maintained fresh incumbents — official docs (code.claude.com/docs/en/claude-directory, cursor.com/docs/skills) + mdskills.ai/docs/install-skills, bestagent.dev (2026-05 per-agent OS-path table), agensi.io, ciembor agent-rules-books GitBook; demand strong but hook occupied, freshness angle contradicted ([dossier](agent-skills-hub/ideas/agent-skills-paths-reference/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-agent-skills-paths-reference.md)) |
 | [ai-employee-bundle-catalog](agent-skills-hub/ideas/ai-employee-bundle-catalog/idea.md) | rejected | gate 4 disproved on validation: role-based installable bundle catalog already served — aiskill.market (paid bundle marketplace), analoghq.ai (curated installable Sets, per-role framing + verification badges), claudeskills360.com/claudedirectory.org/marketing-skills.com + trending 45–205-skill role packs; artifact is commodity markdown ("Notion template, not a moat"). Confidence medium (no CSV) ([dossier](agent-skills-hub/ideas/ai-employee-bundle-catalog/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-ai-employee-bundle-catalog.md)) |
 | [non-dev-skills-directory](agent-skills-hub/ideas/non-dev-skills-directory/idea.md) | rejected | gate 4 disproved on validation: non-dev curation hook already served by ≥3 maintained incumbents — takusaotome Claude Skills Library (profession-organized, .skill downloads), claudedirectory.org (use-case browse + per-role pages), alirezarezvani/claude-skills (25k stars, Marketing/C-Level/PM/Finance bundles) + per-role listicles. Demand real, no unserved cut ([dossier](agent-skills-hub/ideas/non-dev-skills-directory/dossier.md) · [run](agent-skills-hub/runs/2026-08-29-validate-non-dev-skills-directory.md)) |
+
+## backpacking-camping-gear
+
+| Idea | Status | Notes |
+|---|---|---|
+| [bear-canister-trip-fit-planner](backpacking-camping-gear/ideas/bear-canister-trip-fit-planner/idea.md) | candidate | Lead, moderate after CSV: 'bear canister' 50K + ~8.8K long tail; days-fit intent ~0, so lead with rules + model comparison. AIO checkpoint owed. ([run](backpacking-camping-gear/runs/2026-10-09-scout.md)) |
+| [backpack-model-fit-finder](backpacking-camping-gear/ideas/backpack-model-fit-finder/idea.md) | candidate | Moderate after CSV: 'ultralight backpack' 50K, model names + torso 5K each; strong incumbents (REI, OutdoorGearLab). |
+| [trail-menu-volume-optimizer](backpacking-camping-gear/ideas/trail-menu-volume-optimizer/idea.md) | candidate | Weak after CSV: block 73K is brand/recipe intent; planner/calculator intent ~650/mo. Engine inside bear-canister planner only. |
+
+## tire-size-fitment
+
+| Idea | Status | Notes |
+|---|---|---|
+| [lifted-truck-tire-fit-verdict](tire-size-fitment/ideas/lifted-truck-tire-fit-verdict/idea.md) | candidate | Scouted 2026-10-09, moderate. Niche demand ~656K/mo (CSV). Tire Rack affiliate 6%. AIO manual checkpoint owed. ([run](tire-size-fitment/runs/2026-10-09-scout.md)) |
+| [real-tire-height-lookup](tire-size-fitment/ideas/real-tire-height-lookup/idea.md) | candidate | Scouted 2026-10-09, weak. |
+
+## garden-planting-calendar
+
+| Idea | Status | Notes |
+|---|---|---|
+| [zip-planting-schedule](garden-planting-calendar/ideas/zip-planting-schedule/idea.md) | candidate | Scouted 2026-10-09, moderate (provisional: Seedsnow/Scotts unopened). Niche demand ~101K/mo (CSV). ([run](garden-planting-calendar/runs/2026-10-09-scout.md)) |
+| [fall-planting-timer](garden-planting-calendar/ideas/fall-planting-timer/idea.md) | candidate | Scouted 2026-10-09, moderate-weak. |
+| [seed-starting-plan-generator](garden-planting-calendar/ideas/seed-starting-plan-generator/idea.md) | candidate | Scouted 2026-10-09, weak. |
+
+## rv-towing-compat
+
+| Idea | Status | Notes |
+|---|---|---|
+| [travel-trailer-tow-fit-finder](rv-towing-compat/ideas/travel-trailer-tow-fit-finder/idea.md) | candidate | Moderate after CSV: ~67.8K/mo block, ~16K tool-intent (towing capacity by vin 5K, payload vs towing 5K, under 5000 lbs 5K). ([run](rv-towing-compat/runs/2026-10-09-scout.md)) |
 
 ## pet-food-tools
 

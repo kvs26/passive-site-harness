@@ -9,6 +9,16 @@ One run = one niche = one session. The run ends with 3–5 candidate ideas on di
 
 **Target market is US by default** (queries, locales, Trends geo, forums, datasets) unless `pipeline/<niche>/niche.md` records an override.
 
+## Demand first (top priority)
+
+Demand outranks every other signal. Postmortem (2026-10): sites built on "unserved gap" ideas with unmeasured demand got no traction, because gate 4 systematically leaves only obscure leftovers. So:
+
+- **Pass 0 — Demand screen, before any niche is scouted. Always the first step of every scout invocation: stop and ask the user to run ~50 keywords through Keyword Planner.** Propose 4–6 broad, high-traffic tool categories and give the user ~50 head keywords total (8–15 per category) **directly in the current chat response**, as a plain list, one keyword per line, no bullets/dashes/code fences, so it pastes straight into **Google Keyword Planner** (US, last 12 months). Keep proposed keyword batches in the chat, including revisions; never substitute a file link or create a separate keyword-request file such as `pipeline/demand-screen.md`. Wait for the CSV (UTF-16, tab-separated; copy it to `pipeline/demand-csv/`), sum each category's buckets, summarize the measured results in the chat, and record the source CSV and results in the existing niche run log. A niche proceeds only if its head keywords sum to **≥10K avg monthly searches** (or the user overrides). No volume = no scout run. Never estimate volumes yourself.
+  - **`pipeline/demand-csv/`** = archive of every Keyword Planner export, named `<date>-<label>.csv`. Before asking for new keywords, check the archive, existing run logs, and current conversation for already-measured terms and reuse them. Reading: `iconv -f UTF-16 -t UTF-8 <file>`, tab-separated, data rows start at line 4, col 1 = keyword, col 4 = avg monthly searches (float, e.g. `500.0`). Judge an idea on its **tool-intent** keywords (calculator, "can my…", "how many…"), not one big shopping/brand head term that inflates the total.
+- **Prefer repeat use.** Score each niche's usage frequency: weekly/monthly recurring (trackers, planners, recurring decisions) > per-purchase > once-in-a-lifetime. Rank once-ever tools last.
+- **Audience size over gap purity.** A candidate with big measured demand and a beatable (dated, clunky, ad-choked, non-mobile) incumbent beats a small unserved gap. Gate 4 kills only when an incumbent serves the hook *well*; a weak incumbent is evidence of demand, record why it's beatable.
+- **Record demand per candidate** in `idea.md` (`## Demand`: Keyword Planner buckets per head term, frequency of use, audience size). Missing CSV ⇒ candidate is capped at weak.
+
 ## The edge every candidate must have
 
 Every emitted candidate must be a **compound interactive dataset tool** — all four parts stated in `idea.md`, none optional:
