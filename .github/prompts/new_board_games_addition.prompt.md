@@ -1,5 +1,5 @@
 ---
-name: add_new_board_games
+name: new_board_games_addition
 description: Use to add the next 5 unfinished games (with researched expansions) to board-game-expansion-buyers-guide
 ---
 
