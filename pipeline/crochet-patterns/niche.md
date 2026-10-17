@@ -21,7 +21,7 @@ The [user-supplied Keyword Planner export](../demand-csv/2026-10-09-paid-downloa
 
 ## Status
 
-Active. Scouted 2026-10-10 — see [runs/2026-10-10-scout.md](runs/2026-10-10-scout.md).
+Active. Scouted 2026-10-10 — see [runs/2026-10-10-scout.md](runs/2026-10-10-scout.md). Validated 2026-10-17 (medium confidence, after Keyword Planner CSV top-up), then rejected by owner decision the same day — see [runs/2026-10-17-validate-load-tested-everyday-bag-patterns.md](runs/2026-10-17-validate-load-tested-everyday-bag-patterns.md).
 
 Five generic product lines remain rejected in the [scout run](runs/2026-10-10-scout.md). A corrected focused comparison supports one narrower weak candidate: load-tested everyday-bag patterns, with useful design-specific yarn/strap measurements alongside finishing instructions. The proposed designs and measurements have not been produced.
 
@@ -31,4 +31,4 @@ Owner design/testing access, exact paid-hook demand, AIO, Trends and operating e
 
 | Idea | Status | Remaining scout checkpoint |
 |---|---|---|
-| [Load-tested everyday-bag patterns](ideas/load-tested-everyday-bag-patterns/idea.md) | candidate (weak) | Manual Google AIO observations requested; no answer yet. Trends unavailable. |
+| [Load-tested everyday-bag patterns](ideas/load-tested-everyday-bag-patterns/idea.md) | rejected (2026-10-17, owner decision after validation at medium confidence) | Weak demand/hook per Keyword Planner; no kill-level fact. Reopenable if new evidence appears. |

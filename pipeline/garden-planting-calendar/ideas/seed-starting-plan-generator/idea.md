@@ -1,6 +1,6 @@
 # seed-starting-plan-generator
 
-Status: candidate
+Status: validated
 Origin: ../../runs/2026-10-09-scout.md
 Strength: **weak** (Johnny's calculator covers the date half of the hook)
 
@@ -35,3 +35,6 @@ Checkpoint: "seed starting calculator", "when to start seeds indoors", "when to 
 
 ## History
 - 2026-10-09 — candidate (emitted by scout run)
+- 2026-10-17 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. Also outstanding: manual Google AIO checkpoint; demand for the counts/gear differentiator unknown (off-season). No kill-level finding. Dossier: [dossier.md](dossier.md); run: [../../runs/2026-10-17-validate-seed-starting-plan-generator.md](../../runs/2026-10-17-validate-seed-starting-plan-generator.md).
+- 2026-10-17 — validated (confidence: low). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Keyword Planner CSV ingested (top-up; SERP/AIO not re-probed): demand graded weak (seed starting calculator 3-mo -99% / YoY -90%; counts/gear phrasings have no volume), no kill-level finding. Still open: manual Google AIO checkpoint. Dossier: [dossier.md](dossier.md).
+- 2026-10-17 — AIO re-probe done via Playwright (SERP/AIO evidence dated 2026-10-17, expiry unchanged): AIO present on 3/3 queries; fully answers the zone-level variant (tomato seeds zone 6); not kill-level because plant counts → trays/gear is not computed anywhere. New incumbent found: sowrightseeds.com ZIP-based seed-starting calculator.

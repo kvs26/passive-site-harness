@@ -1,6 +1,6 @@
 # Bear Canister Trip Fit Planner
 
-Status: candidate
+Status: validated
 Origin: ../../runs/2026-10-09-scout.md
 
 ## Idea
@@ -46,6 +46,8 @@ Predict only. "Are bear canisters required in [area]" is question-form and likel
 ## History
 
 - 2026-10-09: candidate (scout run).
+- 2026-10-17 — validated (confidence: medium). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Shared niche Planner screen used (no idea-specific CSV). Demand, Hook, Monetization, Feasibility and Moat strong; SERP/AIO weak (AIO present on 5/5 bear queries, answers single-fact area queries; combined nights x people x food x approved-model compute is the wedge). No kill-level finding. See [dossier](dossier.md) and [run log](../../runs/2026-10-17-validate-bear-canister-trip-fit-planner.md).
+- 2026-10-17 (later) — top-up: idea-specific Planner CSV ingested (`keyword-planner.csv`; head 50K, nine 500-bucket model/rules terms, all fit-intent phrasings no-data) and Playwright AIO re-probe (13/13 bear queries show an AIO; area rules, generic sizing, BV450-vs-BV500 and packing answered; per-trip compute still the wedge). Status unchanged `validated`, confidence stays medium. SERP/AIO expiry unchanged (2026-11-14); pre-build re-probe still mandatory.
 
 
 ## Demand (Keyword Planner 2026-10-09, screen 2, US)

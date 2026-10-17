@@ -14,3 +14,4 @@ Keyword Planner (US, Sep 2025–Aug 2026, pipeline/demand-csv/2026-10-09-demand-
 
 ## Status
 Scouted 2026-10-09. See runs/2026-10-09-scout.md.
+Validated 2026-10-17: Planner CSVs ingested, then the Google AIO checkpoint run the same day. lifted-truck-tire-fit-verdict stays validated (low confidence, nearest-to-kill on AIO); real-tire-height-lookup rejected (gate 1: AIO fully answers head and model-specific queries). See runs/2026-10-17-validate-*.md.

@@ -1,6 +1,6 @@
 # zip-planting-schedule
 
-Status: candidate
+Status: rejected
 Origin: ../../runs/2026-10-09-scout.md
 Strength: **moderate** (big measured demand; incumbents beatable but Almanac has huge authority)
 
@@ -38,3 +38,4 @@ Manual checkpoint queries: "planting calendar", "vegetable planting calendar by 
 
 ## History
 - 2026-10-09 — candidate (emitted by scout run)
+- 2026-10-17 — rejected: scout gate 4 (hook not served well / purpose-built incumbent) disproved on validation. whentoplant.net's free Garden Planner (tools/garden-planner/) takes a ZIP, lets users pick crops and returns one dated start-indoors / harden-off / transplant / direct-sow / harvest schedule with "Print plan" and "Add to calendar (.ics)", no account, on the same NOAA 1991–2020 station normals (live run ZIP 43215) across a 3,338-URL site; also plantbyzip.com, planyourhomestead.com, rootedreminders.com. Residual gap (selectable 10/50/90% risk, succession re-sows, fall cut-off) is a feature delta, not a site. Confidence medium (no CSV — not needed for the kill). Dossier: [dossier.md](dossier.md); run: [../../runs/2026-10-17-validate-zip-planting-schedule.md](../../runs/2026-10-17-validate-zip-planting-schedule.md).

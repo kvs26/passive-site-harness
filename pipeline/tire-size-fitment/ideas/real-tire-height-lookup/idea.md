@@ -1,7 +1,7 @@
 # Idea: real-tire-height-lookup
 
 ## Status
-candidate (scouted 2026-10-09)
+rejected (2026-10-17, gate 1 disproved)
 
 ## Origin
 Scout run 2026-10-09 (tire-size-fitment). Inversion: "285 70r17 in inches" draws 50K/mo, but the nominal math (~32.7in) is trivial and AIO-prone. The question underneath is "how tall is the tire I'd actually buy?" Published overall diameters vary by model (an AT vs an MT in the same size).
@@ -51,3 +51,7 @@ Not checkable by automation. **Manual checkpoint**: "285 70r17 in inches" (expec
 
 ## History
 - 2026-10-09: scouted (candidate, weak).
+- 2026-10-17: validated (dossier.md written).
+- 2026-10-17 — parked: dossier complete at low confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate.
+- 2026-10-17 — validated (confidence: low). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. CSV ingested: model-specific height phrasings measure zero; volume is nominal intent only. Per-model spread unverified; AIO manual checkpoint owed.
+- 2026-10-17 — rejected: gate 1 disproved by Google AIO checkpoint. AI Overview fully answers "285 70r17 in inches" (32.7in), "275 65r18 vs 275 70r18" (full diameter/sidewall/revs comparison) and the model-specific "how tall is a 285/70r17 ko2" / "ko2 285 70r17 diameter" (32.8in, cites Tire Rack/TireSize.com/Coker, notes the "33-inch" label vs spec). No per-query wedge shown; model-specific phrasings measure zero in Planner. Dossier kept as the record.

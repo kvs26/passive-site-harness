@@ -1,6 +1,6 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-10-10: 46 idea records, including one weak crochet candidate; crochet scout-stage rejections remain in its run log. Existing confidence annotations and notes retained. Three legacy records use a `## Status` section. This refresh does not revalidate earlier evidence.
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-10-17 (backpacking-camping-gear: 2 validated, 1 rejected; below 3 validated so no comparison brief; crochet row updated after validation; garden-planting-calendar rows updated after validation: 1 rejected, 2 validated): 46 idea records, including one parked crochet idea (previously a weak candidate, 2026-10-10); crochet scout-stage rejections remain in its run log. Existing confidence annotations and notes retained. Three legacy records use a `## Status` section. This refresh does not revalidate earlier evidence.
 
 Previous 2026-09-20 regeneration note (board-games: companion-app-dependency-checker, board-game-expansion-buyers-guide, convention-packing-optimizer, errata-correction-kit-builder, legacy-reset-resale-planner, rules-youre-playing-wrong, and token-capsule-shopping-planner all top-upped via Keyword Planner CSV → validated (confidence varies, see notes); niche now has 7 validated ideas — see [comparison-2026-09-20.md](board-games/comparison-2026-09-20.md). This regeneration also corrects a stale prior pass that still listed errata-correction-kit-builder and legacy-reset-resale-planner as parked after their 2026-09-20 top-ups.)
 
@@ -10,7 +10,7 @@ User-selected 2026-10-10. Broad US category screen: 265,500 overlapping monthly-
 
 | Idea | Status | Notes |
 |---|---|---|
-| [load-tested-everyday-bag-patterns](crochet-patterns/ideas/load-tested-everyday-bag-patterns/idea.md) | candidate (weak) | Corrected focused gate-4 probe supports design-specific published load/yarn comparisons alongside original lined-bag patterns. Broad US bag-pattern demand measured; exact paid-hook demand, production, upkeep and economics unknown. Manual Google AIO checkpoint requested and unanswered; Trends unavailable (HTTP 429). Direct paid downloads authorized. Proposed patterns/tests are not completed assets. |
+| [load-tested-everyday-bag-patterns](crochet-patterns/ideas/load-tested-everyday-bag-patterns/idea.md) | parked (medium confidence) | Validated 2026-10-17 ([dossier](crochet-patterns/ideas/load-tested-everyday-bag-patterns/dossier.md)): no kill-level fact; stretch pain recurs and no inspected competitor publishes per-design measured results, but paid-hook demand, AIO, production capability and economics are unknown. Waiting on Keyword Planner CSV for hook phrasings and manual Google AIO check; SERP/AIO evidence expires 2026-11-14. Direct paid downloads authorized. |
 
 ## board-games
 
@@ -102,30 +102,30 @@ Scout kills: bare occasion listicle/relationship finder (familyfriendpoems, grie
 
 | Idea | Status | Notes |
 |---|---|---|
-| [bear-canister-trip-fit-planner](backpacking-camping-gear/ideas/bear-canister-trip-fit-planner/idea.md) | candidate | Lead, moderate after CSV: 'bear canister' 50K + ~8.8K long tail; days-fit intent ~0, so lead with rules + model comparison. AIO checkpoint owed. ([run](backpacking-camping-gear/runs/2026-10-09-scout.md)) |
-| [backpack-model-fit-finder](backpacking-camping-gear/ideas/backpack-model-fit-finder/idea.md) | candidate | Moderate after CSV: 'ultralight backpack' 50K, model names + torso 5K each; strong incumbents (REI, OutdoorGearLab). |
-| [trail-menu-volume-optimizer](backpacking-camping-gear/ideas/trail-menu-volume-optimizer/idea.md) | candidate | Weak after CSV: block 73K is brand/recipe intent; planner/calculator intent ~650/mo. Engine inside bear-canister planner only. |
+| [bear-canister-trip-fit-planner](backpacking-camping-gear/ideas/bear-canister-trip-fit-planner/idea.md) | validated | Confidence medium (idea-specific CSV in; fit-intent phrasings no-data). Evidence expires 2026-11-14. 'bear canister' 50K + nine 500-bucket model/rules terms; AIO present on 13/13 probed queries, answers area rules, generic sizing, comparisons; wedge = nights x people x food x approved-model compute. ([dossier](backpacking-camping-gear/ideas/bear-canister-trip-fit-planner/dossier.md) · [run](backpacking-camping-gear/runs/2026-10-17-validate-bear-canister-trip-fit-planner.md)) |
+| [backpack-model-fit-finder](backpacking-camping-gear/ideas/backpack-model-fit-finder/idea.md) | validated | Confidence medium (idea-specific CSV in; all 11 hook phrasings no-data; AIO re-probe partly blocked by CAPTCHA). Evidence expires 2026-11-14. Hook and monetization strong; demand, SERP/AIO, feasibility and moat weak; strong incumbents (REI, brands) and AIO covers the size letter. ([dossier](backpacking-camping-gear/ideas/backpack-model-fit-finder/dossier.md) · [run](backpacking-camping-gear/runs/2026-10-17-validate-backpack-model-fit-finder.md)) |
+| [trail-menu-volume-optimizer](backpacking-camping-gear/ideas/trail-menu-volume-optimizer/idea.md) | rejected | Gate 4 disproved on validation: PackByte and Backcountry Foodie already build real-SKU constrained menus with shopping lists; Amazon Grocery 1.00%. Canister volume angle belongs inside the bear-canister planner. Confidence medium. ([dossier](backpacking-camping-gear/ideas/trail-menu-volume-optimizer/dossier.md) · [run](backpacking-camping-gear/runs/2026-10-17-validate-trail-menu-volume-optimizer.md)) |
 
 ## tire-size-fitment
 
 | Idea | Status | Notes |
 |---|---|---|
-| [lifted-truck-tire-fit-verdict](tire-size-fitment/ideas/lifted-truck-tire-fit-verdict/idea.md) | candidate | Scouted 2026-10-09, moderate. Niche demand ~656K/mo (CSV). Tire Rack affiliate 6%. AIO manual checkpoint owed. ([run](tire-size-fitment/runs/2026-10-09-scout.md)) |
-| [real-tire-height-lookup](tire-size-fitment/ideas/real-tire-height-lookup/idea.md) | candidate | Scouted 2026-10-09, weak. |
+| [lifted-truck-tire-fit-verdict](tire-size-fitment/ideas/lifted-truck-tire-fit-verdict/idea.md) | validated | Validated 2026-10-17, low confidence (demand weak). Planner CSV: fit-verdict phrasings 50-bucket or zero; volume only in shopping terms. Google AIO checked: answers all 4 verdict queries at band level but hedges on offset/trim and asks for year/trim/wheels; only a cited exact-setup wedge remains (nearest-to-kill). overlanding.tools serves ~19 platforms coarsely. Tire Rack 6% verified. SERP/AIO evidence expires 2026-11-14. ([dossier](tire-size-fitment/ideas/lifted-truck-tire-fit-verdict/dossier.md), [run](tire-size-fitment/runs/2026-10-17-validate-lifted-truck-tire-fit-verdict.md)) |
+| [real-tire-height-lookup](tire-size-fitment/ideas/real-tire-height-lookup/idea.md) | rejected | gate 1 disproved on validation: Google AI Overview fully answers the nominal head ("285 70r17 in inches" 32.7in), the size-vs-size query (full diameter/sidewall/revs comparison) and the model-specific KO2 queries (32.8in, cites Tire Rack/TireSize.com/Coker, notes the "33-inch" label vs spec) — no per-query wedge shown. Model-specific phrasings measure zero in Planner; moat and feasibility already weak. Confidence low. ([dossier](tire-size-fitment/ideas/real-tire-height-lookup/dossier.md), [run](tire-size-fitment/runs/2026-10-17-validate-real-tire-height-lookup.md)) |
 
 ## garden-planting-calendar
 
 | Idea | Status | Notes |
 |---|---|---|
-| [zip-planting-schedule](garden-planting-calendar/ideas/zip-planting-schedule/idea.md) | candidate | Scouted 2026-10-09, moderate (provisional: Seedsnow/Scotts unopened). Niche demand ~101K/mo (CSV). ([run](garden-planting-calendar/runs/2026-10-09-scout.md)) |
-| [fall-planting-timer](garden-planting-calendar/ideas/fall-planting-timer/idea.md) | candidate | Scouted 2026-10-09, moderate-weak. |
-| [seed-starting-plan-generator](garden-planting-calendar/ideas/seed-starting-plan-generator/idea.md) | candidate | Scouted 2026-10-09, weak. |
+| [zip-planting-schedule](garden-planting-calendar/ideas/zip-planting-schedule/idea.md) | rejected | Validated 2026-10-17, medium confidence. Scout gate 4 disproved: whentoplant.net's free Garden Planner already does ZIP → crops → dated schedule with print and .ics. ([dossier](garden-planting-calendar/ideas/zip-planting-schedule/dossier.md), [run](garden-planting-calendar/runs/2026-10-17-validate-zip-planting-schedule.md)) |
+| [fall-planting-timer](garden-planting-calendar/ideas/fall-planting-timer/idea.md) | validated | Validated 2026-10-17, medium confidence (Keyword Planner CSV top-up). Demand and hook strong, monetization strong (affiliate, linkability checked); SERP/AIO, feasibility and moat weak; AIO probed 2026-10-17 (present 6/6, zone/region-level, hedged; not kill-level), lawn incumbents still unopened. Evidence expires 2026-11-14; build window is next fall. ([dossier](garden-planting-calendar/ideas/fall-planting-timer/dossier.md), [run](garden-planting-calendar/runs/2026-10-17-validate-fall-planting-timer.md)) |
+| [seed-starting-plan-generator](garden-planting-calendar/ideas/seed-starting-plan-generator/idea.md) | validated | Validated 2026-10-17, low confidence (Keyword Planner CSV top-up). Demand and hook weak (tool queries falling; counts/gear phrasings have no volume), monetization and feasibility strong; date half already served by free tools (incl. a ZIP-based one) and AIO fully answers the zone-level variant. Evidence expires 2026-11-14. ([dossier](garden-planting-calendar/ideas/seed-starting-plan-generator/dossier.md), [run](garden-planting-calendar/runs/2026-10-17-validate-seed-starting-plan-generator.md)) |
 
 ## rv-towing-compat
 
 | Idea | Status | Notes |
 |---|---|---|
-| [travel-trailer-tow-fit-finder](rv-towing-compat/ideas/travel-trailer-tow-fit-finder/idea.md) | candidate | Moderate after CSV: ~67.8K/mo block, ~16K tool-intent (towing capacity by vin 5K, payload vs towing 5K, under 5000 lbs 5K). ([run](rv-towing-compat/runs/2026-10-09-scout.md)) |
+| [travel-trailer-tow-fit-finder](rv-towing-compat/ideas/travel-trailer-tow-fit-finder/idea.md) | rejected | gate 4 + gate 3 disproved on validation 2026-10-17: MintRV (mintrv.com) already ships "match your truck to 70,000+ RVs" — vehicle -> every RV that fits tow + payload, 69,850 RVs / 33,756 vehicles from OEM towing guides, per-RV pages, free, Amazon Associates on hitch gear; Tow Genius building per-trailer pages; RV TowCalc + 4 more calculators on SERP. Planner: hook-specific queries <=50 bucket, calculators 500 w/ -90% YoY; 5K terms are VIN/explainer/shopping. Pain real (r/f150, r/RVLiving). Confidence medium (AIO probe, Amazon terms, upkeep not run — early stop). ([dossier](rv-towing-compat/ideas/travel-trailer-tow-fit-finder/dossier.md) · [run](rv-towing-compat/runs/2026-10-17-validate-travel-trailer-tow-fit-finder.md) · [scout](rv-towing-compat/runs/2026-10-09-scout.md)) |
 
 ## pet-food-tools
 

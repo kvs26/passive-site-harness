@@ -1,6 +1,6 @@
 # Trail Menu Optimizer (real products, weight and volume constrained)
 
-Status: candidate
+Status: rejected
 Origin: ../../runs/2026-10-09-scout.md
 
 ## Idea
@@ -44,6 +44,7 @@ Predict only. Open-ended menu generation is AIO-prone for generic menus, not for
 ## History
 
 - 2026-10-09: candidate (scout run). Weak, flagged. Best used as the compute engine inside bear-canister-trip-fit-planner rather than standalone.
+- 2026-10-17 — rejected (confidence: medium). Gate 4 disproved: PackByte (packbyte.app, 200+ verified items, cal/oz + weight optimizer, shopping list with buy links) and Backcountry Foodie (1,000+ commercial foods, shopping lists) already serve the real-SKU constrained menu. Amazon Grocery pays 1.00%. Canister volume is the only unserved angle; keep it as an engine idea inside bear-canister-trip-fit-planner. See [dossier](dossier.md) and [run log](../../runs/2026-10-17-validate-trail-menu-volume-optimizer.md).
 
 
 ## Demand (Keyword Planner 2026-10-09, screen 2, US)

@@ -1,6 +1,6 @@
 # fall-planting-timer
 
-Status: candidate
+Status: validated
 Origin: ../../runs/2026-10-09-scout.md
 Strength: **moderate-weak** (strong 5K-bucket heads; AIO risk on generic "when to plant X")
 
@@ -36,3 +36,6 @@ Checkpoint: "when to plant garlic", "when to plant tulip bulbs", "when to plant 
 
 ## History
 - 2026-10-09 — candidate (emitted by scout run)
+- 2026-10-17 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. Also outstanding: manual Google AIO checkpoint; lawn incumbents (Scotts etc.) could not be opened. No kill-level finding: the closest incumbent (whentoplant.net) answers "too late?" wrongly for tulips and grass seed. Dossier: [dossier.md](dossier.md); run: [../../runs/2026-10-17-validate-fall-planting-timer.md](../../runs/2026-10-17-validate-fall-planting-timer.md).
+- 2026-10-17 — validated (confidence: medium). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Keyword Planner CSV ingested (top-up; SERP/AIO not re-probed): five 5K-bucket "when to plant" heads, "is it too late to plant grass seed" 500 (+900% YoY); affiliate linkability confirmed for 5 product families. Still open: manual Google AIO checkpoint (a fully answering AIO would be kill-level), lawn incumbents unopened. Demand peak is Sep–Nov, so a build now targets next fall. Dossier: [dossier.md](dossier.md).
+- 2026-10-17 — AIO re-probe done via Playwright (SERP/AIO evidence dated 2026-10-17, expiry unchanged): AIO present on 6/6 fall queries, zone/region-level and hedged (Ohio garlic gets dated sub-regional windows); not kill-level. Remaining wedge is the per-ZIP dated verdict; Google AI Mode is a risk. Lawn incumbents still unopened (jonathangreen.com 403).

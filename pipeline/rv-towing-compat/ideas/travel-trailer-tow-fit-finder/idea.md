@@ -1,7 +1,7 @@
 # travel-trailer-tow-fit-finder
 
 ## Status
-candidate
+rejected
 
 ## Origin
 Scout 2026-10-09 (`runs/2026-10-09-scout.md`). Strength: **weak** (strong demand, but incumbents unverified and AIO/dealer content risk).
@@ -44,6 +44,7 @@ Predicted: generic "what size travel trailer can I tow" → AIO formula answer (
 
 ## History
 - 2026-10-09: created by scout.
+- 2026-10-17 — rejected (confidence: medium). Gate 4 + gate 3 disproved: MintRV (mintrv.com) already ships the vehicle -> fitting-RV match over 69,850 RVs / 33,756 vehicles with per-RV pages, from OEM towing guides, free; Tow Genius is building per-trailer tow-vehicle pages. Planner also shows hook-specific queries at <=50 bucket. See dossier.md and runs/2026-10-17-validate-travel-trailer-tow-fit-finder.md.
 
 
 ## Demand (Keyword Planner 2026-10-09, screen 2, US)

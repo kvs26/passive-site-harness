@@ -1,7 +1,7 @@
 # Idea: lifted-truck-tire-fit-verdict
 
 ## Status
-candidate (scouted 2026-10-09)
+validated (2026-10-17, medium confidence)
 
 ## Origin
 Scout run 2026-10-09 (tire-size-fitment). Inversion: what does a truck owner need answered before buying bigger tires? "Will 33s/35s fit my F-150/4Runner/Wrangler with my leveling kit and these wheels, and what will I have to trim?"
@@ -59,3 +59,7 @@ Google is not checkable by automation (CAPTCHA). Bing showed a Copilot answer fo
 
 ## History
 - 2026-10-09: scouted (candidate).
+- 2026-10-17: validated (dossier.md written).
+- 2026-10-17 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate.
+- 2026-10-17 — validated (confidence: medium). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. CSV ingested: fit-verdict phrasings are 50-bucket/zero, volume is in shopping terms; Google AIO manual checkpoint still owed.
+- 2026-10-17 — validated (confidence: low, revised down from medium: demand graded weak, rubric floor). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Google AIO checked in an automated browser: AIO on all 4 verdict queries with per-vehicle size/offset-band answers that hedge on trim/offset and ask for year/trim/wheels; only a cited exact-setup verdict wedge remains. Nearest-to-kill; not rejected.

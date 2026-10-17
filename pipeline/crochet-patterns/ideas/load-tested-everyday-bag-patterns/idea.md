@@ -1,6 +1,6 @@
 # load-tested-everyday-bag-patterns
 
-Status: candidate
+Status: rejected
 Origin: ../../runs/2026-10-10-scout.md
 Strength: **weak** — a specific buyer-information advantage survived the focused incumbent probe; production, exact paid demand, AIO and economics remain unresolved.
 
@@ -71,3 +71,6 @@ Inference only: generic stretch advice is summarizable, while original pattern-s
 ## History
 
 - 2026-10-10 — emitted as a **weak candidate** after the corrected focused incumbent probe distinguished useful everyday-bag load/yarn evidence from generic construction guidance and the Mavis string-bag study. No validation performed; AIO, Trends and production unknowns retained.
+- 2026-10-17 — parked: dossier complete at medium confidence; waiting on Keyword Planner CSV (see keywords-request.md). Unpark by exporting the CSV to keyword-planner.csv and re-running /idea-validate. See [dossier](dossier.md) and [run log](../../runs/2026-10-17-validate-load-tested-everyday-bag-patterns.md).
+- 2026-10-17 — validated (confidence: medium). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Keyword Planner CSV ingested: hook phrasings at 50 bucket or zero, paid-intent phrasings at 50, head cluster flagged −90% YoY; Demand weak, Hook weak, Monetization weak, Moat weak, SERP/AIO and Feasibility unknown. No kill-level fact found. See [dossier](dossier.md).
+- 2026-10-17 — rejected by owner decision (not a kill-level fact): weak signals — hook phrasings at 50 bucket or zero, paid-intent phrasings at 50, head cluster flagged −90% YoY, traffic sanity-check directionally fails the viability bar. Can be reopened if new evidence (AIO check, Trends) changes the picture.

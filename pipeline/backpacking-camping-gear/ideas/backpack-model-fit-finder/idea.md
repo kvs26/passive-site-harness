@@ -1,6 +1,6 @@
 # Backpack Model Fit Finder (load-aware)
 
-Status: candidate
+Status: validated
 Origin: ../../runs/2026-10-09-scout.md
 
 ## Idea
@@ -44,6 +44,8 @@ Predict only. Query form "what size backpack for 18 inch torso" is likely AIO-pr
 ## History
 
 - 2026-10-09: candidate (scout run). Weak, flagged.
+- 2026-10-17 — validated (confidence: medium). SERP/AIO evidence expires 2026-11-14; pre-build re-probe mandatory. Shared niche Planner screen used (no idea-specific CSV). Hook and Monetization strong; Demand, SERP/AIO (AIO present on both fit queries), Feasibility and Moat weak. No kill-level finding. See [dossier](dossier.md) and [run log](../../runs/2026-10-17-validate-backpack-model-fit-finder.md).
+- 2026-10-17 (later) — top-up: idea-specific Planner CSV ingested (`keyword-planner.csv`; two 50K head terms with `ultralight backpack` falling −90% YoY, five 5K model/educational terms, all 11 hook phrasings no-data). Playwright AIO re-probe cut short by a Google CAPTCHA: 1 query answered (full AIO on `how to measure torso length`), 3 unknown, 2 not run. Status unchanged `validated`, confidence stays medium; weak signals unchanged. SERP/AIO expiry unchanged (2026-11-14).
 
 
 ## Demand (Keyword Planner 2026-10-09, screen 2, US)
