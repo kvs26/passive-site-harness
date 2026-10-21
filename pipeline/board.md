@@ -1,8 +1,16 @@
 # Pipeline board
 
-Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-10-17 (backpacking-camping-gear: 2 validated, 1 rejected; below 3 validated so no comparison brief; crochet row updated after validation; garden-planting-calendar rows updated after validation: 1 rejected, 2 validated): 46 idea records, including one parked crochet idea (previously a weak candidate, 2026-10-10); crochet scout-stage rejections remain in its run log. Existing confidence annotations and notes retained. Three legacy records use a `## Status` section. This refresh does not revalidate earlier evidence.
+Derived view — `Status:` lines in `idea.md` files are canonical. Regenerated 2026-10-17 after user-directed shortlist cleanup: 47 idea records. Home project materials retains only the drywall candidate; Salt Switch, deck-board-replacement-finder, and paint-stash-planner were removed. Scout-stage rejections and withdrawn concepts remain documented in run logs. Three legacy records use a `## Status` section. This refresh does not revalidate earlier evidence.
 
 Previous 2026-09-20 regeneration note (board-games: companion-app-dependency-checker, board-game-expansion-buyers-guide, convention-packing-optimizer, errata-correction-kit-builder, legacy-reset-resale-planner, rules-youre-playing-wrong, and token-capsule-shopping-planner all top-upped via Keyword Planner CSV → validated (confidence varies, see notes); niche now has 7 validated ideas — see [comparison-2026-09-20.md](board-games/comparison-2026-09-20.md). This regeneration also corrects a stale prior pass that still listed errata-correction-kit-builder and legacy-reset-resale-planner as parked after their 2026-09-20 top-ups.)
+
+## home-project-materials
+
+US Keyword Planner niche screen: 905K overlapping monthly calculator-head buckets, including 500K for concrete. The 500K concrete hook was killed after an incumbent probe. The sole retained idea is attached only to the broad 50K `drywall calculator` head; **exact hook demand is unmeasured (Google AIO probed 2026-10-17)**. Do not treat it as a build recommendation. [Niche](home-project-materials/niche.md) · [Scout run](home-project-materials/runs/2026-10-17-scout.md).
+
+| Idea | Status | Notes |
+|---|---|---|
+| [drywall-order-and-access-planner](home-project-materials/ideas/drywall-order-and-access-planner/idea.md) | validated (low) | Validated 2026-10-17, low confidence (demand weak), after a Keyword Planner top-up ([dossier](home-project-materials/ideas/drywall-order-and-access-planner/dossier.md) · [run](home-project-materials/runs/2026-10-17-validate-drywall-order-and-access-planner.md)): no kill-level fact, but **traffic sanity-check fails** — nothing in the 25-keyword export exceeds the 50 bucket, the fit/stairs/delivery phrasings are no-data, bids blank. Stair/vehicle-transport problem recurs across SE, Reddit and forums but is episodic one-project DIY. AIO present on 7 of 8 probed queries (class-level answers); no purpose-built integrated tool on the hook SERPs, but [DrywallScalculator](https://drywallscalculator.com/planning/delivery-and-lift-planner/) already covers payload/trips/delivery and admits it omits vehicle/stair fit; UC member-gated; ItemFits generic fit. Monetization weak: Home Depot 1%, 1-day cookie, 4x12 panel is a Pro Desk special order. Vehicle data source unverified. SERP/AIO evidence expires 2026-11-14. |
 
 ## crochet-patterns
 
