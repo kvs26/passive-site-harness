@@ -1,6 +1,6 @@
 ---
 name: build-site
-description: Stand up a new passive site from a PRD by cloning the bundled house-template assets into sites/<slug>/, then filling its one config seam plus a real dataset and product links from raw material the site owner provides. Use when the user wants to build/stand up/scaffold a new site from a spec, or asks to turn raw notes/CSV/PDF data into a site's catalog.
+description: Stand up a new passive site from a PRD by cloning the bundled house-template assets into sites/<slug>/, then filling its one config seam plus a real dataset and product links from raw material the site owner provides. Use when the user wants to build/stand up/scaffold a new site from a spec, or asks to turn raw notes/CSV/PDF data into a site's catalog. Also covers the researched, niche-specific design layer and the phone/tablet responsive pass.
 ---
 
 # Build Site
@@ -63,6 +63,55 @@ locking anything in:
   alone if they'd rather see it.
 
 Record their choice; don't proceed to config until they've confirmed.
+
+### 2b. Custom design layer — research first, never ship the bare template
+
+The template (and its skins) is a **starting structure, not the finished look**. Compared side by side
+locally: `sites/runs-on-your-battery-finder/` is the template with a green accent — clean but generic,
+it could be any niche. `sites/board-game-expansion-buyers-guide/` is the same bones plus a custom design
+layer (kraft-paper palette from the board-game world, gold/navy header, meeple/die-cut motifs, inline-SVG
+box art, a numbered "track" for the ranking, a playful display font) and reads as made by someone who
+knows the hobby. That gap is the goal: **every new site gets a niche-specific design layer on top of the
+template.** The skin choice in step 2 is only the starting point.
+
+1. **Research at least 30 sites.** Study **at least 30 different best-in-class sites** in this niche and
+   adjacent ones, worldwide (not just US/English; include editorial, tool/calculator, marketplace,
+   community and brand sites). Use real fetches/screenshots, not memory. For each, note in
+   `sites/<slug>/docs/design-research.md`: URL, what it does well, palette, type, imagery/graphics
+   style, layout of the core tool/list, mobile behavior, and anything to avoid. Never copy a site's
+   assets, logo or text — learn patterns only.
+2. **Present top findings in chat and ask the owner's opinion before building.** Share the main patterns
+   (5–10 bullets with example URLs), 2–3 proposed design directions (palette, type, graphic motif,
+   layout character) and a recommendation, then let the owner react. Iterate once or twice; don't lock
+   a direction silently.
+3. **Derive the palette from the idea**, not from a default: colors that belong to the subject's world
+   (materials, packaging, equipment, season, community conventions), with checked contrast (WCAG AA) and
+   a semantic ramp for verdicts. Define it as a new/edited skin in `src/styles/tokens.css`; components
+   keep using role tokens so nothing is hard-coded.
+4. **Make it graphic, not just colored:** a distinctive wordmark/logo mark as inline SVG, a hero
+   illustration or motif, item glyphs/art generated from data (`src/lib/*-art.mjs`), a signature UI
+   device tied to the niche (e.g. the numbered track for a ranking), custom badges, section dividers,
+   favicon/manifest colors. Inline SVG over image files (see performance lessons below).
+5. **Typography with intent:** pick a display + body pairing that fits the niche's tone (self-hosted,
+   `font-display` rules below), a defined type scale and real hierarchy. No system-font-only look.
+6. **It must not look AI-made or like "AI slop".** Explicitly avoid: purple/blue gradient hero
+   backgrounds, generic Inter/system-font-on-white with rounded cards everywhere, emoji as icons,
+   stock 3-column "feature" grids, meaningless glassmorphism/blur blobs, centered-everything layouts,
+   filler marketing copy ("Unlock the power of…", "seamless", "revolutionize"), identical card
+   repetition with no hierarchy, fake testimonials/stats, and lorem-ipsum-grade microcopy. Prefer a
+   point of view: specific vocabulary from the niche, asymmetry or a strong grid, deliberate whitespace,
+   real data in the first screen, and copy written the way a knowledgeable hobbyist would say it. Before
+   handing back, look at screenshots of home + core page at laptop and phone and ask: "Could this be any
+   other niche's site with the colors swapped?" If yes, keep designing.
+7. Read `.agents/skills/frontend-design/SKILL.md` and follow its process: a two-pass **design plan**
+   (4–6 named hex colors, type roles, layout concept with ASCII wireframes, principles) written from the
+   research and owner feedback, reviewed against the brief for generic defaults, *then* built, then
+   critiqued. Also heed its list of AI-design tells (cream + serif + terracotta, near-black + acid accent,
+   identical rounded SaaS cards, ALL-CAPS eyebrow labels above every heading, numbered markers on
+   non-sequential content, fade-and-slide-up on every section) — in addition to the list above.
+   Where the owner's chosen direction pins something down, the owner wins.
+   Design-layer work goes only in `sites/<slug>/`; never write niche-specific design back into
+   `assets/house-template/`.
 
 ### 3. Custom tool logic, if the PRD calls for it
 
@@ -163,6 +212,17 @@ for raw links if none exist. Save whatever they hand over into `sites/<slug>/raw
 5. Leave `affiliate.affiliate_enabled` and `SITE.monetization.affiliate.enabled` off — those flip only
    after the owner has actually joined Amazon Associates and hands over a real tagged deep link (a
    manual, later act by the owner, outside this skill's scope — see "Monetization is manual" below).
+
+### 6b. Responsive pass (phone / tablet / laptop) — don't leave it for later
+
+The template and site #2's first build were laptop-good but phone/tablet-messy; most real traffic is
+phone. Before handing back, do a responsive pass using **`responsive-playbook.md`** (next to this
+file): one breakpoint scheme (phone ≤767 / tablet 768–1023 / laptop ≥1024) enforced by a test, an
+`html.js`-gated progressive-disclosure layer (menu button, bottom-sheet filters, expandable rows,
+`[data-fold]` accordions, stacked compare rows, A–Z list), and the verification matrix (every page
+type × 360/390/430/768/834 in Chromium **and** WebKit, laptop-unchanged snapshot, page-height budget).
+Track it as its own spec + tickets in `sites/<slug>/.scratch/` (reproduce first, hardest page next, rest
+last). Skip only if the owner explicitly says the site is laptop-only.
 
 ### 7. Build and hand back
 
@@ -272,3 +332,27 @@ Site #2 feels faster and looks better than the bare template. When building a ne
   "not listed?" line. Keep the "Email us" link text on the same line as its tag (Astro whitespace bug).
 
 Reference the board-game site's `src/` for concrete implementations before designing from scratch.
+
+## Mobile and tablet lessons from `sites/board-game-expansion-buyers-guide/.scratch/mobile-tablet-redesign/`
+
+Full detail, code pointers and checklists: **`responsive-playbook.md`**. Headlines:
+
+- Three breakpoints only (phone ≤767, tablet 768–1023, laptop ≥1024), literals documented in
+  `tokens.css`, enforced by `tests/breakpoints.test.mjs` (also catches `matchMedia` in JS). Replace the
+  template's legacy 720/860/900 queries.
+- Phone = answer first: verdict + top 3 items above the 844px fold; collapse with CSS/JS, never remove
+  markup (SEO, JSON-LD, tests). Gate collapsing on `html.js` so no-JS stays complete.
+- Reusable patterns: 56px header with Menu button, filter pill + bottom sheet (dialog, focus trap, Esc),
+  expandable ranked rows, `phone-folds.mjs` accordions, stacked compare table with `data-label` and
+  explicit roles, sticky A–Z jump list, 2-col footer, tablet two-column with a sticky panel capped at
+  `100dvh`.
+- Bug class to check: a media query resetting a sticky element to `position: static` drops the
+  containing block of absolute `::after` decorations and paints them across the page. Use
+  `position: relative; top: auto`, and drop decorative `::after` ≤1023px.
+- Tap targets ≥44px (48px menu/accordion), body ≥16px, no horizontal overflow, `minmax(0,1fr)` grids.
+- Verify with device emulation (DPR 2–3) in Chromium and WebKit across every page type and width;
+  prove laptop unchanged via computed-style + rect snapshots, not pixel diffs.
+- The bundled template now ships the generic foundation (unified breakpoints, `html.js`, Menu header,
+  `phone-folds.mjs` on the FAQ, tap-target/rail CSS, `tests/breakpoints.test.mjs`). Site-specific
+  patterns (filter sheet, expandable rows, stacked compare, A–Z list) are still ported from the
+  board-game site per playbook §6.

@@ -87,6 +87,12 @@
   --measure: 68ch;       /* readable prose line length */
   --container: 1120px;   /* max content width */
   --sidebar: 300px;      /* app-shell filter rail width */
+
+  /* Breakpoints (custom properties can't be used in @media, so base.css repeats
+     these literals and tests/breakpoints.test.mjs rejects any other width):
+       phone  <=767px   @media (max-width: 767px)
+       tablet 768-1023  @media (min-width: 768px) and (max-width: 1023px)
+       laptop >=1024px  default styles; never restyled by the queries above */
 }
 
 /* ============================================================================

@@ -17,10 +17,16 @@ const faqs = [
   <article class="container prose faq" style="padding-block:var(--space-12)">
     <h1>{title}</h1>
     {faqs.map((f) => (
-      <details>
-        <summary>{f.q}</summary>
+      <section data-fold>
+        <h2>{f.q}</h2>
         <p>{f.a}</p>
-      </details>
+      </section>
     ))}
   </article>
 </Layout>
+
+<script>
+  // Phones: one accordion per question; wider screens show every answer (src/lib/phone-folds.mjs).
+  import { phoneFolds } from '../lib/phone-folds.mjs';
+  phoneFolds(document);
+</script>
