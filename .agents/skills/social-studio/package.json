@@ -1,0 +1,12 @@
+{
+  "name": "social-studio-renderer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.56.1",
+    "three": "^0.186.1"
+  }
+}

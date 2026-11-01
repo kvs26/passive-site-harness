@@ -7,7 +7,7 @@ Bing Webmaster Tools is imported from GSC. Details:
 
 Building a site doesn't make people find it. Google can take weeks to notice a new site, and even
 then it might not rank. **Distribution** means showing up where your audience already is — Reddit,
-Pinterest, YouTube comments, Q&A sites, useful-tools directories — so real people find the site for
+YouTube comments, Q&A sites, useful-tools directories — so real people find the site for
 free, without ads.
 
 ## How it works
@@ -22,8 +22,8 @@ free, without ads.
 ## How to run it
 
 Say **"run /spread-site on `sites/<slug>/`"** once a site is live. It works through channels one at
-a time — Reddit/forums, Pinterest, directories, Q&A sites, YouTube comments — and drops a short
-checklist per channel at `sites/<slug>/distribution/`. Open a file, copy the draft, post it, done.
+a time — Reddit/forums, directories, Q&A sites, YouTube comments — and drops a short
+checklist per channel at `sites/<slug>/distribution/`. (Pinterest and Instagram are handled by `/social-studio` — say "run /social-studio on `sites/<slug>/`" for a style kit and 2-week batches of pins and posts, saved at `sites/<slug>/social/`; same rules: you post, free only, real facts only.) Open a file, copy the draft, post it, done.
 
 ## Rules that never change
 

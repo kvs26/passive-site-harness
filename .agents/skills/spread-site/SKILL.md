@@ -1,6 +1,6 @@
 ---
 name: spread-site
-description: Walk a live site's owner through off-Google distribution, one channel at a time — find real threads/boards/listings/videos, draft owner-voice copy, hand over a short posting checklist. Use when a site is live and needs non-Google distribution (Reddit/forums, Pinterest, directories, Q&A, YouTube comments), or when asked to "spread"/"distribute"/"promote" a site.
+description: Walk a live site's owner through off-Google distribution, one channel at a time — find real threads/boards/listings/videos, draft owner-voice copy, hand over a short posting checklist. Use when a site is live and needs non-Google distribution (Reddit/forums, directories, Q&A, YouTube comments), or when asked to "spread"/"distribute"/"promote" a site.
 ---
 
 # Spread Site
@@ -31,17 +31,18 @@ own accounts.** Extracted from runsonyourbattery.com's first real pass
 
 ## Procedure
 
-Work **one channel at a time** — don't draft all six before the owner's had a chance to post the
+Work **one channel at a time** — don't draft all five before the owner's had a chance to post the
 first. Suggested order (skip any that don't fit the niche):
 
 1. **Foundation** — confirm free analytics + Google Search Console + Bing Webmaster Tools are wired,
    and do a quick `site:<domain>` check on Google and Bing to see whether the site's indexed yet.
    Skip this step entirely if it's already been done for this site.
 2. **Reddit / forums**
-3. **Pinterest** (skip for niches with nothing visual/pinnable)
-4. **Directories** ("useful tools" / niche listing sites)
-5. **Q&A / answer sites** (Quora, a relevant Stack Exchange)
-6. **YouTube comments** (text only — no video production)
+3. **Directories** ("useful tools" / niche listing sites)
+4. **Q&A / answer sites** (Quora, a relevant Stack Exchange)
+5. **YouTube comments** (text only — no video production)
+
+Pinterest and Instagram are handled by `/social-studio`, not this skill.
 
 For each channel:
 
@@ -74,7 +75,7 @@ Status: draft
 **Watch for:** <one line — what would get this flagged or banned on this channel>
 ```
 
-**Link rule:** UTM-tag links on Pinterest, directories, and YouTube video descriptions
+**Link rule:** UTM-tag links on directories and YouTube video descriptions
 (`?utm_source=<channel>&utm_medium=referral&utm_campaign=spread-site`). Post the **bare canonical
 URL** everywhere else — Reddit, forums, Quora, Stack Exchange, YouTube comments — a visible tracking
 tag reads as spam there. Track bare-URL channels via the site's analytics referrer breakdown instead.

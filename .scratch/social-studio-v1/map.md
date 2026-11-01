@@ -42,6 +42,11 @@ This effort's Notes **override wayfinder's plan-only default** — building the 
 - [Current Pinterest + Instagram rules and best practice (2026)](issues/02-platform-rules-best-practice.md) — Pinterest 1000×1500 (taller gets cropped), title ≤100 chars, claim the website, "no surprises" landing pages, new anti-mass-produced/repetitive-pin policy from 12 Nov 2026; IG max ratio 3:4 (1080×1440), carousels ≤20 same-orientation slides, **≤5 hashtags**, originality rule (each slide must add own value); AI labels: Pinterest auto-labels (no self-disclosure for organic), Meta requires disclosure only for realistic video/audio; native schedulers: Pinterest 30 days/10 queued (bulk CSV 200), IG 30 days incl. carousels. ([research](research/02-platform-rules-best-practice.md))
 - [Rendering stack: HTML/CSS (+ Three.js 3D) → PNG in headless Chromium](issues/03-rendering-stack.md) — smoke test passed: Playwright's bundled headless Chromium + local `three`, WebGL2 via SwiftShader (`--enable-unsafe-swiftshader`), exact-size viewport at DSF 1, `window.__ready` wait; ~1 s/render, ~0.6 s/extra slide. Satori/Puppeteer rejected. Deps in `.agents/skills/social-studio/package.json`; fonts via local `@fontsource` (CDN also works). ([research](research/03-rendering-stack.md))
 - [External AI image tools for the optional image slot](issues/04-external-ai-image-tools.md) — primary **Gemini app (Nano Banana 2)**, secondary **ChatGPT (GPT Image)**: free personal tiers, commercial use OK, reference-image consistency; Copilot/Bing Image Creator excluded (personal-use-only terms). APIs are paid and Canva's MCP builds Canva designs not raw images → **v1 stays manual** (paste prompt, drop file). 5-part prompt template (subject / composition with reserved empty zone / style lock / "clean unmarked surfaces" / consistency line), never naming real games or art. ([research](research/04-external-ai-image-tools.md))
+- [Trim Pinterest out of /spread-site, docs, and both sites](issues/05-trim-spread-site-delete-pinterest.md) — `/spread-site` now 5 channels + pointer to `/social-studio`; root docs updated; old Pinterest files/pin images/pin-generation deleted and committed locally in both site repos; battery site still builds.
+
+- [Build the shared renderer + preview sheet](issues/06-shared-renderer.md) — `.agents/skills/social-studio/render.mjs`: one command renders pinterest/instagram HTML to exact PNGs, `data-slot`/`data-fallback` image slots, fails loudly on size/overflow/font/WebGL/image problems, writes `preview.html`. Smoke-tested.
+
+- [Write the /social-studio skill](issues/08-write-social-studio-skill.md) — `.agents/skills/social-studio/SKILL.md` encodes the hard rules, platform rules, first-run (accounts + style kit) and the 10-step batch loop; USAGE.md step 9 + skill row and DISTRIBUTION.md updated.
 
 ## Not yet specified
 
@@ -54,8 +59,8 @@ This effort's Notes **override wayfinder's plan-only default** — building the 
 
 <!-- convenience index for this local-markdown tracker; frontier = open + unblocked + unclaimed, first by number -->
 
-- **Frontier (takeable now):** 05 (spread-site trim), 06 (shared renderer). *(01–04 resolved by research subagents at charting.)*
-- **Blocked:** 07 ← 06 · 08 ← 07 · 09 ← 08.
+- **Frontier (takeable now):** 09 (first real batch for whichexpansion.com).
+- **Blocked:** none.
 
 ## Out of scope
 

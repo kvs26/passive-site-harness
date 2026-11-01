@@ -1,7 +1,7 @@
 # Distribution playbook
 
 Reusable, **site-agnostic** template for off-Google distribution. It defines one repeatable unit —
-the **channel play** — that every promotion channel (Reddit, Pinterest, directories, Q&A, YouTube
+the **channel play** — that every promotion channel (Reddit, directories, Q&A, YouTube
 comments, …) follows, so per-channel work produces consistent output instead of one-off notes.
 
 This doc is the seed for a future `.agents/skills/spread-site/` skill (see
@@ -68,9 +68,9 @@ the shared rule on when to tag vs. not.>
 Not every channel tolerates a tagged link, so the tagging rule is conditional rather than universal:
 
 - **Tag with UTM parameters** on channels where a marketing-style link is normal and won't read as
-  spammy: Pinterest pin descriptions, directory submissions, YouTube video/description-level links.
+  spammy: directory submissions, YouTube video/description-level links.
   Convention: `?utm_source=<channel>&utm_medium=referral&utm_campaign=distribution-v1` (e.g.
-  `?utm_source=pinterest&utm_medium=referral&utm_campaign=distribution-v1`).
+  `?utm_source=directory&utm_medium=referral&utm_campaign=distribution-v1`).
 - **Post the bare canonical URL** on channels where a visibly tagged link undermines the "genuine
   answer, not an ad" framing and risks looking like spam: Reddit/forum comments, Quora answers,
   StackExchange answers, YouTube comments. Track these via referrer instead — Cloudflare Web
