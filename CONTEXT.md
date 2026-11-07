@@ -7,4 +7,7 @@
 - **Comparison brief** — a niche-level document comparing ≥3 validated ideas, ending in a human-pick prompt.
 - **Board** — the derived, regenerated global index (`pipeline/board.md`) of every idea and its state; the `Status:` line in each idea file is canonical.
 - **Idea lifecycle** — candidate → validated → picked → spec'd; terminal side-exits: rejected, parked.
+- **Guide** — the paid learn-to-play and strategy PDF for one game's latest version, base game only; distinct from the expansion-buying tool.
+- **Tier** — one self-contained teaching section of a guide: how to play, beginner, intermediate or advanced tactics.
+- **Preview** — the free public HTML sample of a guide: front pages plus one complete beginner-tier tactics chapter.
 - **Run log** — the per-session record in `pipeline/<niche>/runs/` of sources consulted, gate failures, and dead-end digging.

@@ -1,0 +1,17 @@
+{
+  "slug": "orchard-dash",
+  "game": "Orchard Dash",
+  "title": "Orchard Dash: Learn to Play and Win (fixture guide)",
+  "subtitle": "How to play, how to avoid beginner mistakes, and how to plan ahead",
+  "kicker": "The complete guide to",
+  "brand": "Example Guides",
+  "publisher": "its publisher",
+  "version": "1st edition (fictional)",
+  "versionChecked": "2026-11-07",
+  "versionSource": "https://example.com/",
+  "language": "English",
+  "players": "2-4",
+  "accent": "#2f6b3a",
+  "motif": "hex",
+  "preview": { "section": "tier2-beginner", "chapter": "first-five-turns" }
+}

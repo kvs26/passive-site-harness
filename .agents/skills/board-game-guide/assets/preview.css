@@ -1,0 +1,21 @@
+body{font-size:18px;line-height:1.65}
+.cover{min-height:100vh;padding:clamp(24px,6vw,72px)}
+.cover-title{font-size:clamp(44px,11vw,96px)}
+.cover-kicker{font-size:clamp(16px,2.4vw,22px)}
+.cover-sub{font-size:clamp(16px,2.4vw,22px)}
+.cover-art{height:30%}
+.cover-top,.cover-ver{font-size:clamp(11px,1.6vw,14px)}
+.pv{max-width:44rem;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+.pv-h{font-size:1.5rem;margin:0 0 .75rem}
+.pv .sec{margin-top:3.5rem;padding-top:2rem;border-top:1px solid #ccc}
+.pv h1{font-size:2rem}
+.pv h2{font-size:1.5rem}
+.pv h3{font-size:1.2rem}
+.pv-tag{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#555;margin:0 0 1rem}
+.toc-sec{font-size:1.05rem}
+.pointer{margin-top:3.5rem;padding:1.5rem;border:2px solid var(--accent);border-radius:8px;background:#f7f7f5}
+.pointer h2{margin-top:0}
+.cta{display:inline-block;background:var(--accent-ink);color:#fff;padding:.6em 1.2em;border-radius:6px;text-decoration:none;font-weight:700}
+nav{margin-bottom:1rem}
+table{display:block;overflow-x:auto}
+@media (max-width:600px){body{font-size:17px}.pv{padding-inline:1rem}}

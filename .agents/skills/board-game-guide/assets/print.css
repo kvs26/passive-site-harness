@@ -1,0 +1,11 @@
+@page{size:Letter;margin:.85in .9in 1in;
+  @bottom-left{content:"__FOOT__";font:8.5pt "Avenir Next","Helvetica Neue",Arial,sans-serif;color:#555;vertical-align:top;padding-top:.25in}
+  @bottom-right{content:counter(page);font:9pt "Avenir Next","Helvetica Neue",Arial,sans-serif;color:#333;vertical-align:top;padding-top:.25in}}
+@page cover{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+.cover{page:cover;width:8.5in;height:11in;break-after:page}
+.sec{break-before:page}
+.contents{break-before:auto}
+.sec>h1{break-before:avoid}
+@media print{a{color:var(--accent-ink)}}
+/* black-and-white / paper readers cannot click: spell out external URLs */
+.sec a[href^="http"]::after{content:" (" attr(href) ")";font-size:.82em;overflow-wrap:anywhere;color:#444}

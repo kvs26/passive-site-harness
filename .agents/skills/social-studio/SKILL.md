@@ -56,7 +56,7 @@ Work in this order; each step ends on its stated check.
 7. **Design** HTML per the renderer's slide contract, inside the kit (hero vs info).
 8. **Image slots.** Where a design uses an image, write a prompt (below) and a fallback (stock or screenshot) so nothing breaks if the owner skips it.
 9. **Render** `node render.mjs <batch-dir>`; fix every failure it reports; owner reviews `preview.html`; loop until approved.
-10. **Write `post-this.md`**: per post — title, caption/description, keywords (Pinterest) or ≤5 hashtags (Instagram), a **unique alt text per post** (an "Alt text" column in each table; describe what the image actually shows, including its headline/key text and the site name, 1-2 sentences, under 500 characters; for carousels one description covering the cover and each slide; never one generic line for the whole batch), UTM link, day-by-day schedule (pins 1/day; Instagram 3/week), AI-label flag if any, and a closing "grab these numbers before the next batch" list.
+10. **Write `post-this.md`**: per post — title, caption/description, keywords (Pinterest) or ≤5 hashtags (Instagram), a **unique alt text per post** (an "Alt text" column in each table; describe what the image actually shows, including its headline/key text and the site name, 1-2 sentences, under 500 characters; for carousels one description covering the cover and each slide; never one generic line for the whole batch), a **ready-to-paste full URL per pin** (a "Link" column holding the complete `https://<domain><path>?utm_…&utm_content=<slug>` — never make the owner assemble base URL + path + UTMs by hand), day-by-day schedule (pins 1/day; Instagram 3/week), AI-label flag if any, and a closing "grab these numbers before the next batch" list.
 
 ### Links and UTMs
 
