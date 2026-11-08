@@ -56,7 +56,7 @@ Live site: https://whichexpansion.com/. Relevant candidate pages: https://whiche
 
 - [Choose the guide's scope, teaching structure and first game](issues/01-guide-scope-and-structure.md) — base-game guide for CATAN's latest version (English, base player counts); cover, clickable contents, how-to-read, four standalone tiers (how to play, beginner, intermediate, advanced), quick reference/glossary, sources, not-covered; teacher-style tactics; free HTML preview with one beginner tactics chapter; owner reads the whole guide.
 - [Define trustworthy research and owner-assisted source access](issues/02-research-and-owner-handoffs.md) — no evidence gate (skill reports, owner decides); official rules then YouTube-led research with transcript fallback to owner; no inline per-tactic labels or credits, internal source log plus general sources list; own-reasoning tactics only as last resort; AI checks then owner reads all; sub-agents allowed.
-- [Implement the board-game guide skill and PDF workflow](issues/03-build-guide-skill.md) — `.agents/skills/board-game-guide/` with Node + Playwright PDF/preview renderer, lint and checks, fixture-tested; guides live in `guides/<slug>/`, not under any site's `public/`; untested on a real game.
+- [Implement the board-game guide skill and PDF workflow](issues/03-build-guide-skill.md) — `.agents/skills/board-game-guide/` with Node + Playwright PDF/preview renderer, lint and checks, fixture-tested; guides live in `sites/board-game-expansion-buyers-guide/guides/<slug>/`, not under any site's `public/`; untested on a real game.
 
 ## Not yet specified
 
