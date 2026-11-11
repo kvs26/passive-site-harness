@@ -132,7 +132,12 @@ try {
   }
   const body = pv.replace(/<style>[^]*?<\/style>/, '');
   if (/<script|<[^>]*display:\s*none|<[^>]*\shidden[\s>=\/]|<template|<noscript|<!--/i.test(body)) fail('preview contains script/hidden/template/comment content');
-  if (/(src|href)="https?:/i.test(body.replace(/<a [^>]*class="cta"[^>]*>/g, '').replace(/<a href="https?:[^"]*" rel="noopener noreferrer"/g, ''))) fail('preview loads external resources');
+  if (/(src|href)="https?:/i.test(body.replace(/<a [^>]*class="(cta|pv-back)"[^>]*>/g, '').replace(/<a href="https?:[^"]*" rel="noopener noreferrer"/g, ''))) fail('preview loads external resources');
+  if (!/class="pv-jump" href="#[^"]+"/.test(body)) fail('preview is missing the "Jump to free chapter" link at the top');
+  if (!/Free sample/.test(body) || !/Included in the full PDF/.test(body)) fail('preview contents must label "Free sample" and "Included in the full PDF"');
+  if (/<a [^>]*href="#full-guide"/.test(body)) fail('preview has a link that only jumps to the sales box (render it as plain text instead)');
+  if (meta.fullGuideUrl && !body.includes(`class="pv-back" href="${meta.fullGuideUrl}"`)) fail('preview is missing "Back to guide details"');
+  if (/[$€£]\s?\d|\b(USD|INR)\b|Rs\.?\s?\d/.test(pvText)) fail('preview text contains a price (prices live on the site page, not in the generated preview)');
   if (!leaked) ok(`preview self-contained; ${checked} lines from other sections checked, none leaked`);
   ok(`preview size ${(Buffer.byteLength(pv) / 1024).toFixed(0)} KB vs full source ${(sections.reduce((a, s) => a + s.md.length, 0) / 1024).toFixed(0)} KB of text`);
 } finally { await browser.close(); }

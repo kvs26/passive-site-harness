@@ -13,5 +13,6 @@
   "players": "2-4",
   "accent": "#2f6b3a",
   "motif": "hex",
+  "fullGuideUrl": "/guides/orchard-dash/",
   "preview": { "section": "tier2-beginner", "chapter": "first-five-turns" }
 }

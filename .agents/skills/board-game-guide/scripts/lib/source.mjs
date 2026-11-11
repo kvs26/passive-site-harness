@@ -58,6 +58,8 @@ export async function loadGuide(guideDir) {
       errors.push(`guide.json: preview.chapter "${meta.preview.chapter}" is not an H2 in ${ps.key}`);
   } else errors.push('guide.json: missing "preview": { section, chapter }');
 
+  if (meta.fullGuideUrl !== undefined && !/^(\/(?!\/)[^\s"<>]*|https:\/\/[^\s"<>]+)$/.test(meta.fullGuideUrl))
+    errors.push('guide.json: fullGuideUrl must be the guide page on the site (e.g. "/guides/<slug>/") or an https URL, with no price in it');
   const logPath = path.join(dir, 'research', 'source-log.md');
   const log = (await exists(logPath)) ? parseLog(await readFile(logPath, 'utf8'), errors) : (errors.push('research/source-log.md: missing'), []);
   const src = sections.find(s => s.key === 'sources');

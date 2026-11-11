@@ -1,6 +1,6 @@
 # Existing site references (read live; never copy into a guide)
 
-Paths are relative to the repository root. Find it with `git rev-parse --show-toplevel` (works from any directory). The site directory is `sites/board-game-expansion-buyers-guide/` (abbreviated `<site>/` below), not `sites/board-game-expansion/`.
+Two roots: the *workspace root* holds `.agents/` and `sites/`; the *site root* is `<workspace>/sites/board-game-expansion-buyers-guide/` and is its own git repo (so `git rev-parse --show-toplevel` inside the site returns the site root, not the workspace). Paths starting `.agents/` or `pipeline/` are relative to the workspace root; paths starting `<site>/` are relative to the site root (not `sites/board-game-expansion/`).
 
 The existing expansion-buying tool and the paid guide are different products. Do not reuse the site's rankings or buying advice as guide content, and keep the naming distinct.
 

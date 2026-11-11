@@ -81,15 +81,28 @@ export function buildToc(sections, { pages = {}, linkable = () => true, linkChap
   return `<ol class="toc">${items.join('')}</ol>`;
 }
 
+// Preview-only contents: what is free to read here, and (as plain text, never links) what only the full PDF has.
+function buildPreviewNav(sections, hr, ps, chapterId) {
+  const name = s => `${s.kind === 'tier' ? `<b>Tier ${s.tier}</b> ` : ''}${esc(s.title)}`;
+  const subs = (s, skip) => (s.kind === 'tier' || s.key === 'quick-reference') && s.chapters.some(c => c.id !== skip)
+    ? `<ol class="toc-sub">${s.chapters.filter(c => c.id !== skip).map(c => `<li><span class="toc-off">${esc(c.title)}</span></li>`).join('')}</ol>` : '';
+  const chapter = ps.chapters.find(c => c.id === chapterId);
+  const free = `<li class="toc-sec"><a href="#${hr.key}">${name(hr)}</a></li>`
+    + `<li class="toc-sec"><a href="#${ps.key}">${name(ps)}: ${esc(chapter.title)}</a></li>`;
+  const full = sections.filter(s => s !== hr).map(s => `<li class="toc-sec"><span class="toc-off">${name(s)}${s === ps ? ' (other chapters)' : ''}</span>${subs(s, s === ps ? chapterId : null)}</li>`).join('');
+  return `<nav class="pv-nav" aria-label="Contents">
+<h2 class="pv-h">Free sample</h2><ol class="toc toc-free">${free}</ol>
+<h2 class="pv-h pv-h-full">Included in the full PDF</h2><p class="pv-note">These parts are not in this sample, so they are not links.</p><ol class="toc toc-full">${full}</ol></nav>`;
+}
+
 function coverHtml(meta) {
   const fg = contrast(meta.accent, '#ffffff') >= contrast(meta.accent, '#111111') ? '#ffffff' : '#111111';
   const panel = mix(meta.accent, fg === '#ffffff' ? '#000000' : '#ffffff', 0.18);
-  const facts = [`${esc(meta.version)}`, `${esc(meta.language)}`, `${esc(meta.players)} players`];
   return `<section class="cover" style="--cv-bg:${meta.accent};--cv-fg:${fg};--cv-panel:${panel}" aria-label="Cover">
   <div class="cover-top"><span>Learn-to-play &amp; strategy guide</span>${meta.brand ? `<span>${esc(meta.brand)}</span>` : ''}</div>
-  <div class="cover-main"><p class="cover-kicker">${esc(meta.kicker || 'The complete guide to')}</p><h1 class="cover-title">${esc(meta.game)}</h1>${meta.subtitle ? `<p class="cover-sub">${esc(meta.subtitle)}</p>` : ''}</div>
+  <div class="cover-main"><p class="cover-kicker">${esc(meta.kicker || 'The complete guide to')}</p><h1 class="cover-title">${esc(meta.game)}</h1><p class="cover-sub">${esc(meta.version)}</p></div>
   ${coverPattern(meta)}
-  <div class="cover-foot"><div class="cover-ver"><span class="lbl">Covers</span><span>${facts.join(' &middot; ')}</span><span class="small">Version checked ${esc(meta.versionChecked)}</span><span class="disc">Independent guide. Not affiliated with or endorsed by ${esc(meta.publisher || 'the publisher')}. Game names belong to their owners.</span></div></div>
+  <div class="cover-foot"><div class="cover-ver"><span class="disc">Independent guide. Not affiliated with or endorsed by ${esc(meta.publisher || 'the publisher')}. Game names belong to their owners.</span></div></div>
 </section>`;
 }
 
@@ -121,18 +134,23 @@ export async function renderPreview(guide) {
   const chapterHtml = mdToHtml({ ...ps, md: chapterMd, key: ps.key });
   const chapterTitle = ps.chapters.find(c => c.id === chapterId).title;
   const more = sections.filter(s => s.kind === 'tier' || s.key === 'quick-reference').map(s => `<li>${s.kind === 'tier' ? `<b>Tier ${s.tier}</b> ` : ''}${esc(s.title)}</li>`).join('');
-  const link = meta.fullGuideUrl ? ` <a class="cta" href="${esc(meta.fullGuideUrl)}" rel="noopener">Get the full guide</a>` : '';
-  const body = `${coverHtml(meta)}
+  // fullGuideUrl is the guide's page on the site (e.g. /guides/<slug>/): the route back, and where price and purchase live.
+  // Never write a price into the preview; it changes and belongs to that page.
+  const url = meta.fullGuideUrl ? esc(meta.fullGuideUrl) : '';
+  const link = url ? `<a class="cta" href="${url}" rel="noopener">See the full guide</a>` : '';
+  const bar = `<header class="pv-bar"><span class="pv-brand">${esc(meta.brand || meta.game)} &middot; Free sample</span><nav aria-label="Sample shortcuts">${url ? `<a class="pv-back" href="${url}" rel="noopener">&larr; Back to guide details</a>` : ''}<a class="pv-jump" href="#${ps.key}">Jump to free chapter</a></nav></header>`;
+  const body = `${bar}
+${coverHtml(meta)}
 <main class="pv">
-<nav aria-label="Contents"><h2 class="pv-h">Contents</h2>${buildToc(sections, { scope: 'preview', linkable: s => s === hr || s === ps, linkChapter: c => c.id === chapterId })}</nav>
-<section class="sec">${mdToHtml(hr)}</section>
-<section class="sec" id="${ps.key}"><p class="pv-tag">Free preview chapter &middot; Tier 2 &middot; ${esc(ps.title)}</p>${chapterHtml.replace(/<h1 id="[^"]*">[^]*?<\/h1>\n?/, '')}</section>
+${buildPreviewNav(sections, hr, ps, chapterId)}
+<section class="sec" id="${hr.key}">${mdToHtml(hr).replace(/<h1 id="[^"]*">/, '<h1>')}</section>
+<section class="sec" id="${ps.key}"><p class="pv-tag">Free sample &middot; Tier 2 &middot; ${esc(ps.title)}</p>${chapterHtml.replace(/<h1 id="[^"]*">[^]*?<\/h1>\n?/, '')}</section>
 <section class="pointer" id="full-guide"><h2>The rest is in the full guide</h2>
-<p>You have read one complete chapter: <em>${esc(chapterTitle)}</em>. The full guide has the same plain-English style throughout, and adds:</p><ul>${more}<li>Sources and version notes, and a list of what the guide does not cover</li></ul>${link ? `<p>${link.trim()}</p>` : ''}</section>
+<p>You have read one complete chapter: <em>${esc(chapterTitle)}</em>. The full guide has the same plain-English style throughout, and adds:</p><ul>${more}<li>Sources and version notes, and a list of what the guide does not cover</li></ul>${link ? `<p>${link}</p><p class="pv-note">The current price and the purchase option are on the guide page.</p>` : ''}</section>
 </main>`;
-  // Links to sections that are not in the preview point at the "full guide" box instead of a dead anchor.
+  // A link to a part that is not in the sample becomes plain text tagged "full PDF", never a link that only jumps to a sales box.
   const ids = new Set([...body.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
-  const fixed = body.replace(/href="#([^"]+)"/g, (m, id) => (ids.has(id) ? m : 'href="#full-guide"'));
+  const fixed = body.replace(/<a href="#([^"]+)"[^>]*>([^]*?)<\/a>/g, (m, id, text) => (ids.has(id) ? m : `<span class="in-full">${text}</span><span class="in-full-tag"> (full PDF)</span>`));
   return doc(meta, (await baseCss()) + (await previewCss()), fixed, '<meta name="robots" content="noindex">');
 }
 

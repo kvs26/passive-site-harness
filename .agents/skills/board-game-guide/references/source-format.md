@@ -1,6 +1,6 @@
 # Source format (what `build.mjs` and `check.mjs` enforce)
 
-A guide lives at `sites/board-game-expansion-buyers-guide/guides/<game-slug>/` (inside the site folder, but outside its `public/`).
+A guide lives at `<site>/guides/<game-slug>/` (site root = `sites/board-game-expansion-buyers-guide/`; inside the site folder, but outside its `public/`).
 
 ```
 guides/<slug>/
@@ -12,12 +12,12 @@ guides/<slug>/
   dist/                      generated: <slug>-guide.pdf, preview/index.html, pages/*.png, build/
 ```
 
-Never publish `dist/<slug>-guide.pdf` or `source/` under a site's `public/`. Only `dist/preview/index.html` is a public-safe artifact. Download/email/hosting are undecided and out of scope.
+Never publish `dist/<slug>-guide.pdf`, `source/` or `research/` under a site's `public/`. Only `dist/preview/index.html` is a public-safe artifact; the site's release step copies it (and owner-approved cover/images) after the owner approves the guide. Payment, download and email are not handled here.
 
 ## guide.json
 
 Required: `slug`, `game`, `title`, `version` (the latest in-print edition, shown on the cover), `versionChecked` (YYYY-MM-DD), `versionSource` (URL proving the edition is current), `players`, `language`, `accent` (`#rrggbb`), `preview` (`{ "section": "tier2-beginner", "chapter": "<h2-slug>" }`).
-Optional: `subtitle`, `kicker`, `brand`, `publisher`, `motif` (`hex` | `dots` | `diamonds`), `fullGuideUrl` (adds a button to the preview; leave unset until delivery is decided).
+Optional: `subtitle`, `kicker`, `brand`, `publisher`, `motif` (`hex` | `dots` | `diamonds`), `fullGuideUrl` (the guide's page on the site, normally `"/guides/<slug>/"`; an https URL is also accepted, anything else fails lint. It adds **Back to guide details** in the preview's top bar and **See the full guide** in its closing box. Set it before the owner-approved build that gets released; never put a price in it or in the preview).
 
 ## Section files (fixed names and order)
 
