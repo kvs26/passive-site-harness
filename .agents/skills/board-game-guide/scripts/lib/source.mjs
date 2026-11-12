@@ -29,6 +29,17 @@ export const slugify = s =>
 
 export const exists = p => stat(p).then(() => true, () => false);
 
+// Diagram colours from guide.json: accent (base) + optional palette { good, bad, gain }, all picked from the cover.
+// Each role gets a text-safe colour and a light tint. A missing role falls back to grey.
+export function diagramPalette(meta) {
+  const textSafe = c => contrast(c, '#ffffff') >= 4.5 ? c : mix(c, '#000000', 0.45);
+  const acc = meta.accent || '#a8431e', pal = meta.palette || {};
+  const role = c => ({ c: textSafe(c || '#1b1b1b'), t: c ? mix(c, '#ffffff', 0.78) : '#ecebe7' });
+  const [gd, bd, gn] = [role(pal.good), role(pal.bad), role(pal.gain)];
+  return { accent: acc, ink: textSafe(acc), tint: mix(acc, '#ffffff', 0.8),
+    good: gd.c, goodTint: gd.t, bad: bd.c, badTint: bd.t, gain: gn.c, gainTint: gn.t };
+}
+
 export async function loadGuide(guideDir) {
   const dir = path.resolve(guideDir);
   const errors = [];
@@ -37,6 +48,10 @@ export async function loadGuide(guideDir) {
   catch (e) { errors.push(`guide.json: ${e.code === 'ENOENT' ? 'missing' : e.message}`); }
   for (const k of REQUIRED_META) if (!meta[k]) errors.push(`guide.json: missing "${k}"`);
   if (meta.accent && !/^#[0-9a-fA-F]{6}$/.test(meta.accent)) errors.push('guide.json: accent must be #rrggbb');
+  for (const [k, v] of Object.entries(meta.palette || {})) {
+    if (!['good', 'bad', 'gain'].includes(k)) errors.push(`guide.json: palette.${k} is not a role (use good, bad, gain)`);
+    else if (!/^#[0-9a-fA-F]{6}$/.test(v)) errors.push(`guide.json: palette.${k} must be #rrggbb`);
+  }
   if (meta.versionChecked && !/^\d{4}-\d{2}-\d{2}$/.test(meta.versionChecked)) errors.push('guide.json: versionChecked must be YYYY-MM-DD');
   if (meta.slug && !/^[a-z0-9-]+$/.test(meta.slug)) errors.push('guide.json: slug must be lowercase-hyphen');
   // Owner-made papercut cover art (references/cover-prompt.md). Optional: without it the coded pattern cover is used.
@@ -94,8 +109,7 @@ async function resolveDiagrams(md, dir, meta, name, errors) {
     const mod = path.join(dir, 'diagrams', `${id}.mjs`), file = path.join(dir, 'diagrams', `${id}.svg`);
     try {
       if (await exists(mod)) {
-        const ink = contrast(meta.accent || '#a8431e', '#ffffff') >= 4.5 ? meta.accent : mix(meta.accent || '#a8431e', '#000000', 0.45);
-        kit.setPalette({ accent: meta.accent, ink, tint: mix(meta.accent || '#a8431e', '#ffffff', 0.8) });
+        kit.setPalette(diagramPalette(meta));
         svg = (await import(`${pathToFileURL(mod).href}?v=${Date.now()}`)).default(kit, meta);
       } else if (await exists(file)) svg = await readFile(file, 'utf8');
       else errors.push(`${name}: ::diagram ${id} has no diagrams/${id}.mjs or diagrams/${id}.svg`);

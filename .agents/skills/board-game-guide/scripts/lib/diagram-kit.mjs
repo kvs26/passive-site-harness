@@ -1,20 +1,26 @@
 // Diagram kit: small SVG primitives for original teaching diagrams in any board game.
 // A guide's diagrams/<name>.mjs exports `default (kit, meta) => kit.svg(...)` and the source uses `::diagram name | Caption.`
 // Colours are written inline (the SVG is self-contained, so the site's sample page shows it right with no extra CSS).
-// Only two colours: ink/greys plus the guide's accent (guide.json `accent`, picked from the cover). Every diagram still
-// reads in black and white: ownership and meaning are carried by shape, outline, pattern and labels, never colour alone.
+// Colours come from the cover and each has one fixed role in every diagram (so all guides look standardised):
+//   accent (base, guide.json `accent`) = structure + focus: title bands, callouts, arrows, the one thing that matters
+//   good / bad / gain (guide.json `palette`) = right choice / wrong choice or threat / resources or points gained
+// Every diagram still reads in black and white: meaning is carried by shape, outline, pattern and labels, never colour alone.
 // Units are CSS px at print scale: 1 viewBox unit = 1px when the figure is drawn at its natural width (max 624px = 6.5in).
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const f = n => +(+n).toFixed(1);
 const INK = '#1b1b1b';
-let P = { accent: '#a8431e', ink: '#a8431e', tint: '#f2dcd2' };
-// Called by the build before each diagram: accent = guide accent, ink = text-safe accent, tint = light accent fill.
+let P = { accent: '#a8431e', ink: '#a8431e', tint: '#f2dcd2', good: '#1b1b1b', goodTint: '#ecebe7', bad: '#1b1b1b', badTint: '#ecebe7', gain: '#1b1b1b', gainTint: '#ecebe7' };
+// Called by the build before each diagram: accent = guide accent, ink = text-safe accent, tint = light accent fill;
+// good/bad/gain = text-safe role colour, *Tint = its light fill.
 export const setPalette = p => { P = { ...P, ...p }; };
 const STY = () => ({
   'dg-plain': `fill="#fff" stroke="${INK}" stroke-width="1.5"`,
   'dg-muted': 'fill="#ecebe7" stroke="#9a978f" stroke-width="1.2"',
   'dg-focus': `fill="${P.tint}" stroke="${P.ink}" stroke-width="3"`,
+  'dg-good': `fill="${P.goodTint}" stroke="${P.good}" stroke-width="2.5"`,
+  'dg-bad': `fill="${P.badTint}" stroke="${P.bad}" stroke-width="2.5"`,
+  'dg-gain': `fill="${P.gainTint}" stroke="${P.gain}" stroke-width="2"`,
   'dg-ghost': `fill="none" stroke="${INK}" stroke-width="1.5" stroke-dasharray="5 4"`,
   'dg-hatch': `fill="url(#dg-hatch)" stroke="${INK}" stroke-width="1.5"`,
   'dg-dots': `fill="url(#dg-dots)" stroke="${INK}" stroke-width="1.5"`,
@@ -29,8 +35,8 @@ const STY = () => ({
   'dg-ah': `fill="${P.ink}"`,
   'dg-callout': `fill="${P.ink}" stroke="#fff" stroke-width="1.5"`,
   'dg-callout-t': '#fff', 'dg-band-t': '#fff',
-  'dg-mark-good': `fill="#fff" stroke="${INK}" stroke-width="2"`,
-  'dg-mark-bad': `fill="${INK}" stroke="${INK}" stroke-width="2"`,
+  'dg-mark-good': `fill="#fff" stroke="${P.good}" stroke-width="2.2"`,
+  'dg-mark-bad': `fill="${P.bad}" stroke="${P.bad}" stroke-width="2"`,
   'dg-band': `fill="${P.ink}"`,
   'dg-panel': 'fill="none" stroke="#bdbab2" stroke-width="1.2"',
   'dg-axis': `stroke="${INK}" stroke-width="1.2"`,
@@ -48,8 +54,11 @@ const DEFS = () => `<marker id="dg-ah" viewBox="0 0 10 10" refX="8" refY="5" mar
   + `<pattern id="dg-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><line x1="0" y1="0" x2="0" y2="6" stroke="#1b1b1b" stroke-width="2"/></pattern>`
   + `<pattern id="dg-dots" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fff"/><circle cx="3" cy="3" r="1.2" fill="#1b1b1b"/></pattern>`;
 
-// tone: 'plain' (white), 'muted' (grey context), 'focus' (accent tint: the one thing that matters), 'hatch', 'dots', 'ghost' (dashed outline = not there yet / option)
+// tone: 'plain' (white), 'muted' (grey context), 'focus' (accent tint: the one thing that matters), 'hatch', 'dots', 'ghost' (dashed outline = not there yet / option),
+// 'good' (right choice / allowed), 'bad' (wrong choice / blocked / threat), 'gain' (resources or points you get)
 const tone = t => `dg-${t || 'plain'}`;
+// Fill/stroke attributes for a tone, for custom shapes in a guide's own diagram files (keeps them on the palette).
+export const style = t => S(tone(t));
 
 export function text(x, y, s, { size = 13, anchor = 'middle', weight, cls: c } = {}) {
   return `<text x="${f(x)}" y="${f(y)}" font-size="${size}" text-anchor="${anchor}"${weight ? ` font-weight="${weight}"` : ''} dominant-baseline="central" fill="${c ? S(c, 'fill') : INK}">${esc(s)}</text>`;
@@ -119,7 +128,7 @@ export const callout = (x, y, n, { r = 11 } = {}) => `<circle cx="${f(x)}" cy="$
 // Verdict mark: good = check in a circle, bad = cross in a circle (shape differs, so it works in black and white).
 export function mark(x, y, kind = 'good', { r = 12 } = {}) {
   const p = kind === 'good' ? `M${f(x - r * .45)} ${f(y)}L${f(x - r * .1)} ${f(y + r * .4)}L${f(x + r * .5)} ${f(y - r * .4)}` : `M${f(x - r * .4)} ${f(y - r * .4)}L${f(x + r * .4)} ${f(y + r * .4)}M${f(x + r * .4)} ${f(y - r * .4)}L${f(x - r * .4)} ${f(y + r * .4)}`;
-  return `<circle cx="${f(x)}" cy="${f(y)}" r="${r}" ${S(`dg-mark-${kind}`)}/><path d="${p}" fill="none" stroke="${kind === 'good' ? INK : '#fff'}" stroke-width="2.6" stroke-linecap="round"/>`;
+  return `<circle cx="${f(x)}" cy="${f(y)}" r="${r}" ${S(`dg-mark-${kind}`)}/><path d="${p}" fill="none" stroke="${kind === 'good' ? P.good : '#fff'}" stroke-width="2.6" stroke-linecap="round"/>`;
 }
 
 // Card with a title band and short lines (card anatomy, cost/recipe cards, player aids).

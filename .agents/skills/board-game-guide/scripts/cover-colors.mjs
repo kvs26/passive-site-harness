@@ -40,4 +40,5 @@ for (const c of picked.sort((a, b) => b.share - a.share).slice(0, 8)) {
   const cr = contrast(c.hex, '#ffffff');
   console.log(`${c.hex}  ${(c.share * 100).toFixed(1).padStart(5)}% of cover   contrast on white ${cr.toFixed(1)}  ${cr >= 4.5 ? 'text-safe' : `-> text ${mix(c.hex, '#000000', 0.45)}`}`);
 }
-console.log('\nSet the chosen one as "accent" in guide.json, rebuild, and look at a tactic page next to page 1.');
+console.log('\nIn guide.json set "accent" to the main colour the owner picks (base), and "palette": { "good", "bad", "gain" } to three');
+console.log('other clearly different cover colours (supporting). Rebuild and look at a tactic page next to page 1.');

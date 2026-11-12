@@ -69,11 +69,24 @@ Don't draw anything the text already makes obvious.
 
 ## Colour
 
-- Use two colours only: ink/greys plus the guide's `accent` (`guide.json`).
+All colours come from the cover, and each colour has **one fixed job** in every diagram. That is what makes the diagrams look standardised.
+
+| Role | Set in `guide.json` | Pick from the cover | Used for (kit tone) |
+|---|---|---|---|
+| Base | `accent` | the guide's main colour: a bold cover colour the owner picks (not the background) | title bands, callouts, arrows, the one focus item (`'focus'`) |
+| Good | `palette.good` | a calm/natural colour | right choice, allowed, open: check mark, `'good'` tone |
+| Bad | `palette.bad` | a warm/warning colour | wrong choice, blocked, threat: cross mark, `'bad'` tone |
+| Gain | `palette.gain` | a bright highlight colour | resources, cards and points (the "stuff" of the game), `'gain'` tone |
+
+- Ink and greys do everything else (context = `'muted'`/`'plain'`).
+- **Pick them:** `node scripts/cover-colors.mjs <guide-dir>` lists the cover's main colours. Ask the owner which one is the base; the other three roles are supporting colours from the rest of the list, clearly different from the base and each other. The build darkens any colour for text and makes the light tints itself.
+- **Same job, same colour.** Never use a role colour for anything else (no "bad" brick for a brick hex). Comparison panels use good vs bad the same way every time.
+- **Every diagram shows colour:** at least one focus item, a good/bad pair, or gain. A diagram that is only grey is not finished.
+- Use the fewest roles that make the point (usually 1-2 per diagram). No new colours outside these four.
+- Custom shapes in a guide's own diagram files use `kit.style(tone)` so they stay on the palette; never hard-code a hex.
 - The kit writes colours inline, so the free-sample chapter looks the same on the site.
-- **Pick the accent from the cover:** `node scripts/cover-colors.mjs <guide-dir>` lists the cover's main colours and marks which are dark enough for text. Choose the one that best matches the cover's mood. The build darkens it automatically for text if needed.
-- The headings, tactic labels, the heading bar and diagram focus all follow the accent, so the inside matches the cover.
-- Everything must still read in black and white: check one page in greyscale.
+- The headings, tactic labels and heading bar follow `accent`, so the inside matches the cover.
+- Everything must still read in black and white (meaning from shape, check/cross, outline, labels): check one page in greyscale.
 
 ## How to make one
 

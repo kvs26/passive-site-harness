@@ -18,7 +18,9 @@ Never publish `dist/<slug>-guide.pdf`, `source/` or `research/` under a site's `
 
 ## guide.json
 
-Required: `slug`, `game`, `title`, `version` (the latest in-print edition, shown on the cover), `versionChecked` (YYYY-MM-DD), `versionSource` (URL proving the edition is current), `players`, `language`, `accent` (`#rrggbb`, picked from the cover with `scripts/cover-colors.mjs`; drives headings, tactic labels and diagram focus), `preview` (`{ "section": "tier2-beginner", "chapter": "<h2-slug>" }`).
+Optional `palette`: `{ "good": "#rrggbb", "bad": "#rrggbb", "gain": "#rrggbb" }`, diagram role colours picked from the cover (see [diagrams.md](diagrams.md), Colour). Missing roles fall back to grey.
+
+Required: `slug`, `game`, `title`, `version` (the latest in-print edition, shown on the cover), `versionChecked` (YYYY-MM-DD), `versionSource` (URL proving the edition is current), `players`, `language`, `accent` (`#rrggbb`, picked from the cover with `scripts/cover-colors.mjs`; drives headings, tactic labels and diagram focus; the owner's chosen main cover colour), `preview` (`{ "section": "tier2-beginner", "chapter": "<h2-slug>" }`).
 Optional: `subtitle`, `kicker`, `brand`, `publisher`, `motif` (`hex` | `dots` | `diamonds`).
 
 ## Section files (fixed names and order)
@@ -27,6 +29,7 @@ Optional: `subtitle`, `kicker`, `brand`, `publisher`, `motif` (`hex` | `dots` | 
 
 - One `#` H1 per file (section title). `##` = chapter (listed in the contents). `###` = one tactic (tiers 2-4).
 - Tiers 1-4 open with `> **Assumes:** ...`. Tier 1 needs an H2 "Worked example". `quick-reference` needs an H2 "Glossary".
+- `not-covered` is a short list of what a buyer might expect but won't find: older/other editions, player-count extensions, expansions and scenarios, and other games in the same family. Nothing else: no house rules/variants, languages or "worth buying" lines.
 - Every tactic (`###`) contains these bold lead-ins, in prose paragraphs: `**Why it works.**` `**When it applies.**` `**When it fails.**` `**Example.**` `**Common mistake.**`. No evidence/source labels on tactics.
 - Link between sections with `[text](#section-key)` or `[text](#section-key--chapter-slug)` (slug = lowercase-hyphenated H2 text). A tier never restates a rule: link to the quick reference or glossary.
 - Diagrams: rules and how-to in [diagrams.md](diagrams.md). Preferred: `diagrams/<name>.mjs` built with the kit (`scripts/lib/diagram-kit.mjs`), placed with a line `::diagram <name> | Caption sentence.` (a `diagrams/<name>.svg` file also works). Hand-written alternative: original inline `<svg viewBox="..." role="img" aria-label="...">` inside `<figure>` with a `<figcaption>`. Lint: every tier H2 chapter has at least one diagram; every figure has a caption; every SVG has an aria-label. No remote images, scripts or inline event handlers. No publisher art or box scans.

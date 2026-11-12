@@ -6,6 +6,8 @@
 .sec{break-before:page}
 .contents{break-before:auto}
 .sec>h1{break-before:avoid}
+/* keep a diagram's lead-in sentence on the same page as the diagram */
+p:has(+ figure.dg-fig){break-after:avoid;break-inside:avoid}
 @media print{a{color:var(--accent-ink)}}
 /* black-and-white / paper readers cannot click: spell out external URLs */
 .sec a[href^="http"]::after{content:" (" attr(href) ")";font-size:.82em;overflow-wrap:anywhere;color:#444}

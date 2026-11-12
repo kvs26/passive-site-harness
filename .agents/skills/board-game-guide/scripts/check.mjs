@@ -23,6 +23,22 @@ const sq = s => norm(s).replace(/ /g, '');
 
 if (guide.errors.length) guide.errors.forEach(fail); else ok('source lint clean');
 
+// ---- cover image size (print needs ~3264 x 4224 for sharp US Letter) ----------------
+{
+  const { loadImage } = await import('@napi-rs/canvas');
+  const names = ['cover.png', 'cover.jpg', 'cover.webp'];
+  let found = false;
+  for (const n of names) {
+    let buf; try { buf = await readFile(path.join(guide.dir, 'cover', n)); } catch { continue; }
+    found = true;
+    const img = await loadImage(buf);
+    if (img.width < 3264 || img.height < 4224) warn(`cover/${n} is ${img.width}x${img.height}; ask ChatGPT for the full 3264x4224 download (see references/cover-prompt.md) or it prints blurry`);
+    else ok(`cover/${n} is ${img.width}x${img.height}`);
+    break;
+  }
+  if (!found) warn('no cover/cover.png yet: the build uses the coded draft cover');
+}
+
 // ---- plain text of a markdown block, for matching against extracted text -------------
 const plainLines = md => {
   let fence = false; const out = [];
