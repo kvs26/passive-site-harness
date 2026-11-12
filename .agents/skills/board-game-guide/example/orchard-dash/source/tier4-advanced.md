@@ -14,4 +14,6 @@
 
 **Example.** A rival has 8 apples and sits two trees before a 2-apple tree. You can reach it first. Take it.
 
+::diagram block-the-tree | You (solid pawn) reach tree 6 before the rival (white pawn), so they cannot finish there.
+
 **Common mistake.** Blocking too early. Fix: wait until the leader is within 2 apples.

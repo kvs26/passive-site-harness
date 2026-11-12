@@ -4,6 +4,7 @@ Audience: any reader, including someone who has never played. Tone: a very good 
 
 - Very easy English. Short sentences, common words, one idea per sentence. Define each game term once (glossary) and link to it. Prefer "you" and concrete game moments.
 - Write tactics so the reader can picture a situation from their own past games and see why it went well or badly.
+- Show, don't only tell: wherever the reader would have to imagine a board position, an order of steps, a comparison or a frequency, add a diagram ([diagrams.md](diagrams.md)). Text says why; the diagram shows where.
 - Every tactic has the five parts (see `source-format.md`). "When it fails" must be real, not a token caveat.
 - Rules statements must match the publisher's rulebook for the stated edition. Strategy comes from many sources (YouTube first, then BGG, Reddit, articles, community sites, digital tutorials). Where players disagree, say so naturally ("some players prefer..."). Do not credit tactics inline to specific videos/posts, do not add per-tactic evidence labels, do not invent quotes, success rates, timestamps or personal playtesting.
 - Last resort when sources lack tactics: derive them from the rules, and say once on `how-to-read` that some tactics are our own analysis. Never claim human playtesting.

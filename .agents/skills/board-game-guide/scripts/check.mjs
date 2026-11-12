@@ -102,6 +102,13 @@ try {
   if (over.length) fail(`content wider than the page text area: ${over.join(' | ')}`); else ok('no content overflows the page width');
   const svgBad = await page.evaluate(() => [...document.querySelectorAll('svg:not(.cover-art)')].filter(s => !s.getAttribute('aria-label')).length);
   if (svgBad) fail(`${svgBad} diagram(s) missing aria-label`);
+  // Diagram labels must stay readable once the SVG is scaled to the column (>= 10px = 7.5pt in print).
+  const tiny = await page.evaluate(() => [...document.querySelectorAll('.sec svg text')].map(t => {
+    const px = parseFloat(getComputedStyle(t).fontSize) * (t.ownerSVGElement.getScreenCTM()?.a || 1);
+    return px < 9.95 ? `${t.closest('figure')?.id || 'svg'}: "${t.textContent.trim().slice(0, 20)}" ${px.toFixed(1)}px` : null;
+  }).filter(Boolean).slice(0, 8));
+  if (tiny.length) fail(`diagram text too small after scaling (min 10px / 7.5pt; draw the SVG narrower or the text bigger): ${tiny.join(' | ')}`);
+  else ok('diagram text is readable at print size');
 
   // ---- preview isolation ----
   const pv = await readFile(path.join(dist, 'preview', 'index.html'), 'utf8');
@@ -114,11 +121,10 @@ try {
   if (!pvPage || !pvText.includes(norm(chapterHead.title))) fail('preview is missing its chapter');
   let leaked = 0, checked = 0;
   for (const s of sections) {
-    if (s.key === 'how-to-read') continue;
     let md = s.md;
-    if (s === ps) { // outside the chosen chapter only
+    if (s === ps) { // outside the chosen chapter only (the tier's Assumes line must not appear either)
       const lines = md.split('\n'); let on = false, keep = [];
-      for (const l of lines) { const m = /^##\s+(.*)$/.exec(l); if (m) on = m[1].replace(/\s*\{#.*\}$/, '').trim() === chapterHead.title; if (!on && !/^>/.test(l)) keep.push(l); }
+      for (const l of lines) { const m = /^##\s+(.*)$/.exec(l); if (m) on = m[1].replace(/\s*\{#.*\}$/, '').trim() === chapterHead.title; if (!on) keep.push(l); }
       md = keep.join('\n');
     }
     for (const l of plainLines(md)) { checked++; if (pvText.includes(norm(l).split(' ').slice(0, 8).join(' '))) { leaked++; fail(`preview leaks text from ${s.key}: "${l.slice(0, 50)}..."`); } }
@@ -132,11 +138,9 @@ try {
   }
   const body = pv.replace(/<style>[^]*?<\/style>/, '');
   if (/<script|<[^>]*display:\s*none|<[^>]*\shidden[\s>=\/]|<template|<noscript|<!--/i.test(body)) fail('preview contains script/hidden/template/comment content');
-  if (/(src|href)="https?:/i.test(body.replace(/<a [^>]*class="(cta|pv-back)"[^>]*>/g, '').replace(/<a href="https?:[^"]*" rel="noopener noreferrer"/g, ''))) fail('preview loads external resources');
-  if (!/class="pv-jump" href="#[^"]+"/.test(body)) fail('preview is missing the "Jump to free chapter" link at the top');
-  if (!/Free sample/.test(body) || !/Included in the full PDF/.test(body)) fail('preview contents must label "Free sample" and "Included in the full PDF"');
-  if (/<a [^>]*href="#full-guide"/.test(body)) fail('preview has a link that only jumps to the sales box (render it as plain text instead)');
-  if (meta.fullGuideUrl && !body.includes(`class="pv-back" href="${meta.fullGuideUrl}"`)) fail('preview is missing "Back to guide details"');
+  if (/(src|href)="https?:/i.test(body.replace(/<a href="https?:[^"]*" rel="noopener noreferrer"/g, ''))) fail('preview loads external resources');
+  // Site contract: the guide page lifts the chapter section and this contents list (tier items) at build time.
+  if (!/<ol class="toc toc-full">[^]*?<\/ol><\/nav>/.test(body) || !/<li class="toc-sec"><span class="toc-off"><b>Tier 1<\/b>/.test(body)) fail('preview is missing the full-guide contents list the site reads');
   if (/[$€£]\s?\d|\b(USD|INR)\b|Rs\.?\s?\d/.test(pvText)) fail('preview text contains a price (prices live on the site page, not in the generated preview)');
   if (!leaked) ok(`preview self-contained; ${checked} lines from other sections checked, none leaked`);
   ok(`preview size ${(Buffer.byteLength(pv) / 1024).toFixed(0)} KB vs full source ${(sections.reduce((a, s) => a + s.md.length, 0) / 1024).toFixed(0)} KB of text`);

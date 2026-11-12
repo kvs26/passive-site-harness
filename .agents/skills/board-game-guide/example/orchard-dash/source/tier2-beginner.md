@@ -14,6 +14,8 @@
 
 **Example.** You are on tree 1 and roll a 3. Tree 4 is dashed. Move there and take the bonus.
 
+::diagram dashed-tree-choice | With a roll of 3, the dashed tree is worth one more apple than stopping short.
+
 **Common mistake.** Stopping on a plain tree "to be safe". Fix: count the apples first, then decide.
 
 ## Reading the board
@@ -27,5 +29,7 @@
 **When it fails.** At the very end, when the last step lets you finish the game.
 
 **Example.** A move of 2 trees that gives 3 apples beats a move of 4 trees that gives 1.
+
+::diagram apples-vs-steps | The shorter move wins because it gives more apples.
 
 **Common mistake.** Chasing the furthest tree. Fix: write down apples per move for each option.

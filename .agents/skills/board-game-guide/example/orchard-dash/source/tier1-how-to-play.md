@@ -22,6 +22,10 @@ Be the first player to collect **10 apples**. Each player gets a basket and a pa
 
 ## Your turn
 
+Every turn has the same three steps:
+
+::diagram turn-flow | Every turn goes in this order. You never skip a step.
+
 1. Roll the die.
 2. Move your pawn that many trees forward.
 3. Take the apples shown on that tree.
@@ -29,3 +33,5 @@ Be the first player to collect **10 apples**. Each player gets a basket and a pa
 ## Worked example
 
 Mia is on tree 2. She rolls a 3, so she moves to tree 5. Tree 5 shows 2 apples, so she takes 2. She now has 4 apples. It is the next player's turn.
+
+::diagram worked-example | Panel 1 is before the roll. Panel 2 is after it. Only Mia's pawn and her apple count change.

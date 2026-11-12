@@ -22,6 +22,10 @@ tr{break-inside:avoid}
 figure{margin:1.1em 0;break-inside:avoid}
 figure svg,svg{max-width:100%;height:auto}
 figcaption{font-size:9.5pt;color:#444;margin-top:.3em}
+/* diagram frames (the SVGs from scripts/lib/diagram-kit.mjs carry their own colours) */
+figure.dg-fig{margin:1em 0 1.2em;padding:.6em .7em .5em;border:1px solid #d9d6cf;border-radius:6px;background:#fff}
+figure.dg-fig svg{display:block;margin:0 auto}
+figure.dg-fig figcaption{border-top:1px solid #e6e3dc;padding-top:.35em;margin-top:.45em;color:#333}
 code{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.9em;background:#eee;padding:0 .2em}
 hr{border:0;border-top:1px solid #bbb;margin:1.5em 0}
 
@@ -33,6 +37,12 @@ hr{border:0;border-top:1px solid #bbb;margin:1.5em 0}
 .cover-title{font-size:66pt;line-height:.98;margin:0;color:var(--cv-fg);letter-spacing:-.02em;font-weight:800;overflow-wrap:break-word}
 .cover-title::after{background:var(--cv-fg);width:90px;height:6px;margin-top:.25in}
 .cover-sub{font-size:16pt;line-height:1.35;margin:.25in 0 0;max-width:5.6in;font-weight:400}
+.cover--img{padding:0;background:#1d2a44;justify-content:flex-end}
+.cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.cover-mark{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:.12in 0 .14in;color:#fffdf8}
+.cover-mark .mark{font-size:10pt;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:#f2b705}
+.cover-mark .ed{font-size:8.5pt;letter-spacing:.12em;opacity:.85}
+.tm-note{margin-top:.4in;font-size:8.5pt;color:#555;border-top:1px solid #ddd;padding-top:.1in}
 .cover-art{position:absolute;left:0;right:0;bottom:0;width:100%;height:38%;z-index:0}
 .cover-foot{position:relative;z-index:1;display:flex;flex-direction:column;gap:.18in}
 .cover-ver{display:inline-flex;flex-direction:column;align-self:flex-start;gap:3px;background:var(--cv-panel);padding:.16in .26in;border-radius:6px;font-size:13pt;font-weight:600}

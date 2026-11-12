@@ -14,4 +14,6 @@
 
 **Example.** You are on tree 1 and tree 8 gives 3 apples. A 7 is the most likely roll, so tree 8 is a good target.
 
+::diagram two-dice-odds | Middle totals come up most. A 7 has 6 ways out of 36; a 2 or a 12 has only 1.
+
 **Common mistake.** Treating every total as equal. Fix: remember that middle totals are the most common.

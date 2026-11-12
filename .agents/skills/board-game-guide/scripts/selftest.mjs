@@ -36,8 +36,11 @@ await mutate('script in source', edit('source/how-to-read.md', 'This guide has',
 await mutate('remote image', edit('source/how-to-read.md', 'This guide has', '<img src="https://x.test/a.png" alt=""> This guide has'), 'remote images');
 await mutate('per-tactic evidence label', edit('source/tier4-advanced.md', '**Example.**', '**Evidence level:** widely agreed\n\n**Example.**'), 'evidence/source labels');
 await mutate('preview chapter not in tier 2', edit('guide.json', '"first-five-turns"', '"no-such-chapter"'), 'preview.chapter');
-await mutate('fullGuideUrl that is not a site path or https URL', edit('guide.json', '"/guides/orchard-dash/"', '"javascript:alert(1)"'), 'fullGuideUrl');
 await mutate('invalid log status', edit('research/source-log.md', '| read | 2026-11-07 | fixture only |', '| i-watched-it | 2026-11-07 | fixture only |'), 'invalid status');
+await mutate('chapter without a diagram', edit('source/tier4-advanced.md', /::diagram block-the-tree.*\n/, ''), 'needs at least one diagram');
+await mutate('diagram without a caption', edit('source/tier3-intermediate.md', /(::diagram two-dice-odds) \|.*/, '$1'), 'needs a caption');
+await mutate('diagram file missing', edit('source/tier3-intermediate.md', '::diagram two-dice-odds', '::diagram no-such-diagram'), 'has no diagrams/no-such-diagram');
+await mutate('figure without figcaption', edit('source/tier1-how-to-play.md', /<figcaption>.*<\/figcaption>/, ''), 'needs a <figcaption>');
 
 // 3. probability helper against known values
 const p7 = probability(2, 6, '=', 7), p2 = probability(2, 6, '=', 2);

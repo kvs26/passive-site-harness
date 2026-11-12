@@ -4,6 +4,9 @@
 //   <guide-dir>/research/source-log.md
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+import * as kit from './diagram-kit.mjs';
+import { contrast, mix } from './render.mjs';
 
 // Fixed order = the page order settled in the guide-scope ticket (after cover + contents).
 export const SECTIONS = [
@@ -36,12 +39,17 @@ export async function loadGuide(guideDir) {
   if (meta.accent && !/^#[0-9a-fA-F]{6}$/.test(meta.accent)) errors.push('guide.json: accent must be #rrggbb');
   if (meta.versionChecked && !/^\d{4}-\d{2}-\d{2}$/.test(meta.versionChecked)) errors.push('guide.json: versionChecked must be YYYY-MM-DD');
   if (meta.slug && !/^[a-z0-9-]+$/.test(meta.slug)) errors.push('guide.json: slug must be lowercase-hyphen');
+  // Owner-made papercut cover art (references/cover-prompt.md). Optional: without it the coded pattern cover is used.
+  for (const [ext, mime] of [['png', 'image/png'], ['jpg', 'image/jpeg'], ['webp', 'image/webp']]) {
+    const p = path.join(dir, 'cover', `cover.${ext}`);
+    if (await exists(p)) { meta.coverImage = `data:${mime};base64,${(await readFile(p)).toString('base64')}`; break; }
+  }
 
   const sections = [];
   for (const s of SECTIONS) {
     const file = path.join(dir, 'source', `${s.key}.md`);
     if (!(await exists(file))) { errors.push(`source/${s.key}.md: missing`); continue; }
-    const md = await readFile(file, 'utf8');
+    const md = await resolveDiagrams(await readFile(file, 'utf8'), dir, meta, `source/${s.key}.md`, errors);
     sections.push({ ...s, file, md, ...lintSection(s, md, errors) });
   }
 
@@ -58,8 +66,6 @@ export async function loadGuide(guideDir) {
       errors.push(`guide.json: preview.chapter "${meta.preview.chapter}" is not an H2 in ${ps.key}`);
   } else errors.push('guide.json: missing "preview": { section, chapter }');
 
-  if (meta.fullGuideUrl !== undefined && !/^(\/(?!\/)[^\s"<>]*|https:\/\/[^\s"<>]+)$/.test(meta.fullGuideUrl))
-    errors.push('guide.json: fullGuideUrl must be the guide page on the site (e.g. "/guides/<slug>/") or an https URL, with no price in it');
   const logPath = path.join(dir, 'research', 'source-log.md');
   const log = (await exists(logPath)) ? parseLog(await readFile(logPath, 'utf8'), errors) : (errors.push('research/source-log.md: missing'), []);
   const src = sections.find(s => s.key === 'sources');
@@ -76,6 +82,29 @@ export async function loadGuide(guideDir) {
   return { dir, meta, sections, log, errors };
 }
 
+// `::diagram <name> | <caption sentence>` on its own line -> <figure> with diagrams/<name>.mjs (kit) or diagrams/<name>.svg.
+async function resolveDiagrams(md, dir, meta, name, errors) {
+  const out = [];
+  for (const line of md.split('\n')) {
+    const m = /^::diagram\s+([a-z0-9-]+)\s*(?:\|\s*(.*))?$/.exec(line.trim());
+    if (!m) { out.push(line); continue; }
+    const [, id, caption = ''] = m;
+    if (!caption.trim()) errors.push(`${name}: ::diagram ${id} needs a caption after "|" (a full sentence saying what to notice)`);
+    let svg = '';
+    const mod = path.join(dir, 'diagrams', `${id}.mjs`), file = path.join(dir, 'diagrams', `${id}.svg`);
+    try {
+      if (await exists(mod)) {
+        const ink = contrast(meta.accent || '#a8431e', '#ffffff') >= 4.5 ? meta.accent : mix(meta.accent || '#a8431e', '#000000', 0.45);
+        kit.setPalette({ accent: meta.accent, ink, tint: mix(meta.accent || '#a8431e', '#ffffff', 0.8) });
+        svg = (await import(`${pathToFileURL(mod).href}?v=${Date.now()}`)).default(kit, meta);
+      } else if (await exists(file)) svg = await readFile(file, 'utf8');
+      else errors.push(`${name}: ::diagram ${id} has no diagrams/${id}.mjs or diagrams/${id}.svg`);
+    } catch (e) { errors.push(`${name}: diagram ${id} failed: ${e.message}`); }
+    out.push(`<figure class="dg-fig" id="fig-${id}">${svg.trim()}<figcaption>${caption.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</figcaption></figure>`, '');
+  }
+  return out.join('\n');
+}
+
 function lintSection(s, md, errors) {
   const name = `source/${s.key}.md`;
   const chapters = [];
@@ -83,6 +112,7 @@ function lintSection(s, md, errors) {
   if (/<script|\son[a-z]+\s*=|javascript:/i.test(md)) errors.push(`${name}: scripts/inline handlers/javascript: URLs are not allowed`);
   if (/<img[^>]+src=["']?(https?:)?\/\//i.test(md)) errors.push(`${name}: remote images are not allowed (draw original inline SVG)`);
   for (const m of md.matchAll(/<svg\b[^>]*>/g)) if (!/aria-label=/.test(m[0])) errors.push(`${name}: <svg> needs aria-label (describe the diagram)`);
+  for (const m of md.matchAll(/<figure\b[^]*?<\/figure>/g)) if (!/<figcaption>[^<\s]/.test(m[0])) errors.push(`${name}: every <figure> needs a <figcaption> sentence saying what to notice`);
   const lines = md.split('\n');
   let inFence = false, h1 = null, curChapter = null, curTactic = null;
   lines.forEach((line, i) => {
@@ -97,6 +127,7 @@ function lintSection(s, md, errors) {
       else curTactic?.body !== undefined && (curTactic.body += line + '\n');
       return;
     }
+    if (curChapter && /<figure\b/.test(line)) curChapter.figures = (curChapter.figures || 0) + 1;
     if (curTactic) curTactic.body += line + '\n';
   });
   if (!h1) errors.push(`${name}: needs one H1 (the section title)`);
@@ -105,6 +136,10 @@ function lintSection(s, md, errors) {
     if (!/^>\s*\*\*Assumes:\*\*/m.test(md)) errors.push(`${name}: tier must open with a "> **Assumes:** ..." line`);
     if (!chapters.length) errors.push(`${name}: tier needs at least one H2 chapter`);
     if (s.tier === 1 && !chapters.some(c => /worked example/i.test(c.title))) errors.push(`${name}: tier 1 needs an H2 "Worked example" chapter`);
+    // Diagram floor (references/diagrams.md): every tier chapter shows at least one picture.
+    for (const c of chapters) {
+      if (!c.figures) errors.push(`${name}:${c.line}: chapter "${c.title}" needs at least one diagram (see references/diagrams.md)`);
+    }
     if (s.tier >= 2) {
       if (!tactics.length) errors.push(`${name}: tactics tier has no H3 tactics`);
       for (const t of tactics) for (const lead of TACTIC_LEADS)

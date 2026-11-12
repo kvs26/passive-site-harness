@@ -13,7 +13,7 @@ const cssStr = s => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replac
 const rgb = hex => [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
 const lum = hex => { const [r, g, b] = rgb(hex).map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }); return 0.2126 * r + 0.7152 * g + 0.0722 * b; };
 export const contrast = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
-const mix = (hex, other, t) => '#' + rgb(hex).map((v, i) => Math.round(v * (1 - t) + rgb(other)[i] * t).toString(16).padStart(2, '0')).join('');
+export const mix = (hex, other, t) => '#' + rgb(hex).map((v, i) => Math.round(v * (1 - t) + rgb(other)[i] * t).toString(16).padStart(2, '0')).join('');
 
 function prng(seedStr) {
   let h = 2166136261; for (const c of seedStr) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); }
@@ -81,28 +81,28 @@ export function buildToc(sections, { pages = {}, linkable = () => true, linkChap
   return `<ol class="toc">${items.join('')}</ol>`;
 }
 
-// Preview-only contents: what is free to read here, and (as plain text, never links) what only the full PDF has.
-function buildPreviewNav(sections, hr, ps, chapterId) {
+// The full guide's contents as plain text (never links). The site turns the tier items into its "What's in the full guide" cards.
+function buildPreviewNav(sections) {
   const name = s => `${s.kind === 'tier' ? `<b>Tier ${s.tier}</b> ` : ''}${esc(s.title)}`;
-  const subs = (s, skip) => (s.kind === 'tier' || s.key === 'quick-reference') && s.chapters.some(c => c.id !== skip)
-    ? `<ol class="toc-sub">${s.chapters.filter(c => c.id !== skip).map(c => `<li><span class="toc-off">${esc(c.title)}</span></li>`).join('')}</ol>` : '';
-  const chapter = ps.chapters.find(c => c.id === chapterId);
-  const free = `<li class="toc-sec"><a href="#${hr.key}">${name(hr)}</a></li>`
-    + `<li class="toc-sec"><a href="#${ps.key}">${name(ps)}: ${esc(chapter.title)}</a></li>`;
-  const full = sections.filter(s => s !== hr).map(s => `<li class="toc-sec"><span class="toc-off">${name(s)}${s === ps ? ' (other chapters)' : ''}</span>${subs(s, s === ps ? chapterId : null)}</li>`).join('');
+  const subs = s => (s.kind === 'tier' || s.key === 'quick-reference') && s.chapters.length
+    ? `<ol class="toc-sub">${s.chapters.map(c => `<li><span class="toc-off">${esc(c.title)}</span></li>`).join('')}</ol>` : '';
+  const full = sections.filter(s => s.key !== 'how-to-read').map(s => `<li class="toc-sec"><span class="toc-off">${name(s)}</span>${subs(s)}</li>`).join('');
   return `<nav class="pv-nav" aria-label="Contents">
-<h2 class="pv-h">Free sample</h2><ol class="toc toc-free">${free}</ol>
-<h2 class="pv-h pv-h-full">Included in the full PDF</h2><p class="pv-note">These parts are not in this sample, so they are not links.</p><ol class="toc toc-full">${full}</ol></nav>`;
+<h2 class="pv-h">In the full guide</h2><ol class="toc toc-full">${full}</ol></nav>`;
 }
 
 function coverHtml(meta) {
+  // The image already carries the title and brand mark; code adds only the edition line.
+  if (meta.coverImage) return `<section class="cover cover--img" aria-label="Cover">
+  <img class="cover-img" src="${meta.coverImage}" alt="${esc(meta.game)} strategy guide cover">
+  <div class="cover-mark"><span class="ed">${esc(meta.game)} &middot; ${esc(meta.version)}</span></div>
+</section>`;
   const fg = contrast(meta.accent, '#ffffff') >= contrast(meta.accent, '#111111') ? '#ffffff' : '#111111';
   const panel = mix(meta.accent, fg === '#ffffff' ? '#000000' : '#ffffff', 0.18);
   return `<section class="cover" style="--cv-bg:${meta.accent};--cv-fg:${fg};--cv-panel:${panel}" aria-label="Cover">
   <div class="cover-top"><span>Learn-to-play &amp; strategy guide</span>${meta.brand ? `<span>${esc(meta.brand)}</span>` : ''}</div>
   <div class="cover-main"><p class="cover-kicker">${esc(meta.kicker || 'The complete guide to')}</p><h1 class="cover-title">${esc(meta.game)}</h1><p class="cover-sub">${esc(meta.version)}</p></div>
   ${coverPattern(meta)}
-  <div class="cover-foot"><div class="cover-ver"><span class="disc">Independent guide. Not affiliated with or endorsed by ${esc(meta.publisher || 'the publisher')}. Game names belong to their owners.</span></div></div>
 </section>`;
 }
 
@@ -120,7 +120,8 @@ export async function renderFull(guide, pages = {}) {
   const parts = sections.map(s => `<section class="sec" data-kind="${s.kind}">${mdToHtml(s)}</section>`);
   const body = `${coverHtml(meta)}
 <section class="sec contents" id="contents"><h1 id="contents-h">Contents</h1>${buildToc(sections, { pages })}</section>
-${parts.join('\n')}`;
+${parts.join('\n')}
+<p class="tm-note">${esc(meta.game)} is a trademark of its owner. This guide is not affiliated with or endorsed by ${esc(meta.publisher || 'the publisher')}.</p>`;
   return doc(meta, (await baseCss()) + (await printCss(meta)), body);
 }
 
@@ -128,25 +129,12 @@ export async function renderPreview(guide) {
   const { meta, sections } = guide;
   const ps = sections.find(s => s.key === meta.preview.section);
   const chapterId = `${ps.key}--${meta.preview.chapter}`;
-  const hr = sections.find(s => s.key === 'how-to-read');
   // Only the one chosen H2 chapter of the beginner tier is rendered; every other section's text is never put in this file.
-  const chapterMd = extractChapter(ps.md, chapterId, ps.key);
-  const chapterHtml = mdToHtml({ ...ps, md: chapterMd, key: ps.key });
-  const chapterTitle = ps.chapters.find(c => c.id === chapterId).title;
-  const more = sections.filter(s => s.kind === 'tier' || s.key === 'quick-reference').map(s => `<li>${s.kind === 'tier' ? `<b>Tier ${s.tier}</b> ` : ''}${esc(s.title)}</li>`).join('');
-  // fullGuideUrl is the guide's page on the site (e.g. /guides/<slug>/): the route back, and where price and purchase live.
-  // Never write a price into the preview; it changes and belongs to that page.
-  const url = meta.fullGuideUrl ? esc(meta.fullGuideUrl) : '';
-  const link = url ? `<a class="cta" href="${url}" rel="noopener">See the full guide</a>` : '';
-  const bar = `<header class="pv-bar"><span class="pv-brand">${esc(meta.brand || meta.game)} &middot; Free sample</span><nav aria-label="Sample shortcuts">${url ? `<a class="pv-back" href="${url}" rel="noopener">&larr; Back to guide details</a>` : ''}<a class="pv-jump" href="#${ps.key}">Jump to free chapter</a></nav></header>`;
-  const body = `${bar}
-${coverHtml(meta)}
-<main class="pv">
-${buildPreviewNav(sections, hr, ps, chapterId)}
-<section class="sec" id="${hr.key}">${mdToHtml(hr).replace(/<h1 id="[^"]*">/, '<h1>')}</section>
+  // No price, cover or sales copy: the site's guide page owns all of that and lifts only the contents list and the chapter.
+  const chapterHtml = mdToHtml({ ...ps, md: extractChapter(ps.md, chapterId, ps.key), key: ps.key });
+  const body = `<main class="pv">
+${buildPreviewNav(sections)}
 <section class="sec" id="${ps.key}"><p class="pv-tag">Free sample &middot; Tier 2 &middot; ${esc(ps.title)}</p>${chapterHtml.replace(/<h1 id="[^"]*">[^]*?<\/h1>\n?/, '')}</section>
-<section class="pointer" id="full-guide"><h2>The rest is in the full guide</h2>
-<p>You have read one complete chapter: <em>${esc(chapterTitle)}</em>. The full guide has the same plain-English style throughout, and adds:</p><ul>${more}<li>Sources and version notes, and a list of what the guide does not cover</li></ul>${link ? `<p>${link}</p><p class="pv-note">The current price and the purchase option are on the guide page.</p>` : ''}</section>
 </main>`;
   // A link to a part that is not in the sample becomes plain text tagged "full PDF", never a link that only jumps to a sales box.
   const ids = new Set([...body.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]));
@@ -154,17 +142,15 @@ ${buildPreviewNav(sections, hr, ps, chapterId)}
   return doc(meta, (await baseCss()) + (await previewCss()), fixed, '<meta name="robots" content="noindex">');
 }
 
+// The tier's "Assumes" box is left out: it points to parts of the PDF a sample reader doesn't have.
 function extractChapter(md, chapterId, key) {
   const lines = md.split('\n'); const out = []; let on = false, fence = false;
   const h1 = lines.find(l => /^#\s/.test(l));
-  const assumes = [];   // the tier's "Assumes" blockquote sits before the first H2
-  let seenH2 = false;
   for (const line of lines) {
     if (/^```/.test(line)) fence = !fence;
     const m = !fence && /^##\s+(.*)$/.exec(line);
-    if (m) { seenH2 = true; on = `${key}--${slugify(m[1].replace(/\s*\{#.*\}$/, '').trim())}` === chapterId; }
-    if (!seenH2 && /^>/.test(line)) assumes.push(line);
+    if (m) on = `${key}--${slugify(m[1].replace(/\s*\{#.*\}$/, '').trim())}` === chapterId;
     if (on) out.push(line);
   }
-  return `${h1}\n\n${assumes.join('\n')}\n\n${out.join('\n')}`;
+  return `${h1}\n\n${out.join('\n')}`;
 }
