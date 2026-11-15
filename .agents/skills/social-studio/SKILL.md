@@ -53,7 +53,9 @@ batches/<date>-NN/
 
 Pure HTML animation (GSAP; Three.js for light 3D) rendered by HyperFrames. No AI video clips (OpenAI Sora was discontinued in 2026; facts on screen must stay exact).
 
-1. **Story first** with `short-form-video-script` + `reels-script`, adapted: 7–20 s, **silent-first** (on-screen text carries everything, ~80% watch muted), hook within 1.5 s, one open question or curiosity gap, a visual change every 2–3 s, payoff near the end, last frame loops to the first, one 2 s value-tied CTA (comment / save / send — never "like & follow"). Write 5 hook variants and pick one. Save as `reels/<slug>/beats.md` (beat · time · visual · on-screen text).
+1. **Story first** with `short-form-video-script` + `reels-script`, adapted: 7–20 s, **silent-first** (on-screen text carries everything, ~80% watch muted), hook within 1.5 s, one open question or curiosity gap, a visual change every 2–3 s, payoff near the end, last frame loops to the first, one value-tied CTA held ≥ 3 s (comment / save / send — never "like & follow"). Write 5 hook variants and pick one. Save as `reels/<slug>/beats.md` (beat · time · visual · on-screen text).
+   **Reading time beats speed.** Hold every on-screen line for at least 0.5 s + 0.3 s per word, and give the CTA at least 3 s. A 5-beat reel usually lands at 15–20 s; the 10 s test cut (2026-11-15) was too fast to read. Lengthen the holds, not the animations. In a long beat, bring in a second line partway through so something still changes every 2–3 s. `check` warns `line_unread` when a line is too short; fix those warnings rather than leaving them.
+   **Script approval (always, even for a single test reel):** before building, show the owner a short script per reel — chosen hook (+ the 4 alternates in one line), then a 4–6 row table (time · on-screen text · what moves) and the CTA. Wait for "ok" or edits; only then build. In a batch, show all reel scripts together in one message right after the brief is approved.
 2. **Build** with `hyperframes`: `npx hyperframes@0.9.52 init reels/<slug> --skip-skills`, 1080×1920 at 30 fps, kit fonts/colours as variables, key text inside the 80% title-safe box and clear of the bottom ~35% (Instagram UI). Search `hyperframes-registry` before hand-writing an effect.
 3. **Check and render**: `check --json` clean, `snapshot` frames viewed, then `render --quality delivery -o <slug>.mp4`; confirm `ffprobe` duration, export frame 0 (or the hook frame) as `<slug>-cover.png`. Add both to `preview.html`.
 4. Telemetry stays off (`npx hyperframes telemetry disable`); skip the skills' "usage beacon" and `feedback` steps. Keep the pinned version unless the owner approves an upgrade. Fallback if HyperFrames fails: the same HTML + paused GSAP timeline, seeked per frame by Playwright and piped to ffmpeg.
@@ -75,6 +77,24 @@ Carousels: 8–10 slides, 40–70 words each, every slide a standalone fact or s
 ## Each batch
 
 Work in this order; each step ends on its stated check.
+
+**Subagents.** Run heavy, independent work in subagents so the main session stays light and each gets a focused brief. The main agent keeps the owner approvals, `plan.md`, and final checks. Give every subagent: the site path, the exact files to read, the output file to write, and "return a ≤15-line summary". Read their files; never trust a summary for facts.
+- Step 1: one subagent per platform (Pinterest CSV, Instagram screenshots) writes its section of `results.md`.
+- Step 2: one subagent per source group (Pinterest, Instagram, design galleries) writes `research/trends-<source>.md`.
+- Step 6: one subagent per theme writes `research/<theme>.md` with every fact linked. Run them in parallel.
+- Step 8: one subagent per reel (beat sheet → build → check → render) after the scripts are approved; one for all carousels; one for all pins. Each runs the `humanizer` pass on its own text.
+- After render: one fresh review subagent checks every output against the hard rules, `plan.md` and the kit (facts, links, safe areas, no paid-guide content) and lists fixes.
+Don't run subagents for owner-facing steps (brief, script approval) or tiny tasks.
+
+**Which model.** Quality comes first; save cost only where the work is following a fixed spec. Use Sonnet (set the subagent's `model` option) only when the output is already decided and a later Opus check catches mistakes.
+| Opus (main session or subagent) | Sonnet subagent |
+|---|---|
+| Brief, hooks, reel scripts, all captions/slide/pin text, the `humanizer` pass | Reading the Pinterest CSV / Instagram screenshots into tables (Opus writes "what to steer") |
+| Choosing trends and what to borrow | Collecting trend screenshots and links (no judgement) |
+| Research facts and numbers (wrong facts break trust) | Re-rendering, `check`/`ffprobe` runs, fixing reported render errors without changing the design |
+| New layouts, new motion, any reel that isn't a copy of an approved template | Applying approved text to an already-approved template (pin/slide/reel clone: swap text, data, colours only) |
+| Final review subagent | Assembling `post-this.md` from approved text (URLs, UTMs, schedule, alt-text columns) |
+If a Sonnet subagent has to make a creative call (layout breaks, text won't fit, motion needs a new idea), it stops and reports back; Opus decides. Opus views every Sonnet-built output before the owner sees it.
 
 1. **Results first.** Remind the owner once to share the previous batch's numbers: Pinterest Analytics CSV export; Instagram has no export, so screenshots of Content insights sorted by Views, Viewers, Interactions, Saves, Shares, Profile visits, External link taps, plus Account insights. Write them to that batch's `results.md` with: per-post table, pin age (days live) next to every pin number, reach overlap (sum of post viewers vs account viewers), follower vs non-follower share, and what to steer. Don't rank pins by impressions when ages differ; judge after ≥ 28 days. "Skip" is allowed. Done when `results.md` is written or skipped.
 2. **Fresh trend check.** Right before choosing themes or designs — every batch, never reused — look at current top niche pins, Pinterest Trends home / Predicts, Instagram hashtag pages, and Dribbble/Behance/Canva galleries via Playwright screenshots you actually view. Done when you can name what is trending now and what you'll borrow.
