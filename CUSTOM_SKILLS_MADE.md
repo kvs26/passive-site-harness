@@ -33,8 +33,19 @@ Designs a 2-week batch for a live site: 14 Pinterest pins and 7 Instagram posts 
 - `hyperframes` / `hyperframes-cli` / `hyperframes-registry` (HeyGen): build, check and render the reel animations, using ready-made effect blocks where possible.
 - `humanizer` (blader): removes AI-sounding wording from all text.
 - `no-ai-slop` (Peter Yang): final check of the captions.
-- `frontend-design` (external): visual direction for the style kit.
+- `frontend-design` (external): visual direction for the brand kit and each post.
 - `research` (Matt Pocock): checks facts for each topic.
+- `hook-writer` (social-media-skills): 8 scored hooks per post across different mechanisms.
+- `carousel-writer` (social-media-skills): slide structure, cover formula, one idea per slide.
+- `pinterest-pin-design` + `pinterest-seo` (social-media-skills): pin concepts, keyword-first titles, fresh-pin rules.
+- `instagram-seo` (social-media-skills): keyword captions and alt text.
+- `thumbnail-design` (social-media-skills): one-second click test, contrast and focal rules.
+- `quote-cards-and-text-graphics` + `infographic-and-data-viz` (social-media-skills): type-led and data-led compositions.
+- `listicle-and-roundup` (social-media-skills): honest ranked lists.
+- `story-writer` + `interactive-content` (social-media-skills): Stories plan and scoped polls.
+- `viral-reverse-engineering` (social-media-skills): finds the hook mechanism behind top posts, not the look.
+
+Since 2026-11: every post gets its own design (no fixed templates); the renderer lints hooks, text size, word count and layout sameness. See `.agents/skills/social-studio/design-playbook.md`.
 
 ## spread-site
 Takes the owner through promoting a site outside Google, one channel at a time (Reddit, forums, directories, Q&A, YouTube), with draft posts written in the owner's voice.

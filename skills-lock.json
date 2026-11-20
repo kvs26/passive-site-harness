@@ -7,6 +7,14 @@
       "skillPath": "skills/engineering/ask-matt/SKILL.md",
       "computedHash": "6afd9a4f24ed9457e8fcebe9731fdaba5795aac929c016b62e85e47775e64bbc"
     },
+    "carousel-writer": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/carousel-writer/SKILL.md",
+      "computedHash": "0f0f5fef3e5729562d47b6470efac8fd353f68be4268489589c1ed448854590b",
+      "installMode": "copy"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -55,6 +63,14 @@
       "skillPath": "skills/productivity/handoff/SKILL.md",
       "computedHash": "7caab20cd3b98bd88902e345a4b9063fd2e78e557a062f5b5e706008766042bd"
     },
+    "hook-writer": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/hook-writer/SKILL.md",
+      "computedHash": "8bed89a2afd944a962b28c6bd2c3480c69c56936d90d5f2ed5e7c5427a1da058",
+      "installMode": "copy"
+    },
     "humanizer": {
       "source": "blader/humanizer",
       "sourceType": "github",
@@ -95,6 +111,38 @@
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "9ea8c8491bbf8aeb631a38ff859447a6e3c3fb04e3fece2ffae378540aeadfa8"
     },
+    "infographic-and-data-viz": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/infographic-and-data-viz/SKILL.md",
+      "computedHash": "84ddbe34352f76d0304e83ca81ff1a7cafb06a0d33f2c36f6b5059e076eac89d",
+      "installMode": "copy"
+    },
+    "instagram-seo": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/instagram-seo/SKILL.md",
+      "computedHash": "4e8c20376cbf42dc435eed54238c41d29c715a8203ed485869c5fe71e56d54cb",
+      "installMode": "copy"
+    },
+    "interactive-content": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/interactive-content/SKILL.md",
+      "computedHash": "d37db39a3e9bdc2062012e78a08d1be5292aa8135996082719f7e3bec6490195",
+      "installMode": "copy"
+    },
+    "listicle-and-roundup": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/listicle-and-roundup/SKILL.md",
+      "computedHash": "4beffd9e0d720132d0d5513d68b7d02cc1a8b20eda14366a6c68672776c69368",
+      "installMode": "copy"
+    },
     "no-ai-slop": {
       "source": "petergyang/no-ai-slop",
       "sourceType": "github",
@@ -102,11 +150,35 @@
       "computedHash": "325408c3843e4a9d148a439fa665a0722d1248e23da8ef84646c9647ff4b3f88",
       "installMode": "copy"
     },
+    "pinterest-pin-design": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/pinterest-pin-design/SKILL.md",
+      "computedHash": "b361e42eba5b468644b65c4002e00778fb4f493fb9c2f4f71055572079618b04",
+      "installMode": "copy"
+    },
+    "pinterest-seo": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/pinterest-seo/SKILL.md",
+      "computedHash": "20cc19aba7a308444877ab620c36f4c80346b45e3f0093a95cebffcca184e416",
+      "installMode": "copy"
+    },
     "prototype": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/engineering/prototype/SKILL.md",
       "computedHash": "7a9a5d8de49c282d5115ea94b07699aa51c70574f4cf72286aa1fa0f756e9305"
+    },
+    "quote-cards-and-text-graphics": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/quote-cards-and-text-graphics/SKILL.md",
+      "computedHash": "1054bba3f8a7cf43cb0ded90b686481f26d256bb9946900905e9e897de27b857",
+      "installMode": "copy"
     },
     "reels-script": {
       "source": "social-media-skills/skills",
@@ -140,6 +212,14 @@
       "computedHash": "e9c86bee46801139b7271ccb382687db14a5e41de446f63dfe151fc8b9e4ddfd",
       "installMode": "copy"
     },
+    "story-writer": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/story-writer/SKILL.md",
+      "computedHash": "73b0099062f0d0cf3d90ba5ae35aedd70d9ce48219f1240c072893f7700fcd79",
+      "installMode": "copy"
+    },
     "tdd": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -151,6 +231,14 @@
       "sourceType": "github",
       "skillPath": "skills/productivity/teach/SKILL.md",
       "computedHash": "32fc877293001062a87fb7a338d637d61be860e69920db65d2cb6ca9f5403992"
+    },
+    "thumbnail-design": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/thumbnail-design/SKILL.md",
+      "computedHash": "5b4eb7099c057546d02b93255e9bf13d111ec03ef92935309eec35a6fa202c67",
+      "installMode": "copy"
     },
     "to-spec": {
       "source": "mattpocock/skills",
@@ -169,6 +257,14 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/triage/SKILL.md",
       "computedHash": "94899a90915b38a1dec15b054eaf663acac655f90fe155977935cbb2d08add7a"
+    },
+    "viral-reverse-engineering": {
+      "source": "social-media-skills/skills",
+      "commit": "f28cef2b7067ec64e79c9d85421c022c06659e03",
+      "sourceType": "github",
+      "skillPath": "skills/viral-reverse-engineering/SKILL.md",
+      "computedHash": "0c6138313d789ad1b6bc525ba79040bff6e06f758a100ceb68192f387998dde5",
+      "installMode": "copy"
     },
     "wayfinder": {
       "source": "mattpocock/skills",

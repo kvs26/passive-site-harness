@@ -14,6 +14,20 @@ node render.mjs <batch-dir> --only <post-slug> # re-render one post (preview not
 
 Exit code is non-zero if any post fails; failures are listed per file and shown in red in `preview.html`.
 
+## Design lint (on by default; `--no-lint` skips it for legacy batches)
+
+Checks each rendered page (covers = every pin and the first Instagram slide; body = other slides):
+
+- Cover/pin has an element marked `data-hook`; hook <= 8 words; hook font >= 110 px (pins) or >= 100 px (IG covers); no line break inside the hook unless `data-allow-br`.
+- Visible text >= 26 px; put footnotes, prices and legal in `data-fine` elements (ignored by the size and word checks).
+- Word budget: <= 18 visible words on a cover or pin, <= 45 on a body slide.
+- Pins: nothing in the bottom-right zone (20% wide x 10% tall).
+- Sameness (warning, in the report and `preview.html`): more than 3 pin covers or 2 IG covers in one dominant-colour bucket.
+
+`preview.html` also has a feed test (all pins in a two-column feed at real width, IG covers as a grid) to judge the thumbnail view.
+
+Limits live in the `LIMITS` object in `render.mjs`; change them only deliberately.
+
 ## Batch layout
 
 ```
